@@ -5,4 +5,4 @@ This page will be very simple for now. If you would like to contribute to Route 
 ***
 
 Copyright © 2020 [Luke Shay](https://github.com/LukeShay).<br />
-This project is [LGPL](https://github.com/LukeShay/route-rating/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/LukeShay/route-rating/blob/master/LICENSE) licensed.
