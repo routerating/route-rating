@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-routerating-dev-141911-authRole",
+      "UnauthRoleArn": "arn:aws:iam::816188110262:role/amplify-routerating-dev-141911-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::816188110262:role/amplify-routerating-dev-141911-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-routerating-dev-141911-deployment",
+      "UnauthRoleName": "amplify-routerating-dev-141911-unauthRole",
+      "StackName": "amplify-routerating-dev-141911",
+      "StackId": "arn:aws:cloudformation:us-east-1:816188110262:stack/amplify-routerating-dev-141911/66ce0770-c862-11ea-92ff-12305fa4f4bd",
+      "AmplifyAppId": "dtnj01v69cvwh"
+    }
+  }
+}

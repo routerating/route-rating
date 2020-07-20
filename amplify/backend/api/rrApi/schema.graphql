@@ -1,0 +1,98 @@
+type User
+  @model
+  @key(
+    name: "ByKey",
+    fields: ["key"],
+    queryField: "userByKey"
+  )
+  @key(
+    name: "ByEmail",
+    fields: ["email"],
+    queryField: "userByEmail"
+  ) {
+  id: ID!
+  key: String!
+  email: String!
+  givenName: String!
+  familyName: String!
+  address1: String!
+  address2: String!
+  city: String!
+  state: String!
+  zip: String!
+  phone: String!
+  type: String!
+}
+
+type Route
+  @model
+  @key(
+    name: "ByKey",
+    fields: ["key"],
+    queryField: "routeByKey"
+  )
+  @key(
+    name: "ByWall",
+    fields: ["wallId"],
+    queryField: "routeByWall"
+  )
+  {
+  id: ID!
+  key: String!
+  rating: String
+  difficulty: String
+  color: String!
+  setter: String!
+  types: [String]!
+  wallId: ID!
+  name: String!
+}
+
+type Wall
+  @model
+  @key(
+    name: "ByKey",
+    fields: ["key"],
+    queryField: "wallByKey"
+  )
+  @key(
+    name: "ByGym",
+    fields: ["gymId"],
+    queryField: "wallByGym"
+  ) {
+  id: ID!
+  key: String!
+  gymId: ID!
+  routes: [Route] @connection(keyName: "ByWall", fields: ["id"])
+  name: String
+}
+
+type Gym
+  @model
+  @key(
+    name: "ByKey",
+    fields: ["key"],
+    queryField: "gymByKey"
+  )
+  @key(
+    name: "ByOwner",
+    fields: ["ownerId"],
+    queryField: "gymByOwner"
+  ) {
+  id: ID!
+  key: String!
+  ownerId: ID!
+  owner: User! @connection(fields: ["ownerId"])
+  name: String!
+  address1: String!
+  address2: String!
+  city: String!
+  state: String!
+  zip: String!
+  phone: String!
+  website: String
+  logo: String
+  email: String!
+  editorIds: [ID]
+  walls: [Wall] @connection(keyName: "ByGym", fields: ["id"])
+}
