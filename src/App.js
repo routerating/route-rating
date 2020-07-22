@@ -1,73 +1,100 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Routes from './Routes'
-import { withRouter, NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { RouteLinks } from './Routes'
-import styled from 'styled-components'
-import { Style } from './constants'
+import { lightTheme, Style } from './theme'
+import { ThemeProvider, makeStyles, withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { Auth } from 'aws-amplify'
 
-const StyledLi = styled.li`
-  float: right;
-  width: 5rem;
+const navbarStyles = makeStyles((theme) => ({
+  appBar: {
+    background: Style.LIGHT_NAVBAR_COLOR,
+    color: Style.LIGHT_NAVBAR_TEXT,
+  },
+  toolbar: {
+    color: 'inherit',
+  },
+  button: {
+    color: 'inherit',
+    textTransform: 'none',
+    fontWeight: 'bolder',
+    padding: `0 ${theme.spacing(2)}px`,
+    borderRadius: '0',
+  },
+  buttonBorder: {
+    borderRight: `1px solid ${Style.LIGHT_NAVBAR_TEXT}`,
+  },
+  brand: {
+    flexGrow: 1,
+  },
+}))
 
-  :hover {
-    background-color: ${Style.CHARCOAL};
-  }
-
-  a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-`
-
-const StyledProfileLi = styled(StyledLi)`
-  margin: 0 0 0 3.5rem;
-  width: fit-content;
-`
-
-const StyledBrandLi = styled(StyledLi)`
-  float: left;
-  width: fit-content;
-  font-size: 22px;
-  font-weight: bold;
-`
-
-const StyledUl = styled.ul`
-  background-color: ${Style.BLACK};
-  list-style-type: none;
-  margin: 0;
-  padding: 0 1rem 0 1rem;
-  overflow: hidden;
-`
-
-const NavigationBar = ({ isAuth }) => {
-  const profileLink = isAuth ? RouteLinks.PROFILE : RouteLinks.SIGN_UP
+const NavigationBar = ({ authenticated }) => {
+  const profileLink = authenticated ? RouteLinks.PROFILE : RouteLinks.SIGN_UP
+  const classes = navbarStyles()
 
   return (
-    <StyledUl>
-      <StyledProfileLi>
-        <NavLink to={profileLink}>Profile</NavLink>
-      </StyledProfileLi>
-      <StyledLi>
-        <NavLink to={RouteLinks.GYMS}>Gyms</NavLink>
-      </StyledLi>
-      <StyledLi>
-        <NavLink to={RouteLinks.HOME}>Home</NavLink>
-      </StyledLi>
-      <StyledBrandLi>
-        <NavLink to={RouteLinks.HOME}>Route Rating</NavLink>
-      </StyledBrandLi>
-    </StyledUl>
+    <AppBar className={classes.appBar}>
+      <Toolbar className={classes.toolbar}>
+        <Typography className={classes.brand} variant="h5">
+          Route Rating
+        </Typography>
+        <Button
+          className={`${classes.button} ${classes.buttonBorder}`}
+          href={RouteLinks.HOME}>
+          Home
+        </Button>
+        <Button
+          className={`${classes.button} ${classes.buttonBorder}`}
+          href={RouteLinks.GYMS}>
+          Gyms
+        </Button>
+        <Button className={classes.button} href={profileLink}>
+          Profile
+        </Button>
+      </Toolbar>
+    </AppBar>
   )
 }
 
-const App = () => (
-  <>
-    <NavigationBar />
-    <Routes />
-  </>
-)
+const appStyles = (theme) => ({
+  box: {
+    paddingBottom: theme.spacing(10),
+  },
+})
 
-export default withRouter(App)
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading: false,
+      authenticated: false,
+    }
+
+    this.classes = this.props.classes
+  }
+
+  componentDidMount() {
+    Auth.currentAuthenticatedUser().then(() =>
+      this.setState({ authenticated: true }),
+    )
+  }
+
+  render() {
+    return (
+      <ThemeProvider theme={lightTheme}>
+        <CssBaseline />
+        <NavigationBar authenticated={this.state.authenticated} />
+        <div className={this.classes.box} />
+        <Routes childProps={{ authenticated: this.state.authenticated }} />
+      </ThemeProvider>
+    )
+  }
+}
+
+export default withStyles(appStyles, { withTheme: true })(withRouter(App))

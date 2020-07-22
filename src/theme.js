@@ -1,35 +1,55 @@
-export default {
-  breakpoints: ['40em', '52em', '64em'],
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
-  colors: {
-    blue: '#07c',
-    lightgray: '#f6f6ff',
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import purple from '@material-ui/core/colors/purple'
+import cyan from '@material-ui/core/colors/cyan'
+
+export const Style = {
+  BLUE: '#5C249B',
+  TEAL: '#18BB99',
+  BLACK: '#333',
+  CHARCOAL: '#555',
+  LIGHT_NAVBAR_COLOR: '#555',
+  LIGHT_NAVBAR_TEXT: '#fff',
+}
+
+const commonPalette = {
+  primary: {
+    main: purple[500],
   },
-  space: [0, 4, 8, 16, 32, 64, 128, 256],
-  fonts: {
-    body: 'system-ui, sans-serif',
-    heading: 'inherit',
-    monospace: 'Menlo, monospace',
-  },
-  fontWeights: {
-    body: 400,
-    heading: 700,
-    bold: 700,
-  },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.25,
-  },
-  shadows: {
-    small: '0 0 4px rgba(0, 0, 0, .125)',
-    large: '0 0 24px rgba(0, 0, 0, .125)',
-  },
-  variants: {},
-  text: {},
-  buttons: {
-    primary: {
-      color: 'white',
-      bg: 'primary',
-    },
+  secondary: {
+    main: cyan[500],
   },
 }
+
+export const lightTheme = responsiveFontSizes(
+  createMuiTheme({
+    palette: {
+      ...commonPalette,
+      type: 'light',
+      background: {
+        default: '#f7f7f7',
+        paper: '#fff',
+      },
+    },
+    overrides: {
+      body: {
+        backgroundColor: '#f7f7f7',
+      },
+      '@global': {
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
+        boxSizing: 'border-box',
+        WebkitBoxSizing: 'border-box',
+        MozBoxSizing: 'border-box',
+      },
+      '.centered': {
+        textAlign: 'center',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+      },
+      code: {
+        fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
+      },
+    },
+  }),
+)

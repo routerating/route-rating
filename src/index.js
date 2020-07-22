@@ -1,5 +1,3 @@
-import './index.css'
-
 import Amplify from 'aws-amplify'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
