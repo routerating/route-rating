@@ -13,7 +13,8 @@
         },
         "categories": {
             "auth": {
-                "routeratingc8f587c2": {}
+                "routeratingc8f587c2": {},
+                "userPoolGroups": {}
             }
         }
     }
