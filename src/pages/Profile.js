@@ -1,70 +1,290 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify'
+import { Button, Container, Grid, withStyles } from '@material-ui/core'
 import React, { Component } from 'react'
 
 import Form from '../components/Form'
+import FormTextField from '../components/FormTextField'
 import { userByEmail } from '../graphql/queries'
+import { withRouter } from 'react-router-dom'
+
+const profileStyles = (theme) => ({
+  button: {
+    margin: theme.spacing(3, 0, 0),
+  },
+})
 
 class Profile extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      isLoading: false,
+      isLoading: true,
+      isEdit: false,
       givenName: null,
       familyName: null,
       email: null,
       phoneNumber: null,
+      address1: null,
+      address2: null,
+      city: null,
+      state: null,
+      zip: null,
+      user: null,
     }
+
+    this.classes = this.props.classes
   }
 
   async componentDidMount() {
-    this.setState({ isLoading: true })
-    console.log(await Auth.currentUserInfo())
+    let newState = {}
+    let isEdit = false
 
-    const user = await Auth.currentAuthenticatedUser()
-    const {
-      email,
-      given_name: givenName,
-      family_name: familyName,
-      phone_number: phone,
-    } = user.attributes
+    try {
+      const user = await Auth.currentAuthenticatedUser()
+      const {
+        email,
+        given_name: givenName,
+        family_name: familyName,
+        phone_number: phone,
+        sub: key,
+      } = user.attributes
 
-    const graphqlResponse = await API.graphql(
-      graphqlOperation(userByEmail, { email }),
-    )
+      const type = user.signInUserSession.idToken.payload['cognito:groups']
 
-    const users = graphqlResponse.data.userByEmail.items
+      const graphqlResponse = await API.graphql(
+        graphqlOperation(userByEmail, { email }),
+      )
 
-    let newState = {
-      email,
-      familyName,
-      givenName,
-      phone,
+      const users = graphqlResponse.data.userByEmail.items
+
+      newState = {
+        email,
+        familyName,
+        givenName,
+        type,
+        user,
+        key,
+        phone: phone.substring(2),
+      }
+
+      if (users.length > 0) {
+        const { address1, address2, city, state, zip } = users
+
+        newState = { ...newState, address1, address2, city, state, zip }
+        isEdit = true
+      }
+    } catch (e) {
+      console.error('Profile:', e)
     }
 
-    if (users.length > 0) {
-      const { address1, address2, city, state } = users
+    console.log(newState)
 
-      newState = { ...newState, address1, address2, city, state }
-    }
-
-    this.setState({ ...newState, isLoading: false })
+    this.setState({ ...newState, isLoading: false, isEdit })
   }
 
   handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(event)
+
+    const {
+      familyName: family_name,
+      givenName: given_name,
+      phone,
+      address1,
+      address2,
+      city,
+      state,
+      zip,
+    } = this.state
+
+    try {
+      await Auth.updateUserAttributes(this.state.user, {
+        family_name,
+        given_name,
+        phone_number: `+1${phone}`,
+        address: `${address1} ${address2} ${city}, ${state} ${zip}`,
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  handleSignOut = async (event) => {
+    event.preventDefault()
+    await Auth.signOut()
+    this.props.updateAuth()
+  }
+
+  handleChange = async ({ target }) => {
+    target.error = false
+    this.setState({ [target.id]: target.value })
   }
 
   render() {
+    const {
+      email,
+      address1,
+      address2,
+      city,
+      state,
+      givenName,
+      familyName,
+      phone,
+      isLoading,
+      zip,
+    } = this.state
     return (
-      !this.state.isLoading && (
-        <Form handleSubmit={this.handleSubmit} title="Your Profile">
-          <h1>asdf</h1>
-        </Form>
+      !isLoading && (
+        <Container component="main" maxWidth="sm">
+          <Form onSubmit={this.handleSubmit} title="Your Profile">
+            <Grid container spacing={2}>
+              <FormTextField
+                label="First Name"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="givenName"
+                autoComplete="given-name"
+                inputProps={{ pattern: '^[A-Za-z]+$' }}
+                onInvalid={(event) => {
+                  event.target.setCustomValidity(
+                    'Your name must be the following form: First',
+                  )
+                  event.target.error = true
+                }}
+                defaultValue={givenName}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="Last Name"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="familyName"
+                autoComplete="family-name"
+                inputProps={{ pattern: '^[A-Za-z]+$' }}
+                onInvalid={(event) => {
+                  event.target.setCustomValidity(
+                    'Your name must be the following form: Last',
+                  )
+                  event.target.error = true
+                }}
+                defaultValue={familyName}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="Email"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="email"
+                autoComplete="email"
+                inputProps={{
+                  pattern: '^[A-Za-z0-9.+]+@[A-Za-z]+.[A-Za-z]+$',
+                }}
+                defaultValue={email}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="Phone Number"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="phone"
+                autoComplete="phone-number"
+                inputProps={{
+                  pattern: '^\\d{10}$',
+                }}
+                onInvalid={(event) => {
+                  event.target.setCustomValidity(
+                    'Phone number must be the following form: 1234567890',
+                  )
+                  event.target.error = true
+                }}
+                defaultValue={phone}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="Street Address"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="address1"
+                autoComplete="address1"
+                defaultValue={address1}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="Unit, PO, etc"
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="address2"
+                autoComplete="address2"
+                defaultValue={address2}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="City"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="city"
+                autoComplete="city"
+                defaultValue={city}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="State"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="state"
+                autoComplete="state"
+                defaultValue={state}
+                onChange={this.handleChange}
+              />
+              <FormTextField
+                label="Zip Code"
+                required
+                fullWidth
+                variant="outlined"
+                type="text"
+                id="zip"
+                autoComplete="zip"
+                defaultValue={zip}
+                onChange={this.handleChange}
+              />
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={this.classes.button}>
+              Update Account
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={this.handleSignOut}
+              className={this.classes.button}>
+              Sign out
+            </Button>
+          </Form>
+        </Container>
       )
     )
   }
 }
 
-export default Profile
+export default withStyles(profileStyles, { withTheme: true })(
+  withRouter(Profile),
+)

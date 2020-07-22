@@ -11,12 +11,21 @@ const formStyles = (theme) => ({
     padding: '2.5rem 0',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
 })
 
 class Form extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    handleSubmit: PropTypes.func,
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]),
+  }
+
   constructor(props) {
     super(props)
     this.classes = this.props.classes
@@ -30,19 +39,13 @@ class Form extends Component {
         </Typography>
         <Container
           component="form"
-          onSubmit={this.props.handleSubmit}
+          onSubmit={this.props.onSubmit}
           className={this.classes.form}>
           {this.props.children}
         </Container>
       </Paper>
     )
   }
-}
-
-Form.propTypes = {
-  title: PropTypes.string,
-  handleSubmit: PropTypes.func,
-  children: PropTypes.element,
 }
 
 export default withStyles(formStyles, { withTheme: true })(Form)

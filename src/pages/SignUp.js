@@ -1,11 +1,12 @@
+import { Button, Container, Grid, withStyles } from '@material-ui/core'
 import React, { Component } from 'react'
+
+import { Auth } from 'aws-amplify'
+import Form from '../components/Form'
+import FormTextField from '../components/FormTextField'
 import { Link } from 'react-router-dom'
 import { RouteLinks } from '../Routes'
-import { TextField, Grid, Button } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
-import { Auth } from 'aws-amplify'
 import { withRouter } from 'react-router-dom'
-import Form from '../components/Form'
 
 const signUpPageStyles = (theme) => ({
   avatar: {
@@ -43,12 +44,10 @@ class SignUp extends Component {
       newUser: null,
     }
     this.classes = this.props.classes
-    Auth.currentAuthenticatedUser().then((user) => console.log(user))
-    console.log(this.props)
   }
 
   handleChange = async ({ target }) => {
-    target.error = true
+    target.error = false
     this.setState({ [target.id]: target.value })
   }
 
@@ -122,10 +121,10 @@ class SignUp extends Component {
   renderForm() {
     return (
       !this.state.isLoading && (
-        <Form title="Create Account" handleSubmit={this.handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
+        <Container component="main" maxWidth="sm">
+          <Form title="Create Account" onSubmit={this.handleSubmit}>
+            <Grid container spacing={2}>
+              <FormTextField
                 label="Name"
                 required
                 fullWidth
@@ -142,9 +141,7 @@ class SignUp extends Component {
                 }}
                 onChange={this.handleChange}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
+              <FormTextField
                 label="Email"
                 required
                 fullWidth
@@ -157,9 +154,7 @@ class SignUp extends Component {
                 }}
                 onChange={this.handleChange}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
+              <FormTextField
                 label="Phone Number"
                 required
                 fullWidth
@@ -178,71 +173,7 @@ class SignUp extends Component {
                 }}
                 onChange={this.handleChange}
               />
-            </Grid>
-            {/* <Grid item xs={12}>
-                  <TextField
-                    label="Street Address"
-                    required
-                    fullWidth
-                    variant="outlined"
-                    type="text"
-                    id="address1"
-                    autoComplete="address-line1"
-                    onChange={this.handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    label="Unit, Room, PO, etc."
-                    fullWidth
-                    variant="outlined"
-                    type="text"
-                    id="address2"
-                    autoComplete="address-line2"
-                    onChange={this.handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    label="City"
-                    required
-                    fullWidth
-                    variant="outlined"
-                    type="text"
-                    id="city"
-                    autoComplete="address-level2"
-                    inputProps={{ pattern: '^[A-Za-z]+$' }}
-                    onChange={this.handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    label="State"
-                    required
-                    fullWidth
-                    variant="outlined"
-                    type="text"
-                    id="state"
-                    autoComplete="address-level1"
-                    inputProps={{ pattern: '^[A-Za-z]+$' }}
-                    onChange={this.handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    label="Zip Code"
-                    required
-                    fullWidth
-                    variant="outlined"
-                    type="text"
-                    id="zip"
-                    autoComplete="postal-code"
-                    inputProps={{ pattern: '^\\d{5}$' }}
-                    onChange={this.handleChange}
-                  /> 
-                </Grid> */}
-            <Grid item xs={12}>
-              <TextField
+              <FormTextField
                 label="Password"
                 required
                 fullWidth
@@ -261,9 +192,7 @@ class SignUp extends Component {
                 }}
                 onChange={this.handleChange}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
+              <FormTextField
                 label="Repeat Password"
                 required
                 fullWidth
@@ -273,19 +202,19 @@ class SignUp extends Component {
                 onChange={this.handleChange}
               />
             </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={this.classes.submit}>
-            Sign Up
-          </Button>
-          <Link to={RouteLinks.SIGN_IN} className={this.classes.link}>
-            Sign in
-          </Link>
-        </Form>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={this.classes.submit}>
+              Sign Up
+            </Button>
+            <Link to={RouteLinks.SIGN_IN} className={this.classes.link}>
+              Sign in
+            </Link>
+          </Form>
+        </Container>
       )
     )
   }
@@ -293,10 +222,10 @@ class SignUp extends Component {
   renderConfirmation() {
     return (
       !this.state.isLoading && (
-        <Form title="Confirm Account">
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
+        <Container component="main" maxWidth="sm">
+          <Form title="Confirm Account" onSubmit={this.handleConfirmation}>
+            <Grid container spacing={2}>
+              <FormTextField
                 label="Confirmation Code"
                 required
                 fullWidth
@@ -308,16 +237,16 @@ class SignUp extends Component {
                 helperText="Please check your email for a 6 digit verification code from no-reply@verificationemail.com"
               />
             </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={this.classes.submit}>
-            Confirm Account
-          </Button>
-        </Form>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={this.classes.submit}>
+              Confirm Account
+            </Button>
+          </Form>
+        </Container>
       )
     )
   }

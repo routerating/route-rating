@@ -1,10 +1,9 @@
 import React, { lazy } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import Profile from './pages/Profile'
-
 const SignUp = lazy(() => import('./pages/SignUp'))
-// const Profile = lazy(() => import('./pages/Profile'))
+const SignIn = lazy(() => import('./pages/SignIn'))
+const Profile = lazy(() => import('./pages/Profile'))
 const Gyms = lazy(() => import('./pages/Gyms'))
 const Home = lazy(() => import('./pages/Home'))
 
@@ -64,6 +63,13 @@ export default ({ childProps }) => (
         childProps={childProps}
         exact
         component={Profile}
+      />
+      <UnauthOnlyRoute
+        path={RouteLinks.SIGN_IN}
+        redirect={RouteLinks.PROFILE}
+        childProps={childProps}
+        exact
+        component={SignIn}
       />
       <UnauthRoute path="*" childProps={childProps} component={Home} />
     </Switch>
