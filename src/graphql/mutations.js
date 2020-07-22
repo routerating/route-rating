@@ -19,6 +19,7 @@ export const createUser = /* GraphQL */ `
       zip
       phone
       type
+      profile
       createdAt
       updatedAt
     }
@@ -42,6 +43,7 @@ export const updateUser = /* GraphQL */ `
       zip
       phone
       type
+      profile
       createdAt
       updatedAt
     }
@@ -65,6 +67,7 @@ export const deleteUser = /* GraphQL */ `
       zip
       phone
       type
+      profile
       createdAt
       updatedAt
     }
@@ -140,6 +143,19 @@ export const createWall = /* GraphQL */ `
       key
       gymId
       routes {
+        items {
+          id
+          key
+          rating
+          difficulty
+          color
+          setter
+          types
+          wallId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       name
@@ -158,6 +174,19 @@ export const updateWall = /* GraphQL */ `
       key
       gymId
       routes {
+        items {
+          id
+          key
+          rating
+          difficulty
+          color
+          setter
+          types
+          wallId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       name
@@ -176,6 +205,19 @@ export const deleteWall = /* GraphQL */ `
       key
       gymId
       routes {
+        items {
+          id
+          key
+          rating
+          difficulty
+          color
+          setter
+          types
+          wallId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       name
@@ -206,6 +248,7 @@ export const createGym = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -221,6 +264,14 @@ export const createGym = /* GraphQL */ `
       email
       editorIds
       walls {
+        items {
+          id
+          key
+          gymId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -250,6 +301,7 @@ export const updateGym = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -265,6 +317,14 @@ export const updateGym = /* GraphQL */ `
       email
       editorIds
       walls {
+        items {
+          id
+          key
+          gymId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -294,6 +354,7 @@ export const deleteGym = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -309,6 +370,14 @@ export const deleteGym = /* GraphQL */ `
       email
       editorIds
       walls {
+        items {
+          id
+          key
+          gymId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt

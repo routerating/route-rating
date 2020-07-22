@@ -1,6 +1,6 @@
 {
     "api": {
-        "rrApi": {
+        "routerating": {
             "service": "AppSync",
             "providerPlugin": "awscloudformation",
             "output": {
@@ -18,17 +18,18 @@
         }
     },
     "auth": {
-        "routeratingc8f587c2": {
+        "routeratingcb88d743": {
             "service": "Cognito",
             "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "customAuth": false
+            "dependsOn": []
         },
         "userPoolGroups": {
+            "service": "Cognito-UserPool-Groups",
+            "providerPlugin": "awscloudformation",
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "routeratingc8f587c2",
+                    "resourceName": "routeratingcb88d743",
                     "attributes": [
                         "UserPoolId",
                         "AppClientIDWeb",

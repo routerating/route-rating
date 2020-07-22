@@ -16,6 +16,7 @@ export const onCreateUser = /* GraphQL */ `
       zip
       phone
       type
+      profile
       createdAt
       updatedAt
     }
@@ -36,6 +37,7 @@ export const onUpdateUser = /* GraphQL */ `
       zip
       phone
       type
+      profile
       createdAt
       updatedAt
     }
@@ -56,6 +58,7 @@ export const onDeleteUser = /* GraphQL */ `
       zip
       phone
       type
+      profile
       createdAt
       updatedAt
     }
@@ -119,6 +122,19 @@ export const onCreateWall = /* GraphQL */ `
       key
       gymId
       routes {
+        items {
+          id
+          key
+          rating
+          difficulty
+          color
+          setter
+          types
+          wallId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       name
@@ -134,6 +150,19 @@ export const onUpdateWall = /* GraphQL */ `
       key
       gymId
       routes {
+        items {
+          id
+          key
+          rating
+          difficulty
+          color
+          setter
+          types
+          wallId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       name
@@ -149,6 +178,19 @@ export const onDeleteWall = /* GraphQL */ `
       key
       gymId
       routes {
+        items {
+          id
+          key
+          rating
+          difficulty
+          color
+          setter
+          types
+          wallId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       name
@@ -176,6 +218,7 @@ export const onCreateGym = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -191,6 +234,14 @@ export const onCreateGym = /* GraphQL */ `
       email
       editorIds
       walls {
+        items {
+          id
+          key
+          gymId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -217,6 +268,7 @@ export const onUpdateGym = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -232,6 +284,14 @@ export const onUpdateGym = /* GraphQL */ `
       email
       editorIds
       walls {
+        items {
+          id
+          key
+          gymId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -258,6 +318,7 @@ export const onDeleteGym = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -273,6 +334,14 @@ export const onDeleteGym = /* GraphQL */ `
       email
       editorIds
       walls {
+        items {
+          id
+          key
+          gymId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt

@@ -16,6 +16,7 @@ export const getUser = /* GraphQL */ `
       zip
       phone
       type
+      profile
       createdAt
       updatedAt
     }
@@ -41,6 +42,7 @@ export const listUsers = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -96,6 +98,19 @@ export const getWall = /* GraphQL */ `
       key
       gymId
       routes {
+        items {
+          id
+          key
+          rating
+          difficulty
+          color
+          setter
+          types
+          wallId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       name
@@ -115,6 +130,9 @@ export const listWalls = /* GraphQL */ `
         id
         key
         gymId
+        routes {
+          nextToken
+        }
         name
         createdAt
         updatedAt
@@ -142,6 +160,7 @@ export const getGym = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -157,6 +176,14 @@ export const getGym = /* GraphQL */ `
       email
       editorIds
       walls {
+        items {
+          id
+          key
+          gymId
+          name
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -175,6 +202,23 @@ export const listGyms = /* GraphQL */ `
         id
         key
         ownerId
+        owner {
+          id
+          key
+          email
+          givenName
+          familyName
+          address1
+          address2
+          city
+          state
+          zip
+          phone
+          type
+          profile
+          createdAt
+          updatedAt
+        }
         name
         address1
         address2
@@ -186,6 +230,9 @@ export const listGyms = /* GraphQL */ `
         logo
         email
         editorIds
+        walls {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -221,6 +268,7 @@ export const userByKey = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -256,6 +304,7 @@ export const userByEmail = /* GraphQL */ `
         zip
         phone
         type
+        profile
         createdAt
         updatedAt
       }
@@ -346,6 +395,9 @@ export const wallByKey = /* GraphQL */ `
         id
         key
         gymId
+        routes {
+          nextToken
+        }
         name
         createdAt
         updatedAt
@@ -373,6 +425,9 @@ export const wallByGym = /* GraphQL */ `
         id
         key
         gymId
+        routes {
+          nextToken
+        }
         name
         createdAt
         updatedAt
@@ -400,6 +455,23 @@ export const gymByKey = /* GraphQL */ `
         id
         key
         ownerId
+        owner {
+          id
+          key
+          email
+          givenName
+          familyName
+          address1
+          address2
+          city
+          state
+          zip
+          phone
+          type
+          profile
+          createdAt
+          updatedAt
+        }
         name
         address1
         address2
@@ -411,6 +483,9 @@ export const gymByKey = /* GraphQL */ `
         logo
         email
         editorIds
+        walls {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -437,6 +512,23 @@ export const gymByOwner = /* GraphQL */ `
         id
         key
         ownerId
+        owner {
+          id
+          key
+          email
+          givenName
+          familyName
+          address1
+          address2
+          city
+          state
+          zip
+          phone
+          type
+          profile
+          createdAt
+          updatedAt
+        }
         name
         address1
         address2
@@ -448,6 +540,9 @@ export const gymByOwner = /* GraphQL */ `
         logo
         email
         editorIds
+        walls {
+          nextToken
+        }
         createdAt
         updatedAt
       }

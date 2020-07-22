@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "routeratingc8f587c2_identitypool_c8f587c2",
+    "identityPoolName": "routeratingcb88d743_identitypool_cb88d743",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "routerc8f587c2",
-    "userPoolName": "routeratingc8f587c2_userpool_c8f587c2",
+    "resourceNameTruncated": "routercb88d743",
+    "userPoolName": "routeratingcb88d743_userpool_cb88d743",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,10 +18,11 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
+        "address",
         "email",
-        "phone_number",
         "family_name",
-        "given_name"
+        "given_name",
+        "phone_number"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -31,10 +32,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "routerc8f587c2_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "routercb88d743_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "c8f587c2",
-    "resourceName": "routeratingc8f587c2",
+    "sharedId": "cb88d743",
+    "resourceName": "routeratingcb88d743",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -52,6 +53,11 @@
     "usernameAttributes": [
         "email"
     ],
+    "triggers": "{}",
     "userPoolGroupList": [],
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
     "dependsOn": []
 }
