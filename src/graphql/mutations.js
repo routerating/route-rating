@@ -19,7 +19,7 @@ export const createUser = /* GraphQL */ `
       zip
       phone
       type
-      profile
+      picture
       createdAt
       updatedAt
     }
@@ -43,7 +43,7 @@ export const updateUser = /* GraphQL */ `
       zip
       phone
       type
-      profile
+      picture
       createdAt
       updatedAt
     }
@@ -67,7 +67,7 @@ export const deleteUser = /* GraphQL */ `
       zip
       phone
       type
-      profile
+      picture
       createdAt
       updatedAt
     }
@@ -248,7 +248,7 @@ export const createGym = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -301,7 +301,7 @@ export const updateGym = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -354,7 +354,7 @@ export const deleteGym = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }

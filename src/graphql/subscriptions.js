@@ -16,7 +16,7 @@ export const onCreateUser = /* GraphQL */ `
       zip
       phone
       type
-      profile
+      picture
       createdAt
       updatedAt
     }
@@ -37,7 +37,7 @@ export const onUpdateUser = /* GraphQL */ `
       zip
       phone
       type
-      profile
+      picture
       createdAt
       updatedAt
     }
@@ -58,7 +58,7 @@ export const onDeleteUser = /* GraphQL */ `
       zip
       phone
       type
-      profile
+      picture
       createdAt
       updatedAt
     }
@@ -218,7 +218,7 @@ export const onCreateGym = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -268,7 +268,7 @@ export const onUpdateGym = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -318,7 +318,7 @@ export const onDeleteGym = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }

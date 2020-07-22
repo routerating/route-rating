@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "routeratingcb88d743_identitypool_cb88d743",
+    "identityPoolName": "routerating713aca7a_identitypool_713aca7a",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "routercb88d743",
-    "userPoolName": "routeratingcb88d743_userpool_cb88d743",
+    "resourceNameTruncated": "router713aca7a",
+    "userPoolName": "routerating713aca7a_userpool_713aca7a",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -10,19 +10,15 @@
     "mfaTypes": [
         "SMS Text Message"
     ],
-    "smsAuthenticationMessage": "Your Route Rating authentication code is {####}",
-    "smsVerificationMessage": "Your Route Rating verification code is {####}",
-    "emailVerificationSubject": "Your Route Rating verification code",
-    "emailVerificationMessage": "Your Route Rating verification code is {####}",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "address",
-        "email",
-        "family_name",
-        "given_name",
-        "phone_number"
+        "email"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -32,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "routercb88d743_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "router713aca7a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "cb88d743",
-    "resourceName": "routeratingcb88d743",
+    "sharedId": "713aca7a",
+    "resourceName": "routerating713aca7a",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -53,11 +49,6 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
     "userPoolGroupList": [],
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }

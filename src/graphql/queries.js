@@ -16,7 +16,7 @@ export const getUser = /* GraphQL */ `
       zip
       phone
       type
-      profile
+      picture
       createdAt
       updatedAt
     }
@@ -42,7 +42,7 @@ export const listUsers = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -160,7 +160,7 @@ export const getGym = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -215,7 +215,7 @@ export const listGyms = /* GraphQL */ `
           zip
           phone
           type
-          profile
+          picture
           createdAt
           updatedAt
         }
@@ -268,7 +268,7 @@ export const userByKey = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -304,7 +304,7 @@ export const userByEmail = /* GraphQL */ `
         zip
         phone
         type
-        profile
+        picture
         createdAt
         updatedAt
       }
@@ -468,7 +468,7 @@ export const gymByKey = /* GraphQL */ `
           zip
           phone
           type
-          profile
+          picture
           createdAt
           updatedAt
         }
@@ -525,7 +525,7 @@ export const gymByOwner = /* GraphQL */ `
           zip
           phone
           type
-          profile
+          picture
           createdAt
           updatedAt
         }
