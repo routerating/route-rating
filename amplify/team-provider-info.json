@@ -14,6 +14,12 @@
         "categories": {
             "auth": {
                 "routerating713aca7a": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d2p3pg1igmsqk9",
+                    "type": "manual"
+                }
             }
         }
     }
