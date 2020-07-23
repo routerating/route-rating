@@ -1,16 +1,21 @@
+import {
+  AppBar,
+  Button,
+  CssBaseline,
+  Snackbar,
+  ThemeProvider,
+  Toolbar,
+  Typography,
+  makeStyles,
+} from '@material-ui/core'
 import React, { Component } from 'react'
-import { Style, lightTheme } from './theme'
-import { ThemeProvider, makeStyles, withStyles } from '@material-ui/core/styles'
 
-import AppBar from '@material-ui/core/AppBar'
+import { Alert } from '@material-ui/lab'
 import { Auth } from 'aws-amplify'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { RouteLinks } from './Routes'
-import Routes from './Routes'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import { withRouter } from 'react-router-dom'
+import { Style, lightTheme } from './theme'
+import Routes, { RouteLinks } from './Routes'
+
+import { exportClassComponent } from './utils'
 
 const navbarStyles = makeStyles((theme) => ({
   appBar: {
@@ -75,6 +80,9 @@ class App extends Component {
     this.state = {
       isLoading: true,
       authenticated: false,
+      openSnack: false,
+      snackSeverity: 'info',
+      snackMessage: '',
     }
 
     this.classes = this.props.classes
@@ -92,15 +100,39 @@ class App extends Component {
     this.setState({ authenticated })
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     await this.updateAuth()
     this.setState({ isLoading: false })
+  }
+
+  openSnack = async (message, severity) => {
+    this.setState({
+      openSnack: true,
+      snackMessage: message,
+      snackSeverity: severity,
+    })
+  }
+
+  handleSnackClose = async () => {
+    this.setState({
+      openSnack: false,
+    })
   }
 
   render() {
     return (
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
+        <Snackbar
+          open={this.state.openSnack}
+          autoHideDuration={6000}
+          onClose={this.handleSnackClose}>
+          <Alert
+            onClose={this.handleSnackClose}
+            severity={this.state.snackSeverity}>
+            {this.state.snackMessage}
+          </Alert>
+        </Snackbar>
         <NavigationBar authenticated={this.state.authenticated} />
         <div className={this.classes.box} />
         {!this.state.isLoading && (
@@ -108,6 +140,7 @@ class App extends Component {
             childProps={{
               authenticated: this.state.authenticated,
               updateAuth: this.updateAuth,
+              openSnack: this.openSnack,
             }}
           />
         )}
@@ -116,4 +149,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(appStyles, { withTheme: true })(withRouter(App))
+export default exportClassComponent(App, appStyles)

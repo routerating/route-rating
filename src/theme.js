@@ -48,7 +48,8 @@ export const lightTheme = responsiveFontSizes(
         justifyContent: 'center',
       },
       code: {
-        fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
+        fontFamily:
+          'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
       },
     },
   }),

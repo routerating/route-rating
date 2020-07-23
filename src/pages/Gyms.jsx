@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
+import { exportClassComponent } from '../utils'
+
 class GymsPage extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-       isLoading: true
-    }
+    this.state = {}
   }
 
   render() {
@@ -18,4 +18,4 @@ class GymsPage extends Component {
   }
 }
 
-export default GymsPage
+export default exportClassComponent(GymsPage)

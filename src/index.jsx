@@ -1,9 +1,9 @@
 import { hydrate, render } from 'react-dom'
 
 import Amplify from 'aws-amplify'
-import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
+import App from './App'
 import awsExports from './aws-exports'
 import { register as registerServiceWorker } from './serviceWorker'
 

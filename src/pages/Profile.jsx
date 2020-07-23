@@ -1,11 +1,11 @@
-import { API, Auth, graphqlOperation } from 'aws-amplify'
-import { Button, Container, Grid, withStyles } from '@material-ui/core'
+import { Button, Container, Grid } from '@material-ui/core'
 import React, { Component } from 'react'
 
+import { Auth } from 'aws-amplify'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
-import { userByEmail } from '../graphql/queries'
-import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { exportClassComponent } from '../utils'
 
 const profileStyles = (theme) => ({
   button: {
@@ -19,11 +19,10 @@ class Profile extends Component {
 
     this.state = {
       isLoading: true,
-      isEdit: false,
       givenName: null,
       familyName: null,
       email: null,
-      phoneNumber: null,
+      phone: null,
       address1: null,
       address2: null,
       city: null,
@@ -35,10 +34,7 @@ class Profile extends Component {
     this.classes = this.props.classes
   }
 
-  async componentDidMount() {
-    let newState = {}
-    let isEdit = false
-
+  componentDidMount = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser()
       const {
@@ -47,39 +43,24 @@ class Profile extends Component {
         family_name: familyName,
         phone_number: phone,
         sub: key,
+        address,
       } = user.attributes
 
-      const type = user.signInUserSession.idToken.payload['cognito:groups']
+      const deconstructedAddress = await this.deconstructAddress(address)
 
-      const graphqlResponse = await API.graphql(
-        graphqlOperation(userByEmail, { email }),
-      )
-
-      const users = graphqlResponse.data.userByEmail.items
-
-      newState = {
+      this.setState({
         email,
         familyName,
         givenName,
-        type,
         user,
         key,
         phone: phone.substring(2),
-      }
-
-      if (users.length > 0) {
-        const { address1, address2, city, state, zip } = users
-
-        newState = { ...newState, address1, address2, city, state, zip }
-        isEdit = true
-      }
+        isLoading: false,
+        ...deconstructedAddress,
+      })
     } catch (e) {
       console.error('Profile:', e)
     }
-
-    console.log(newState)
-
-    this.setState({ ...newState, isLoading: false, isEdit })
   }
 
   handleSubmit = async (event) => {
@@ -101,9 +82,17 @@ class Profile extends Component {
         family_name,
         given_name,
         phone_number: `+1${phone}`,
-        address: `${address1} ${address2} ${city}, ${state} ${zip}`,
+        address: await this.constructAddress(
+          address1,
+          address2,
+          city,
+          state,
+          zip,
+        ),
       })
+      this.props.openSnack('Successfully updated your profile.', 'success')
     } catch (e) {
+      this.props.openSnack('There was an error updating your profile.', 'error')
       console.error(e)
     }
   }
@@ -285,6 +274,9 @@ class Profile extends Component {
   }
 }
 
-export default withStyles(profileStyles, { withTheme: true })(
-  withRouter(Profile),
-)
+Profile.propTypes = {
+  classes: PropTypes.object,
+  openSnack: PropTypes.func,
+}
+
+export default exportClassComponent(Profile, profileStyles)

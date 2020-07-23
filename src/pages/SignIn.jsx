@@ -1,11 +1,20 @@
-import { Button, Container, Grid, withStyles } from '@material-ui/core'
+import {
+  Button,
+  Container,
+  Grid,
+  Typography,
+  withStyles,
+} from '@material-ui/core'
 import React, { Component } from 'react'
 
 import { Auth } from 'aws-amplify'
+import { Link } from 'react-router-dom'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
+import { RouteLinks } from '../Routes'
+import { exportClassComponent } from '../utils'
 
-const signInPageStyles = (theme) => ({
+const signInStyles = (theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -13,8 +22,21 @@ const signInPageStyles = (theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  createAccount: {
+    textAlign: 'center',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  forgotPassword: {
+    width: '100%',
+    display: 'flex',
+    paddingTop: theme.spacing(0.5),
+  },
   link: {
-    textDecoration: 'none',
+    fontSize: '0.8rem',
+  },
+  signUp: {
     textAlign: 'center',
     width: '100%',
     display: 'flex',
@@ -45,7 +67,7 @@ export class SignIn extends Component {
       await Auth.signIn(this.state.email, this.state.password)
       this.props.updateAuth()
     } catch (e) {
-      alert('You could not be signed in')
+      this.props.openSnack('You could not be signed in.', 'error')
       console.error({ ...e })
     }
   }
@@ -74,8 +96,13 @@ export class SignIn extends Component {
                 type="password"
                 id="password"
                 autoComplete="password"
-                onChange={this.handleChange}
-              />
+                onChange={this.handleChange}>
+                <Typography
+                  component="pre"
+                  className={`${this.classes.forgotPassword} ${this.classes.link}`}>
+                  Forgot password? <Link>Recover password</Link>
+                </Typography>
+              </FormTextField>
             </Grid>
             <Button
               type="submit"
@@ -85,6 +112,11 @@ export class SignIn extends Component {
               className={this.classes.submit}>
               Sign in
             </Button>
+            <Typography
+              className={`${this.classes.signUp} ${this.classes.link}`}
+              component="pre">
+              Need an account? <Link to={RouteLinks.SIGN_UP}>Sign up</Link>
+            </Typography>
           </Form>
         </Container>
       )
@@ -92,4 +124,4 @@ export class SignIn extends Component {
   }
 }
 
-export default withStyles(signInPageStyles, { withTheme: true })(SignIn)
+export default exportClassComponent(SignIn, signInStyles)

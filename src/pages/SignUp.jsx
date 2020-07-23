@@ -1,4 +1,4 @@
-import { Button, Container, Grid, withStyles } from '@material-ui/core'
+import { Button, Container, Grid, Typography } from '@material-ui/core'
 import React, { Component } from 'react'
 
 import { Auth } from 'aws-amplify'
@@ -6,9 +6,9 @@ import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import { Link } from 'react-router-dom'
 import { RouteLinks } from '../Routes'
-import { withRouter } from 'react-router-dom'
+import { exportClassComponent } from '../utils'
 
-const signUpPageStyles = (theme) => ({
+const signUpStyles = (theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -16,12 +16,13 @@ const signUpPageStyles = (theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  link: {
+  signIn: {
     textDecoration: 'none',
     textAlign: 'center',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
+    fontSize: '0.8rem',
   },
 })
 
@@ -79,25 +80,11 @@ class SignUp extends Component {
       this.setState({ newUser })
     } catch (e) {
       if (e.code === 'UsernameExistsException') {
-        try {
-          const user = await Auth.signIn(email, password)
-          this.props.setAuthenticated(user)
-          this.props.history.push(RouteLinks.PROFILE)
-        } catch (e) {
-          if (e.code === 'UserNotConfirmedException') {
-            alert('User already exists. Resending Verify Code')
-            Auth.resendSignUp({
-              username: email,
-            })
-            this.setState({ newUser: {} })
-          } else {
-            alert('User already exists')
-            console.error({ ...e })
-          }
-        }
+        this.props.openSnack('Email is already being used.', 'warning')
       } else {
-        alert('Unable to create your account', e.message)
+        this.props.openSnack('Unable to create your account.', 'error')
       }
+      console.error({ ...e })
     }
   }
 
@@ -113,7 +100,7 @@ class SignUp extends Component {
       this.props.setAuthenticated(user)
       this.props.history.push(RouteLinks.PROFILE)
     } catch (e) {
-      alert('Unable to confirm your account', e.message)
+      this.props.openSnack('Unable to confirm your account.', 'error')
       console.error({ ...e })
     }
   }
@@ -207,12 +194,13 @@ class SignUp extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              className={this.classes.submit}>
+              className={this.classes.submit}
+            >
               Sign Up
             </Button>
-            <Link to={RouteLinks.SIGN_IN} className={this.classes.link}>
-              Sign in
-            </Link>
+            <Typography className={this.classes.signIn} component="pre">
+              Have an account? <Link to={RouteLinks.SIGN_IN}>Sign in</Link>
+            </Typography>
           </Form>
         </Container>
       )
@@ -242,7 +230,8 @@ class SignUp extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              className={this.classes.submit}>
+              className={this.classes.submit}
+            >
               Confirm Account
             </Button>
           </Form>
@@ -256,6 +245,4 @@ class SignUp extends Component {
   }
 }
 
-export default withStyles(signUpPageStyles, { withTheme: true })(
-  withRouter(SignUp),
-)
+export default exportClassComponent(SignUp, signUpStyles)
