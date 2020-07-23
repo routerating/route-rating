@@ -1,32 +1,37 @@
-type User
-  @model
-  @key(
-    name: "ByKey",
-    fields: ["key"],
-    queryField: "userByKey"
-  )
-  @key(
-    name: "ByEmail",
-    fields: ["email"],
-    queryField: "userByEmail"
-  ) {
-  id: ID!
-  key: String!
-  email: String!
-  givenName: String!
-  familyName: String!
-  address1: String!
-  address2: String!
-  city: String!
-  state: String!
-  zip: String!
-  phone: String!
-  type: String!
-  picture: String
-}
+# type User
+#   @model
+#   @key(
+#     name: "ByKey",
+#     fields: ["key"],
+#     queryField: "userByKey"
+#   )
+#   @key(
+#     name: "ByEmail",
+#     fields: ["email"],
+#     queryField: "userByEmail"
+#   ) {
+#   id: ID!
+#   key: String!
+#   email: String!
+#   givenName: String!
+#   familyName: String!
+#   address1: String!
+#   address2: String!
+#   city: String!
+#   state: String!
+#   zip: String!
+#   phone: String!
+#   type: String!
+#   picture: String
+# }
 
 type Route
   @model
+  @auth(rules: [
+    { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
+    { allow: owner, ownerField: "owner", operations: [update] },
+    { allow: owner, ownerField: "editors", operations: [update] }
+  ])
   @key(
     name: "ByKey",
     fields: ["key"],
@@ -47,10 +52,17 @@ type Route
   types: [String]!
   wallId: ID!
   name: String!
+  owner: String!
+  editors: [String]
 }
 
 type Wall
   @model
+  @auth(rules: [
+    { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
+    { allow: owner, ownerField: "owner", operations: [update] },
+    { allow: owner, ownerField: "editors", operations: [update] }
+  ])
   @key(
     name: "ByKey",
     fields: ["key"],
@@ -66,24 +78,26 @@ type Wall
   gymId: ID!
   routes: [Route] @connection(keyName: "ByWall", fields: ["id"])
   name: String
+  owner: String!
+  editors: [String]
 }
 
 type Gym
   @model
+  @searchable
+  @auth(rules: [
+    { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
+    { allow: owner, operations: [update] }
+  ])
   @key(
     name: "ByKey",
     fields: ["key"],
     queryField: "gymByKey"
-  )
-  @key(
-    name: "ByOwner",
-    fields: ["ownerId"],
-    queryField: "gymByOwner"
   ) {
   id: ID!
   key: String!
-  ownerId: ID!
-  owner: User! @connection(fields: ["ownerId"])
+  # ownerId: ID!
+  # owner: User! @connection(fields: ["ownerId"])
   name: String!
   address1: String!
   address2: String!
@@ -94,6 +108,8 @@ type Gym
   website: String
   logo: String
   email: String!
-  editorIds: [ID]
+  # editorIds: [ID]
   walls: [Wall] @connection(keyName: "ByGym", fields: ["id"])
+  owner: String!
+  editors: [String]
 }

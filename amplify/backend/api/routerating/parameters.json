@@ -1,5 +1,11 @@
 {
     "AppSyncApiName": "routerating",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": "false"
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authrouterating713aca7a",
+            "Outputs.UserPoolId"
+        ]
+    }
 }
