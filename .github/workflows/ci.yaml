@@ -11,6 +11,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.18
+      - name: configure amplify
+        uses: ambientlight/amplify-cli-action@0.2.1
+        with:
+          amplify_command: configure
+          amplify_env: dev
       - name: Install
         run: npm ci
       - name: Build
@@ -33,6 +38,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.18
+      - name: configure amplify
+        uses: ambientlight/amplify-cli-action@0.2.1
+        with:
+          amplify_command: configure
+          amplify_env: dev
       - name: Install
         run: npm ci
       - name: Build
