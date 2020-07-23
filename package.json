@@ -22,7 +22,9 @@
     "postbuild": "react-snap",
     "test": "react-scripts test",
     "lint": "react-scripts lint",
-    "amplify:publish": "amplify publish -y"
+    "postinstall": "npm run amplify:dev",
+    "amplify:publish": "amplify publish -y",
+    "amplify:dev": "amplify env pull --yes dev"
   },
   "eslintConfig": {
     "extends": "react-app"
