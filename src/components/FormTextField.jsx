@@ -3,7 +3,7 @@ import { Grid, TextField } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const FormTextField = (props) => {
+const FormTextField = props => {
   const { children } = props
   return (
     <Grid item xs={12}>

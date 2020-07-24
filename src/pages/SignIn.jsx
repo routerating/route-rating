@@ -1,20 +1,16 @@
-import {
-  Button,
-  Container,
-  Grid,
-  Typography,
-  withStyles,
-} from '@material-ui/core'
+import { Button, Container, Grid, Typography } from '@material-ui/core'
 import React, { Component } from 'react'
 
-import { Auth } from 'aws-amplify'
+import { Auth, Analytics } from 'aws-amplify'
 import { Link } from 'react-router-dom'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import { RouteLinks } from '../Routes'
 import { exportClassComponent } from '../utils'
+import PropTypes from 'prop-types'
+import constants from '../constants'
 
-const signInStyles = (theme) => ({
+const signInStyles = theme => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -60,7 +56,7 @@ export class SignIn extends Component {
     this.setState({ [target.id]: target.value })
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = async event => {
     event.preventDefault()
 
     try {
@@ -68,11 +64,14 @@ export class SignIn extends Component {
       this.props.updateAuth()
     } catch (e) {
       this.props.openSnack('You could not be signed in.', 'error')
-      console.error({ ...e })
+      Analytics.record({
+        name: constants.analytics.FAILED_SIGN_IN,
+        error: { string: e.toString(), spread: { ...e } },
+      })
     }
   }
 
-  render() {
+  render = () => {
     return (
       !this.state.isLoading && (
         <Container component="main" maxWidth="sm">
@@ -122,6 +121,12 @@ export class SignIn extends Component {
       )
     )
   }
+}
+
+SignIn.propTypes = {
+  classes: PropTypes.object,
+  openSnack: PropTypes.func,
+  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(SignIn, signInStyles)

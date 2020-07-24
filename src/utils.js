@@ -19,12 +19,12 @@ export const constructAddress = async (
   return `${address1}|${address2}|${city}|${state}|${zip}`
 }
 
-export const deconstructAddress = async (address) => {
+export const deconstructAddress = async address => {
   if (!address) return null
 
   const addressArray = address
     .split('|')
-    .map((value) => (value === 'null' ? '' : value))
+    .map(value => (value === 'null' ? '' : value))
 
   return (
     (addressArray.length === 5 && {

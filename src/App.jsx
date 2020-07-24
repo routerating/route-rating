@@ -16,8 +16,9 @@ import { Style, lightTheme } from './theme'
 import Routes, { RouteLinks } from './Routes'
 
 import { exportClassComponent } from './utils'
+import PropTypes from 'prop-types'
 
-const navbarStyles = makeStyles((theme) => ({
+const navbarStyles = makeStyles(theme => ({
   appBar: {
     background: Style.LIGHT_NAVBAR_COLOR,
     color: Style.LIGHT_NAVBAR_TEXT,
@@ -37,6 +38,8 @@ const navbarStyles = makeStyles((theme) => ({
   },
   brand: {
     flexGrow: 1,
+    textDecoration: 'none',
+    color: theme.palette.common.white,
   },
 }))
 
@@ -45,30 +48,40 @@ const NavigationBar = ({ authenticated }) => {
   const classes = navbarStyles()
 
   return (
-    <AppBar className={classes.appBar}>
-      <Toolbar className={classes.toolbar}>
-        <Typography className={classes.brand} variant="h5">
-          Route Rating
-        </Typography>
-        <Button
-          className={`${classes.button} ${classes.buttonBorder}`}
-          href={RouteLinks.HOME}>
-          Home
-        </Button>
-        <Button
-          className={`${classes.button} ${classes.buttonBorder}`}
-          href={RouteLinks.GYMS}>
-          Gyms
-        </Button>
-        <Button className={classes.button} href={profileLink}>
-          Profile
-        </Button>
-      </Toolbar>
-    </AppBar>
+    <React.StrictMode>
+      <AppBar className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
+          <Typography
+            className={classes.brand}
+            variant="h5"
+            component="a"
+            href={RouteLinks.HOME}>
+            Route Rating
+          </Typography>
+          <Button
+            className={`${classes.button} ${classes.buttonBorder}`}
+            href={RouteLinks.HOME}>
+            Home
+          </Button>
+          <Button
+            className={`${classes.button} ${classes.buttonBorder}`}
+            href={RouteLinks.GYMS}>
+            Gyms
+          </Button>
+          <Button className={classes.button} href={profileLink}>
+            Profile
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </React.StrictMode>
   )
 }
 
-const appStyles = (theme) => ({
+NavigationBar.propTypes = {
+  authenticated: PropTypes.bool,
+}
+
+const appStyles = theme => ({
   box: {
     paddingBottom: theme.spacing(10),
   },
@@ -94,9 +107,7 @@ class App extends Component {
     try {
       const user = await Auth.currentAuthenticatedUser()
       authenticated = user !== null
-    } catch (e) {
-      console.error('App:', e)
-    }
+    } catch (e) {}
     this.setState({ authenticated })
   }
 
@@ -119,7 +130,7 @@ class App extends Component {
     })
   }
 
-  render() {
+  render = () => {
     return (
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
@@ -147,6 +158,12 @@ class App extends Component {
       </ThemeProvider>
     )
   }
+}
+
+App.propTypes = {
+  classes: PropTypes.object,
+  openSnack: PropTypes.func,
+  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(App, appStyles)

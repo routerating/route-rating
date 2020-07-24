@@ -1,69 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
-      id
-      key
-      email
-      givenName
-      familyName
-      address1
-      address2
-      city
-      state
-      zip
-      phone
-      type
-      picture
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
-      id
-      key
-      email
-      givenName
-      familyName
-      address1
-      address2
-      city
-      state
-      zip
-      phone
-      type
-      picture
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
-      id
-      key
-      email
-      givenName
-      familyName
-      address1
-      address2
-      city
-      state
-      zip
-      phone
-      type
-      picture
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateRoute = /* GraphQL */ `
   subscription OnCreateRoute {
     onCreateRoute {
@@ -76,6 +13,8 @@ export const onCreateRoute = /* GraphQL */ `
       types
       wallId
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -93,6 +32,8 @@ export const onUpdateRoute = /* GraphQL */ `
       types
       wallId
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -110,6 +51,8 @@ export const onDeleteRoute = /* GraphQL */ `
       types
       wallId
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -132,12 +75,16 @@ export const onCreateWall = /* GraphQL */ `
           types
           wallId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -160,12 +107,16 @@ export const onUpdateWall = /* GraphQL */ `
           types
           wallId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -188,12 +139,16 @@ export const onDeleteWall = /* GraphQL */ `
           types
           wallId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -204,24 +159,6 @@ export const onCreateGym = /* GraphQL */ `
     onCreateGym {
       id
       key
-      ownerId
-      owner {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
       name
       address1
       address2
@@ -232,18 +169,21 @@ export const onCreateGym = /* GraphQL */ `
       website
       logo
       email
-      editorIds
       walls {
         items {
           id
           key
           gymId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -254,24 +194,6 @@ export const onUpdateGym = /* GraphQL */ `
     onUpdateGym {
       id
       key
-      ownerId
-      owner {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
       name
       address1
       address2
@@ -282,18 +204,21 @@ export const onUpdateGym = /* GraphQL */ `
       website
       logo
       email
-      editorIds
       walls {
         items {
           id
           key
           gymId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -304,24 +229,6 @@ export const onDeleteGym = /* GraphQL */ `
     onDeleteGym {
       id
       key
-      ownerId
-      owner {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
       name
       address1
       address2
@@ -332,18 +239,21 @@ export const onDeleteGym = /* GraphQL */ `
       website
       logo
       email
-      editorIds
       walls {
         items {
           id
           key
           gymId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
+      owner
+      editors
       createdAt
       updatedAt
     }

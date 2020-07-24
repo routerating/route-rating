@@ -1,6 +1,6 @@
 {
     "identityPoolName": "routerating713aca7a_identitypool_713aca7a",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "router713aca7a",
     "userPoolName": "routerating713aca7a_userpool_713aca7a",
     "autoVerifiedAttributes": [

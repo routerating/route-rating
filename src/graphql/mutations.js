@@ -1,78 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    createUser(input: $input, condition: $condition) {
-      id
-      key
-      email
-      givenName
-      familyName
-      address1
-      address2
-      city
-      state
-      zip
-      phone
-      type
-      picture
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    updateUser(input: $input, condition: $condition) {
-      id
-      key
-      email
-      givenName
-      familyName
-      address1
-      address2
-      city
-      state
-      zip
-      phone
-      type
-      picture
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    deleteUser(input: $input, condition: $condition) {
-      id
-      key
-      email
-      givenName
-      familyName
-      address1
-      address2
-      city
-      state
-      zip
-      phone
-      type
-      picture
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createRoute = /* GraphQL */ `
   mutation CreateRoute(
     $input: CreateRouteInput!
@@ -88,6 +16,8 @@ export const createRoute = /* GraphQL */ `
       types
       wallId
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -108,6 +38,8 @@ export const updateRoute = /* GraphQL */ `
       types
       wallId
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -128,6 +60,8 @@ export const deleteRoute = /* GraphQL */ `
       types
       wallId
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -153,12 +87,16 @@ export const createWall = /* GraphQL */ `
           types
           wallId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -184,12 +122,16 @@ export const updateWall = /* GraphQL */ `
           types
           wallId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -215,12 +157,16 @@ export const deleteWall = /* GraphQL */ `
           types
           wallId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -234,24 +180,6 @@ export const createGym = /* GraphQL */ `
     createGym(input: $input, condition: $condition) {
       id
       key
-      ownerId
-      owner {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
       name
       address1
       address2
@@ -262,18 +190,21 @@ export const createGym = /* GraphQL */ `
       website
       logo
       email
-      editorIds
       walls {
         items {
           id
           key
           gymId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -287,24 +218,6 @@ export const updateGym = /* GraphQL */ `
     updateGym(input: $input, condition: $condition) {
       id
       key
-      ownerId
-      owner {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
       name
       address1
       address2
@@ -315,18 +228,21 @@ export const updateGym = /* GraphQL */ `
       website
       logo
       email
-      editorIds
       walls {
         items {
           id
           key
           gymId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -340,24 +256,6 @@ export const deleteGym = /* GraphQL */ `
     deleteGym(input: $input, condition: $condition) {
       id
       key
-      ownerId
-      owner {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
       name
       address1
       address2
@@ -368,18 +266,21 @@ export const deleteGym = /* GraphQL */ `
       website
       logo
       email
-      editorIds
       walls {
         items {
           id
           key
           gymId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
+      owner
+      editors
       createdAt
       updatedAt
     }

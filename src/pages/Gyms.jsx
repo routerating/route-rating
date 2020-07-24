@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import { exportClassComponent } from '../utils'
+import { API, graphqlOperation } from 'aws-amplify'
+import { createGym } from '../graphql/mutations'
 
 class GymsPage extends Component {
   constructor(props) {
@@ -9,7 +11,12 @@ class GymsPage extends Component {
     this.state = {}
   }
 
-  render() {
+  componentDidMount = async () => {
+    const result = await API.graphql(graphqlOperation(createGym, {}))
+    console.log(result)
+  }
+
+  render = () => {
     return (
       <div>
         <h1>Gyms</h1>

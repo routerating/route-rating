@@ -9,7 +9,7 @@ class Home extends Component {
     this.state = {}
   }
 
-  render() {
+  render = () => {
     return (
       <>
         <h1>Home Page</h1>

@@ -1,14 +1,17 @@
 import { Button, Container, Grid, Typography } from '@material-ui/core'
 import React, { Component } from 'react'
 
-import { Auth } from 'aws-amplify'
+import { Auth, Analytics } from 'aws-amplify'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import { Link } from 'react-router-dom'
 import { RouteLinks } from '../Routes'
 import { exportClassComponent } from '../utils'
 
-const signUpStyles = (theme) => ({
+import PropTypes from 'prop-types'
+import constants from '../constants'
+
+const signUpStyles = theme => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -34,11 +37,6 @@ class SignUp extends Component {
       name: '',
       email: '',
       phone: '',
-      // address1: '',
-      // address2: '',
-      // city: '',
-      // state: '',
-      // zip: '',
       password: '',
       repeatPassword: '',
       confirmationCode: '',
@@ -52,7 +50,7 @@ class SignUp extends Component {
     this.setState({ [target.id]: target.value })
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = async event => {
     event.preventDefault()
 
     const { name, email, phone, password } = this.state
@@ -84,24 +82,29 @@ class SignUp extends Component {
       } else {
         this.props.openSnack('Unable to create your account.', 'error')
       }
-      console.error({ ...e })
+      Analytics.record({
+        name: constants.analytics.FAILED_SIGN_UP,
+        error: { string: e.toString(), spread: { ...e } },
+      })
     }
   }
 
-  handleConfirmation = async (event) => {
+  handleConfirmation = async event => {
     event.preventDefault()
 
     const { confirmationCode, email, password } = this.state
 
     try {
       await Auth.confirmSignUp(email, confirmationCode)
-      const user = await Auth.signIn(email, password)
+      await Auth.signIn(email, password)
 
-      this.props.setAuthenticated(user)
-      this.props.history.push(RouteLinks.PROFILE)
+      this.props.updateAuth()
     } catch (e) {
       this.props.openSnack('Unable to confirm your account.', 'error')
-      console.error({ ...e })
+      Analytics.record({
+        name: constants.analytics.FAILED_CONFIRM_ACCOUNT,
+        error: { string: e.toString(), spread: { ...e } },
+      })
     }
   }
 
@@ -120,7 +123,7 @@ class SignUp extends Component {
                 id="name"
                 autoComplete="name"
                 inputProps={{ pattern: '^[A-Za-z]+ ([A-Za-z]| )+$' }}
-                onInvalid={(event) => {
+                onInvalid={event => {
                   event.target.setCustomValidity(
                     'Your name must be the following form: First Last',
                   )
@@ -152,7 +155,7 @@ class SignUp extends Component {
                 inputProps={{
                   pattern: '^\\d{10}$',
                 }}
-                onInvalid={(event) => {
+                onInvalid={event => {
                   event.target.setCustomValidity(
                     'Phone number must be the following form: 1234567890',
                   )
@@ -171,7 +174,7 @@ class SignUp extends Component {
                 inputProps={{
                   pattern: '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$',
                 }}
-                onInvalid={(event) => {
+                onInvalid={event => {
                   event.target.setCustomValidity(
                     'Passwords must be at least 8 characters long and contain a capital letter, lowercase letter, and number.',
                   )
@@ -194,8 +197,7 @@ class SignUp extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              className={this.classes.submit}
-            >
+              className={this.classes.submit}>
               Sign Up
             </Button>
             <Typography className={this.classes.signIn} component="pre">
@@ -230,8 +232,7 @@ class SignUp extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              className={this.classes.submit}
-            >
+              className={this.classes.submit}>
               Confirm Account
             </Button>
           </Form>
@@ -240,9 +241,15 @@ class SignUp extends Component {
     )
   }
 
-  render() {
+  render = () => {
     return this.state.newUser ? this.renderConfirmation() : this.renderForm()
   }
+}
+
+SignUp.propTypes = {
+  classes: PropTypes.object,
+  openSnack: PropTypes.func,
+  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(SignUp, signUpStyles)

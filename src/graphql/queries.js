@@ -1,55 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
-      id
-      key
-      email
-      givenName
-      familyName
-      address1
-      address2
-      city
-      state
-      zip
-      phone
-      type
-      picture
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getRoute = /* GraphQL */ `
   query GetRoute($id: ID!) {
     getRoute(id: $id) {
@@ -62,6 +13,8 @@ export const getRoute = /* GraphQL */ `
       types
       wallId
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -84,6 +37,8 @@ export const listRoutes = /* GraphQL */ `
         types
         wallId
         name
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -108,12 +63,16 @@ export const getWall = /* GraphQL */ `
           types
           wallId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
       name
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -134,6 +93,8 @@ export const listWalls = /* GraphQL */ `
           nextToken
         }
         name
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -146,24 +107,6 @@ export const getGym = /* GraphQL */ `
     getGym(id: $id) {
       id
       key
-      ownerId
-      owner {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
       name
       address1
       address2
@@ -174,18 +117,21 @@ export const getGym = /* GraphQL */ `
       website
       logo
       email
-      editorIds
       walls {
         items {
           id
           key
           gymId
           name
+          owner
+          editors
           createdAt
           updatedAt
         }
         nextToken
       }
+      owner
+      editors
       createdAt
       updatedAt
     }
@@ -201,24 +147,6 @@ export const listGyms = /* GraphQL */ `
       items {
         id
         key
-        ownerId
-        owner {
-          id
-          key
-          email
-          givenName
-          familyName
-          address1
-          address2
-          city
-          state
-          zip
-          phone
-          type
-          picture
-          createdAt
-          updatedAt
-        }
         name
         address1
         address2
@@ -229,82 +157,11 @@ export const listGyms = /* GraphQL */ `
         website
         logo
         email
-        editorIds
         walls {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const userByKey = /* GraphQL */ `
-  query UserByKey(
-    $key: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    userByKey(
-      key: $key
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const userByEmail = /* GraphQL */ `
-  query UserByEmail(
-    $email: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    userByEmail(
-      email: $email
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        key
-        email
-        givenName
-        familyName
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        type
-        picture
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -337,6 +194,8 @@ export const routeByKey = /* GraphQL */ `
         types
         wallId
         name
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -369,6 +228,8 @@ export const routeByWall = /* GraphQL */ `
         types
         wallId
         name
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -399,6 +260,8 @@ export const wallByKey = /* GraphQL */ `
           nextToken
         }
         name
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -429,6 +292,8 @@ export const wallByGym = /* GraphQL */ `
           nextToken
         }
         name
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -454,24 +319,6 @@ export const gymByKey = /* GraphQL */ `
       items {
         id
         key
-        ownerId
-        owner {
-          id
-          key
-          email
-          givenName
-          familyName
-          address1
-          address2
-          city
-          state
-          zip
-          phone
-          type
-          picture
-          createdAt
-          updatedAt
-        }
         name
         address1
         address2
@@ -482,10 +329,11 @@ export const gymByKey = /* GraphQL */ `
         website
         logo
         email
-        editorIds
         walls {
           nextToken
         }
+        owner
+        editors
         createdAt
         updatedAt
       }
@@ -493,42 +341,22 @@ export const gymByKey = /* GraphQL */ `
     }
   }
 `;
-export const gymByOwner = /* GraphQL */ `
-  query GymByOwner(
-    $ownerId: ID
-    $sortDirection: ModelSortDirection
-    $filter: ModelGymFilterInput
+export const searchGyms = /* GraphQL */ `
+  query SearchGyms(
+    $filter: SearchableGymFilterInput
+    $sort: SearchableGymSortInput
     $limit: Int
     $nextToken: String
   ) {
-    gymByOwner(
-      ownerId: $ownerId
-      sortDirection: $sortDirection
+    searchGyms(
       filter: $filter
+      sort: $sort
       limit: $limit
       nextToken: $nextToken
     ) {
       items {
         id
         key
-        ownerId
-        owner {
-          id
-          key
-          email
-          givenName
-          familyName
-          address1
-          address2
-          city
-          state
-          zip
-          phone
-          type
-          picture
-          createdAt
-          updatedAt
-        }
         name
         address1
         address2
@@ -539,14 +367,16 @@ export const gymByOwner = /* GraphQL */ `
         website
         logo
         email
-        editorIds
         walls {
           nextToken
         }
+        owner
+        editors
         createdAt
         updatedAt
       }
       nextToken
+      total
     }
   }
 `;

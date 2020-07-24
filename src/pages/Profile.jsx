@@ -1,13 +1,18 @@
 import { Button, Container, Grid } from '@material-ui/core'
 import React, { Component } from 'react'
 
-import { Auth } from 'aws-amplify'
+import { Auth, Analytics } from 'aws-amplify'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import PropTypes from 'prop-types'
-import { exportClassComponent } from '../utils'
+import {
+  exportClassComponent,
+  deconstructAddress,
+  constructAddress,
+} from '../utils'
+import constants from '../constants'
 
-const profileStyles = (theme) => ({
+const profileStyles = theme => ({
   button: {
     margin: theme.spacing(3, 0, 0),
   },
@@ -42,33 +47,34 @@ class Profile extends Component {
         given_name: givenName,
         family_name: familyName,
         phone_number: phone,
-        sub: key,
         address,
       } = user.attributes
 
-      const deconstructedAddress = await this.deconstructAddress(address)
+      const deconstructedAddress = await deconstructAddress(address)
 
       this.setState({
         email,
         familyName,
         givenName,
         user,
-        key,
         phone: phone.substring(2),
         isLoading: false,
         ...deconstructedAddress,
       })
     } catch (e) {
-      console.error('Profile:', e)
+      Analytics.record({
+        name: constants.analytics.FAILED_GET_USER,
+        error: { string: e.toString(), spread: { ...e } },
+      })
     }
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = async event => {
     event.preventDefault()
 
     const {
-      familyName: family_name,
-      givenName: given_name,
+      familyName,
+      givenName,
       phone,
       address1,
       address2,
@@ -79,25 +85,22 @@ class Profile extends Component {
 
     try {
       await Auth.updateUserAttributes(this.state.user, {
-        family_name,
-        given_name,
+        family_name: familyName,
+        given_name: givenName,
         phone_number: `+1${phone}`,
-        address: await this.constructAddress(
-          address1,
-          address2,
-          city,
-          state,
-          zip,
-        ),
+        address: await constructAddress(address1, address2, city, state, zip),
       })
       this.props.openSnack('Successfully updated your profile.', 'success')
     } catch (e) {
       this.props.openSnack('There was an error updating your profile.', 'error')
-      console.error(e)
+      Analytics.record({
+        name: constants.analytics.FAILED_UPDATE_PROFILE,
+        error: { string: e.toString(), spread: { ...e } },
+      })
     }
   }
 
-  handleSignOut = async (event) => {
+  handleSignOut = async event => {
     event.preventDefault()
     await Auth.signOut()
     this.props.updateAuth()
@@ -108,7 +111,7 @@ class Profile extends Component {
     this.setState({ [target.id]: target.value })
   }
 
-  render() {
+  render = () => {
     const {
       email,
       address1,
@@ -135,7 +138,7 @@ class Profile extends Component {
                 id="givenName"
                 autoComplete="given-name"
                 inputProps={{ pattern: '^[A-Za-z]+$' }}
-                onInvalid={(event) => {
+                onInvalid={event => {
                   event.target.setCustomValidity(
                     'Your name must be the following form: First',
                   )
@@ -153,7 +156,7 @@ class Profile extends Component {
                 id="familyName"
                 autoComplete="family-name"
                 inputProps={{ pattern: '^[A-Za-z]+$' }}
-                onInvalid={(event) => {
+                onInvalid={event => {
                   event.target.setCustomValidity(
                     'Your name must be the following form: Last',
                   )
@@ -187,7 +190,7 @@ class Profile extends Component {
                 inputProps={{
                   pattern: '^\\d{10}$',
                 }}
-                onInvalid={(event) => {
+                onInvalid={event => {
                   event.target.setCustomValidity(
                     'Phone number must be the following form: 1234567890',
                   )
@@ -277,6 +280,7 @@ class Profile extends Component {
 Profile.propTypes = {
   classes: PropTypes.object,
   openSnack: PropTypes.func,
+  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(Profile, profileStyles)
