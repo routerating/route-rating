@@ -61,7 +61,6 @@ export class SignIn extends Component {
 
     try {
       await Auth.signIn(this.state.email, this.state.password)
-      this.props.updateAuth()
     } catch (e) {
       this.props.openSnack('You could not be signed in.', 'error')
       console.error({
@@ -126,7 +125,6 @@ export class SignIn extends Component {
 SignIn.propTypes = {
   classes: PropTypes.object,
   openSnack: PropTypes.func,
-  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(SignIn, signInStyles)

@@ -11,7 +11,7 @@ import {
 import React, { Component } from 'react'
 
 import { Alert } from '@material-ui/lab'
-import { Auth } from 'aws-amplify'
+import { Auth, Hub } from 'aws-amplify'
 import { Style, lightTheme } from './theme'
 import Routes, { RouteLinks } from './Routes'
 
@@ -48,32 +48,30 @@ const NavigationBar = ({ authenticated }) => {
   const classes = navbarStyles()
 
   return (
-    <React.StrictMode>
-      <AppBar className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Typography
-            className={classes.brand}
-            variant="h5"
-            component="a"
-            href={RouteLinks.HOME}>
-            Route Rating
-          </Typography>
-          <Button
-            className={`${classes.button} ${classes.buttonBorder}`}
-            href={RouteLinks.HOME}>
-            Home
-          </Button>
-          <Button
-            className={`${classes.button} ${classes.buttonBorder}`}
-            href={RouteLinks.GYMS}>
-            Gyms
-          </Button>
-          <Button className={classes.button} href={profileLink}>
-            Profile
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </React.StrictMode>
+    <AppBar className={classes.appBar}>
+      <Toolbar className={classes.toolbar}>
+        <Typography
+          className={classes.brand}
+          variant="h5"
+          component="a"
+          href={RouteLinks.HOME}>
+          Route Rating
+        </Typography>
+        <Button
+          className={`${classes.button} ${classes.buttonBorder}`}
+          href={RouteLinks.HOME}>
+          Home
+        </Button>
+        <Button
+          className={`${classes.button} ${classes.buttonBorder}`}
+          href={RouteLinks.GYMS}>
+          Gyms
+        </Button>
+        <Button className={classes.button} href={profileLink}>
+          Profile
+        </Button>
+      </Toolbar>
+    </AppBar>
   )
 }
 
@@ -99,6 +97,10 @@ class App extends Component {
     }
 
     this.classes = this.props.classes
+
+    Hub.listen('auth', async () => {
+      this.updateAuth()
+    })
   }
 
   updateAuth = async () => {

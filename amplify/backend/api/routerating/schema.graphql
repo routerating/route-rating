@@ -42,7 +42,11 @@ type Route
     fields: ["wallId"],
     queryField: "routeByWall"
   )
-  {
+  @key (
+    name: "ByName",
+    fields: ["name"],
+    queryField: "routeByName"
+  ) {
   id: ID!
   key: String!
   rating: String
@@ -72,6 +76,11 @@ type Wall
     name: "ByGym",
     fields: ["gymId"],
     queryField: "wallByGym"
+  )
+  @key (
+    name: "ByName",
+    fields: ["name"],
+    queryField: "wallByName"
   ) {
   id: ID!
   key: String!
@@ -93,6 +102,11 @@ type Gym
     name: "ByKey",
     fields: ["key"],
     queryField: "gymByKey"
+  )
+  @key (
+    name: "ByName",
+    fields: ["name"],
+    queryField: "gymByName"
   ) {
   id: ID!
   key: String!
@@ -100,7 +114,7 @@ type Gym
   # owner: User! @connection(fields: ["ownerId"])
   name: String!
   address1: String!
-  address2: String!
+  address2: String
   city: String!
   state: String!
   zip: String!

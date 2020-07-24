@@ -103,7 +103,6 @@ class Profile extends Component {
   handleSignOut = async event => {
     event.preventDefault()
     await Auth.signOut()
-    this.props.updateAuth()
   }
 
   handleChange = async ({ target }) => {
@@ -280,7 +279,6 @@ class Profile extends Component {
 Profile.propTypes = {
   classes: PropTypes.object,
   openSnack: PropTypes.func,
-  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(Profile, profileStyles)

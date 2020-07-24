@@ -9,9 +9,9 @@ import { register as registerServiceWorker } from './serviceWorker'
 
 Amplify.configure(awsExports)
 
-const logger = new Amplify.Logger()
+// const logger = new Amplify.Logger()
 
-console = logger
+// console = logger
 
 const rootElement = document.getElementById('root')
 if (rootElement.hasChildNodes) {

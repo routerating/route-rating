@@ -97,8 +97,6 @@ class SignUp extends Component {
     try {
       await Auth.confirmSignUp(email, confirmationCode)
       await Auth.signIn(email, password)
-
-      this.props.updateAuth()
     } catch (e) {
       this.props.openSnack('Unable to confirm your account.', 'error')
       console.error({
@@ -249,7 +247,6 @@ class SignUp extends Component {
 SignUp.propTypes = {
   classes: PropTypes.object,
   openSnack: PropTypes.func,
-  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(SignUp, signUpStyles)

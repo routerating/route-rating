@@ -237,6 +237,40 @@ export const routeByWall = /* GraphQL */ `
     }
   }
 `;
+export const routeByName = /* GraphQL */ `
+  query RouteByName(
+    $name: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelRouteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    routeByName(
+      name: $name
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        key
+        rating
+        difficulty
+        color
+        setter
+        types
+        wallId
+        name
+        owner
+        editors
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const wallByKey = /* GraphQL */ `
   query WallByKey(
     $key: String
@@ -301,6 +335,38 @@ export const wallByGym = /* GraphQL */ `
     }
   }
 `;
+export const wallByName = /* GraphQL */ `
+  query WallByName(
+    $name: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelWallFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    wallByName(
+      name: $name
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        key
+        gymId
+        routes {
+          nextToken
+        }
+        name
+        owner
+        editors
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const gymByKey = /* GraphQL */ `
   query GymByKey(
     $key: String
@@ -311,6 +377,46 @@ export const gymByKey = /* GraphQL */ `
   ) {
     gymByKey(
       key: $key
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        key
+        name
+        address1
+        address2
+        city
+        state
+        zip
+        phone
+        website
+        logo
+        email
+        walls {
+          nextToken
+        }
+        owner
+        editors
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const gymByName = /* GraphQL */ `
+  query GymByName(
+    $name: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelGymFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    gymByName(
+      name: $name
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
