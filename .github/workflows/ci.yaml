@@ -26,11 +26,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
-        run: npm ci
+        run: yarn
       - name: Build
-        run: npm run build
+        run: yarn build
       - name: Lint
-        run: npm run lint
+        run: yarn lint
   publish:
     runs-on: ubuntu-latest
     needs: [build]
@@ -58,9 +58,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
-        run: npm ci
+        run: yarn
       - name: Build
-        run: npm run build
+        run: yarn build
       - name: Configure amplify
         uses: ambientlight/amplify-cli-action@0.2.1
         with:
