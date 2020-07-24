@@ -12,8 +12,12 @@ class GymsPage extends Component {
   }
 
   componentDidMount = async () => {
-    const result = await API.graphql(graphqlOperation(createGym, {}))
-    console.log(result)
+    try {
+      const result = await API.graphql(graphqlOperation(createGym, {}))
+      console.log(result)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render = () => {

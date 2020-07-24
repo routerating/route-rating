@@ -7,6 +7,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - name: Setup AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -26,9 +37,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
-        run: yarn
+        run: npm ci
       - name: Build
-        run: CI=true yarn build
+        run: CI=true npm run build
   publish:
     runs-on: ubuntu-latest
     needs: [build]
@@ -37,6 +48,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - name: Setup AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -56,9 +78,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
-        run: yarn
-      - name: Build
-        run: yarn build
+        run: npm ci
       - name: Configure amplify
         uses: ambientlight/amplify-cli-action@0.2.1
         with:
