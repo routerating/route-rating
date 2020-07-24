@@ -1,7 +1,7 @@
 import { Button, Container, Grid } from '@material-ui/core'
 import React, { Component } from 'react'
 
-import { Auth, Analytics } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import PropTypes from 'prop-types'
@@ -62,7 +62,7 @@ class Profile extends Component {
         ...deconstructedAddress,
       })
     } catch (e) {
-      Analytics.record({
+      console.error({
         name: constants.analytics.FAILED_GET_USER,
         error: { string: e.toString(), spread: { ...e } },
       })
@@ -93,7 +93,7 @@ class Profile extends Component {
       this.props.openSnack('Successfully updated your profile.', 'success')
     } catch (e) {
       this.props.openSnack('There was an error updating your profile.', 'error')
-      Analytics.record({
+      console.error({
         name: constants.analytics.FAILED_UPDATE_PROFILE,
         error: { string: e.toString(), spread: { ...e } },
       })

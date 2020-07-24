@@ -1,7 +1,7 @@
 import { Button, Container, Grid, Typography } from '@material-ui/core'
 import React, { Component } from 'react'
 
-import { Auth, Analytics } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 import { Link } from 'react-router-dom'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
@@ -64,7 +64,7 @@ export class SignIn extends Component {
       this.props.updateAuth()
     } catch (e) {
       this.props.openSnack('You could not be signed in.', 'error')
-      Analytics.record({
+      console.error({
         name: constants.analytics.FAILED_SIGN_IN,
         error: { string: e.toString(), spread: { ...e } },
       })

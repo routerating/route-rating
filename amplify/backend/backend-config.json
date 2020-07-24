@@ -47,10 +47,5 @@
 			"type": "manual"
 		}
 	},
-	"analytics": {
-		"routerating": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+	"analytics": {}
 }

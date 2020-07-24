@@ -1,7 +1,7 @@
 import { Button, Container, Grid, Typography } from '@material-ui/core'
 import React, { Component } from 'react'
 
-import { Auth, Analytics } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import { Link } from 'react-router-dom'
@@ -82,7 +82,7 @@ class SignUp extends Component {
       } else {
         this.props.openSnack('Unable to create your account.', 'error')
       }
-      Analytics.record({
+      console.error({
         name: constants.analytics.FAILED_SIGN_UP,
         error: { string: e.toString(), spread: { ...e } },
       })
@@ -101,7 +101,7 @@ class SignUp extends Component {
       this.props.updateAuth()
     } catch (e) {
       this.props.openSnack('Unable to confirm your account.', 'error')
-      Analytics.record({
+      console.error({
         name: constants.analytics.FAILED_CONFIRM_ACCOUNT,
         error: { string: e.toString(), spread: { ...e } },
       })

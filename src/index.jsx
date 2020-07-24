@@ -9,6 +9,10 @@ import { register as registerServiceWorker } from './serviceWorker'
 
 Amplify.configure(awsExports)
 
+const logger = new Amplify.Logger()
+
+console = logger
+
 render(
   <BrowserRouter>
     <App />
