@@ -20,5 +20,6 @@ module.exports = {
     // 'react/destructuring-assignment': 0,
     // 'react/jsx-closing-bracket-location': 0,
     // 'no-param-reassign': 0,
+    // 'no-native-reassign': 0,
   },
 }
