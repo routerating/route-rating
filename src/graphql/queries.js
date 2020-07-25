@@ -115,8 +115,8 @@ export const getGym = /* GraphQL */ `
       zip
       phone
       website
-      logo
       email
+      logo
       walls {
         items {
           id
@@ -130,7 +130,6 @@ export const getGym = /* GraphQL */ `
         }
         nextToken
       }
-      owner
       editors
       createdAt
       updatedAt
@@ -155,12 +154,11 @@ export const listGyms = /* GraphQL */ `
         zip
         phone
         website
-        logo
         email
+        logo
         walls {
           nextToken
         }
-        owner
         editors
         createdAt
         updatedAt
@@ -393,12 +391,11 @@ export const gymByKey = /* GraphQL */ `
         zip
         phone
         website
-        logo
         email
+        logo
         walls {
           nextToken
         }
-        owner
         editors
         createdAt
         updatedAt
@@ -433,56 +430,16 @@ export const gymByName = /* GraphQL */ `
         zip
         phone
         website
-        logo
         email
+        logo
         walls {
           nextToken
         }
-        owner
         editors
         createdAt
         updatedAt
       }
       nextToken
-    }
-  }
-`;
-export const searchGyms = /* GraphQL */ `
-  query SearchGyms(
-    $filter: SearchableGymFilterInput
-    $sort: SearchableGymSortInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    searchGyms(
-      filter: $filter
-      sort: $sort
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        key
-        name
-        address1
-        address2
-        city
-        state
-        zip
-        phone
-        website
-        logo
-        email
-        walls {
-          nextToken
-        }
-        owner
-        editors
-        createdAt
-        updatedAt
-      }
-      nextToken
-      total
     }
   }
 `;

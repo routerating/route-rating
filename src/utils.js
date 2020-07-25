@@ -40,82 +40,19 @@ export const deconstructAddress = async address => {
   )
 }
 
-export const GymBuilder = {
-  construct: gym => {
-    let gymBuilderClass = new GymBuilderClass()
-
-    if (gym.name) {
-      gym.key = gym.name.replace(' ', '-').toLowercase()
-    }
-
-    gymBuilderClass = { ...gymBuilderClass, ...gym }
-    return gymBuilderClass
-  },
+export const createKey = ({ name }) => {
+  if (name)
+    return `${name.replace(' ', '-').toLowerCase()}-${Date.now().toString()}`
 }
 
-export class GymBuilderClass {
-  setName = name => {
-    this.name = name
-    this.key = name.replace(' ', '-').toLowercase()
-    return this
-  }
+export const runGQL = (query, input) => {
+  return API.graphql(graphqlOperation(query, input ? { input } : undefined))
+}
 
-  setWebsite = website => {
-    this.website = website
-    return this
-  }
-
-  setAddress1 = address1 => {
-    this.address1 = address1
-    return this
-  }
-
-  setAddress2 = address2 => {
-    this.address2 = address2
-    return this
-  }
-
-  setCity = city => {
-    this.city = city
-    return this
-  }
-
-  setState = state => {
-    this.state = state
-    return state
-  }
-
-  setZip = zip => {
-    this.zip = zip
-    return zip
-  }
-
-  setPhone = phone => {
-    this.phone = phone
-    return phone
-  }
-
-  setLogo = logo => {
-    this.logo = logo
-    return logo
-  }
-
-  setEmail = email => {
-    this.email = email
-    return this
-  }
-
-  setOwner = owner => {
-    this.owner = owner
-    return owner
-  }
-
-  setEditor = editors => {
-    this.editors = editors
-    return editors
-  }
-
-  build = () => {
-    return API.graphql(graphqlOperation(createGym, { ...this }))
-  }
+export const uuidv4 = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = (Math.random() * 16) | 0
+    const v = c == 'x' ? r : (r & 0x3) | 0x8
+    return v.toString(16)
+  })
 }

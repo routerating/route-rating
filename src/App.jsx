@@ -98,9 +98,7 @@ class App extends Component {
 
     this.classes = this.props.classes
 
-    Hub.listen('auth', async () => {
-      this.updateAuth()
-    })
+    Hub.listen('auth', this.updateAuth)
   }
 
   updateAuth = async () => {
@@ -152,7 +150,6 @@ class App extends Component {
           <Routes
             childProps={{
               authenticated: this.state.authenticated,
-              updateAuth: this.updateAuth,
               openSnack: this.openSnack,
             }}
           />
@@ -165,7 +162,6 @@ class App extends Component {
 App.propTypes = {
   classes: PropTypes.object,
   openSnack: PropTypes.func,
-  updateAuth: PropTypes.func,
 }
 
 export default exportClassComponent(App, appStyles)

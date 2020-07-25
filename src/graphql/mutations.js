@@ -188,8 +188,8 @@ export const createGym = /* GraphQL */ `
       zip
       phone
       website
-      logo
       email
+      logo
       walls {
         items {
           id
@@ -203,7 +203,6 @@ export const createGym = /* GraphQL */ `
         }
         nextToken
       }
-      owner
       editors
       createdAt
       updatedAt
@@ -226,8 +225,8 @@ export const updateGym = /* GraphQL */ `
       zip
       phone
       website
-      logo
       email
+      logo
       walls {
         items {
           id
@@ -241,7 +240,6 @@ export const updateGym = /* GraphQL */ `
         }
         nextToken
       }
-      owner
       editors
       createdAt
       updatedAt
@@ -264,8 +262,8 @@ export const deleteGym = /* GraphQL */ `
       zip
       phone
       website
-      logo
       email
+      logo
       walls {
         items {
           id
@@ -279,7 +277,6 @@ export const deleteGym = /* GraphQL */ `
         }
         nextToken
       }
-      owner
       editors
       createdAt
       updatedAt
