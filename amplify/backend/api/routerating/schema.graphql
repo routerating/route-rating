@@ -95,7 +95,7 @@ type Wall
 
 type Gym
   @model
-  # @searchable
+  @searchable
   @auth(rules: [
     { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
     { allow: owner, operations: [update] }
@@ -113,8 +113,6 @@ type Gym
   ) {
   id: ID!
   key: String
-  # ownerId: ID
-  # owner: User @connection(fields: ["ownerId"])
   name: String
   address1: String
   address2: String
@@ -125,7 +123,6 @@ type Gym
   website: String
   email: String
   logo: String
-  # editorIds: [ID]
   walls: [Wall] @connection(keyName: "ByGym", fields: ["id"])
   editors: [String]
 }
