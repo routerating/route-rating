@@ -4,11 +4,7 @@
         "precedence": 1
     },
     {
-        "groupName": "GymAdmin",
-        "precedence": 2
-    },
-    {
         "groupName": "Admin",
-        "precedence": 3
+        "precedence": 2
     }
 ]

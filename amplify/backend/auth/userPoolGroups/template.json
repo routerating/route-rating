@@ -95,65 +95,11 @@
         },
      
     
-        "GymAdminGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "GymAdmin",
-              "Precedence" : 2,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "GymAdminGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authrouterating713aca7aUserPoolId"
-              } 
-            }
-        },
-        
-        "GymAdminGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authrouterating713aca7aUserPoolId"
-                          },
-                          "-GymAdminGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authrouterating713aca7aIdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
         "AdminGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
               "GroupName" : "Admin",
-              "Precedence" : 3,
+              "Precedence" : 2,
               
               "RoleArn" : {
                 "Fn::GetAtt": [
@@ -407,17 +353,6 @@
             "Value": {
                 "Fn::GetAtt": [
                     "BasicGroupRole",
-                    "Arn"
-                ]
-            }
-         
-        },
-        
-      
-        "GymAdminGroupRole": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "GymAdminGroupRole",
                     "Arn"
                 ]
             }

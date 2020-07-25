@@ -27,12 +27,12 @@
 
 type Route
   @model
-  @auth(rules: [
-    { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-    { allow: owner, operations: [create, update, delete] },
-    { allow: owner, ownerField: "editors", operations: [create, update, delete] },
-    { allow: public, operations: [read] }
-  ])
+  # @auth(rules: [
+  #   { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
+  #   { allow: owner, ownerField: "owner", operations: [create, update, delete] },
+  #   { allow: owner, ownerField: "editors", operations: [create, update, delete] },
+  #   { allow: public, operations: [read] }
+  # ])
   @key(
     name: "ByKey",
     fields: ["key"],
@@ -63,12 +63,12 @@ type Route
 
 type Wall
   @model
-  @auth(rules: [
-    { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-    { allow: owner, operations: [create, update, delete] },
-    { allow: owner, ownerField: "editors", operations: [create, update, delete] },
-    { allow: public, operations: [read] }
-  ])
+  # @auth(rules: [
+  #   { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
+  #   { allow: owner, ownerField: "owner", operations: [create, update, delete] },
+  #   { allow: owner, ownerField: "editors", operations: [create, update, delete] },
+  #   { allow: public, operations: [read] }
+  # ])
   @key(
     name: "ByKey",
     fields: ["key"],
@@ -96,11 +96,11 @@ type Wall
 type Gym
   @model
   @searchable
-  @auth(rules: [
-    { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-    { allow: owner, operations: [update] }
-    { allow: public, operations: [read] }
-  ])
+  # @auth(rules: [
+  #   { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
+  #   { allow: owner, ownerField: "owner", operations: [update] }
+  #   { allow: public, operations: [read] }
+  # ])
   @key(
     name: "ByKey",
     fields: ["key"],

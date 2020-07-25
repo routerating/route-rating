@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "routerating713aca7a",
+  "functionName": "routerating713aca7aPostConfirmation",
+  "resourceName": "routerating713aca7aPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/Users/lshay/.config/nvm/versions/node/v12.18.1/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "roleName": "routerating713aca7aPostConfirmation",
+  "skipEdit": true,
+  "GROUP": "Basic",
+  "triggerEventPath": "PostConfirmation.event.json"
+}

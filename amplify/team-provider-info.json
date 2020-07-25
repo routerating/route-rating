@@ -20,6 +20,11 @@
                     "appId": "d2p3pg1igmsqk9",
                     "type": "manual"
                 }
+            },
+            "function": {
+                "routerating713aca7aPostConfirmation": {
+                    "GROUP": "Basic"
+                }
             }
         }
     }
