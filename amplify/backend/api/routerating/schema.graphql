@@ -29,8 +29,9 @@ type Route
   @model
   @auth(rules: [
     { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-    { allow: owner, ownerField: "owner", operations: [update] },
-    { allow: owner, ownerField: "editors", operations: [update] }
+    { allow: owner, operations: [create, update, delete] },
+    { allow: owner, ownerField: "editors", operations: [create, update, delete] },
+    { allow: public, operations: [read] }
   ])
   @key(
     name: "ByKey",
@@ -64,8 +65,9 @@ type Wall
   @model
   @auth(rules: [
     { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-    { allow: owner, ownerField: "owner", operations: [update] },
-    { allow: owner, ownerField: "editors", operations: [update] }
+    { allow: owner, operations: [create, update, delete] },
+    { allow: owner, ownerField: "editors", operations: [create, update, delete] },
+    { allow: public, operations: [read] }
   ])
   @key(
     name: "ByKey",
@@ -97,6 +99,7 @@ type Gym
   @auth(rules: [
     { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
     { allow: owner, operations: [update] }
+    { allow: public, operations: [read] }
   ])
   @key(
     name: "ByKey",
