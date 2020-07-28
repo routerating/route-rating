@@ -13,7 +13,6 @@ export const getRoute = /* GraphQL */ `
       types
       wallId
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -37,7 +36,6 @@ export const listRoutes = /* GraphQL */ `
         types
         wallId
         name
-        owner
         editors
         createdAt
         updatedAt
@@ -63,7 +61,6 @@ export const getWall = /* GraphQL */ `
           types
           wallId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -71,7 +68,6 @@ export const getWall = /* GraphQL */ `
         nextToken
       }
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -93,7 +89,6 @@ export const listWalls = /* GraphQL */ `
           nextToken
         }
         name
-        owner
         editors
         createdAt
         updatedAt
@@ -115,15 +110,14 @@ export const getGym = /* GraphQL */ `
       zip
       phone
       website
-      email
       logo
+      email
       walls {
         items {
           id
           key
           gymId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -131,6 +125,7 @@ export const getGym = /* GraphQL */ `
         nextToken
       }
       editors
+      disabled
       createdAt
       updatedAt
     }
@@ -154,12 +149,13 @@ export const listGyms = /* GraphQL */ `
         zip
         phone
         website
-        email
         logo
+        email
         walls {
           nextToken
         }
         editors
+        disabled
         createdAt
         updatedAt
       }
@@ -192,7 +188,6 @@ export const routeByKey = /* GraphQL */ `
         types
         wallId
         name
-        owner
         editors
         createdAt
         updatedAt
@@ -226,41 +221,6 @@ export const routeByWall = /* GraphQL */ `
         types
         wallId
         name
-        owner
-        editors
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const routeByName = /* GraphQL */ `
-  query RouteByName(
-    $name: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelRouteFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    routeByName(
-      name: $name
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        key
-        rating
-        difficulty
-        color
-        setter
-        types
-        wallId
-        name
-        owner
         editors
         createdAt
         updatedAt
@@ -292,7 +252,6 @@ export const wallByKey = /* GraphQL */ `
           nextToken
         }
         name
-        owner
         editors
         createdAt
         updatedAt
@@ -324,39 +283,6 @@ export const wallByGym = /* GraphQL */ `
           nextToken
         }
         name
-        owner
-        editors
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const wallByName = /* GraphQL */ `
-  query WallByName(
-    $name: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelWallFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    wallByName(
-      name: $name
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        key
-        gymId
-        routes {
-          nextToken
-        }
-        name
-        owner
         editors
         createdAt
         updatedAt
@@ -391,12 +317,13 @@ export const gymByKey = /* GraphQL */ `
         zip
         phone
         website
-        email
         logo
+        email
         walls {
           nextToken
         }
         editors
+        disabled
         createdAt
         updatedAt
       }
@@ -404,18 +331,16 @@ export const gymByKey = /* GraphQL */ `
     }
   }
 `;
-export const gymByName = /* GraphQL */ `
-  query GymByName(
-    $name: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelGymFilterInput
+export const searchGyms = /* GraphQL */ `
+  query SearchGyms(
+    $filter: SearchableGymFilterInput
+    $sort: SearchableGymSortInput
     $limit: Int
     $nextToken: String
   ) {
-    gymByName(
-      name: $name
-      sortDirection: $sortDirection
+    searchGyms(
       filter: $filter
+      sort: $sort
       limit: $limit
       nextToken: $nextToken
     ) {
@@ -430,16 +355,18 @@ export const gymByName = /* GraphQL */ `
         zip
         phone
         website
-        email
         logo
+        email
         walls {
           nextToken
         }
         editors
+        disabled
         createdAt
         updatedAt
       }
       nextToken
+      total
     }
   }
 `;

@@ -16,7 +16,6 @@ export const createRoute = /* GraphQL */ `
       types
       wallId
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -38,7 +37,6 @@ export const updateRoute = /* GraphQL */ `
       types
       wallId
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -60,7 +58,6 @@ export const deleteRoute = /* GraphQL */ `
       types
       wallId
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -87,7 +84,6 @@ export const createWall = /* GraphQL */ `
           types
           wallId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -95,7 +91,6 @@ export const createWall = /* GraphQL */ `
         nextToken
       }
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -122,7 +117,6 @@ export const updateWall = /* GraphQL */ `
           types
           wallId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -130,7 +124,6 @@ export const updateWall = /* GraphQL */ `
         nextToken
       }
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -157,7 +150,6 @@ export const deleteWall = /* GraphQL */ `
           types
           wallId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -165,7 +157,6 @@ export const deleteWall = /* GraphQL */ `
         nextToken
       }
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -188,15 +179,14 @@ export const createGym = /* GraphQL */ `
       zip
       phone
       website
-      email
       logo
+      email
       walls {
         items {
           id
           key
           gymId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -204,6 +194,7 @@ export const createGym = /* GraphQL */ `
         nextToken
       }
       editors
+      disabled
       createdAt
       updatedAt
     }
@@ -225,15 +216,14 @@ export const updateGym = /* GraphQL */ `
       zip
       phone
       website
-      email
       logo
+      email
       walls {
         items {
           id
           key
           gymId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -241,6 +231,7 @@ export const updateGym = /* GraphQL */ `
         nextToken
       }
       editors
+      disabled
       createdAt
       updatedAt
     }
@@ -262,15 +253,14 @@ export const deleteGym = /* GraphQL */ `
       zip
       phone
       website
-      email
       logo
+      email
       walls {
         items {
           id
           key
           gymId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -278,6 +268,7 @@ export const deleteGym = /* GraphQL */ `
         nextToken
       }
       editors
+      disabled
       createdAt
       updatedAt
     }

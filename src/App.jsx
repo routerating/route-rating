@@ -7,6 +7,7 @@ import {
   Toolbar,
   Typography,
   makeStyles,
+  Box,
 } from '@material-ui/core'
 import React, { Component } from 'react'
 
@@ -14,8 +15,9 @@ import { Alert } from '@material-ui/lab'
 import { Auth, Hub } from 'aws-amplify'
 import { Style, lightTheme } from './theme'
 import Routes, { RouteLinks } from './Routes'
+import constants from './constants'
 
-import { exportClassComponent } from './utils'
+import { exportClassComponent, populateGyms } from './utils'
 import PropTypes from 'prop-types'
 
 const navbarStyles = makeStyles(theme => ({
@@ -82,6 +84,7 @@ NavigationBar.propTypes = {
 const appStyles = theme => ({
   box: {
     paddingBottom: theme.spacing(10),
+    width: '100%',
   },
 })
 
@@ -101,13 +104,24 @@ class App extends Component {
     Hub.listen('auth', this.updateAuth)
   }
 
+  publicSignIn = async () => {
+    await Auth.signIn(
+      constants.auth.publicUser.EMAIL,
+      constants.auth.publicUser.PASSWORD,
+    )
+    return
+  }
+
   updateAuth = async () => {
     let authenticated = false
 
     try {
       const user = await Auth.currentAuthenticatedUser()
-      authenticated = user !== null
-    } catch (e) {}
+      authenticated =
+        user && user.attributes.email !== constants.auth.publicUser.EMAIL
+    } catch (e) {
+      await this.publicSignIn()
+    }
     this.setState({ authenticated })
   }
 
@@ -145,7 +159,7 @@ class App extends Component {
           </Alert>
         </Snackbar>
         <NavigationBar authenticated={this.state.authenticated} />
-        <div className={this.classes.box} />
+        <Box className={this.classes.box} />
         {!this.state.isLoading && (
           <Routes
             childProps={{
@@ -161,7 +175,6 @@ class App extends Component {
 
 App.propTypes = {
   classes: PropTypes.object,
-  openSnack: PropTypes.func,
 }
 
 export default exportClassComponent(App, appStyles)

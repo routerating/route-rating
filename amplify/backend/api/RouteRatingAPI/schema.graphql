@@ -1,3 +1,20 @@
+# type Task
+#   @model
+#   @auth(
+#     rules: [
+#       { allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete] }
+#       { allow: groups, groups: ["Employees"], queries: [get, list], mutations: null }
+#     ]
+#   ) {
+#   id: ID!
+#   title: String
+#   description: String
+#   status: String
+# }
+# type PrivateNote @model @auth(rules: [{ allow: owner }]) {
+#   id: ID!
+#   content: String
+# }
 # type User
 #   @model
 #   @key(
@@ -27,12 +44,11 @@
 
 type Route
   @model
-  # @auth(rules: [
-  #   { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-  #   { allow: owner, ownerField: "owner", operations: [create, update, delete] },
-  #   { allow: owner, ownerField: "editors", operations: [create, update, delete] },
-  #   { allow: public, operations: [read] }
-  # ])
+  @auth(rules: [
+    { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
+    { allow: owner, ownerField: "owner", mutations: [update] },
+    { allow: owner, ownerField: "editors", mutations: [update] }
+  ])
   @key(
     name: "ByKey",
     fields: ["key"],
@@ -43,11 +59,7 @@ type Route
     fields: ["wallId"],
     queryField: "routeByWall"
   )
-  @key (
-    name: "ByName",
-    fields: ["name"],
-    queryField: "routeByName"
-  ) {
+  {
   id: ID!
   key: String
   rating: String
@@ -55,20 +67,18 @@ type Route
   color: String
   setter: String
   types: [String]
-  wallId: ID
+  wallId: ID!
   name: String
-  owner: String
   editors: [String]
 }
 
 type Wall
   @model
-  # @auth(rules: [
-  #   { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-  #   { allow: owner, ownerField: "owner", operations: [create, update, delete] },
-  #   { allow: owner, ownerField: "editors", operations: [create, update, delete] },
-  #   { allow: public, operations: [read] }
-  # ])
+  @auth(rules: [
+    { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
+    { allow: owner, ownerField: "owner", mutations: [update] },
+    { allow: owner, ownerField: "editors", mutations: [update] }
+  ])
   @key(
     name: "ByKey",
     fields: ["key"],
@@ -78,38 +88,26 @@ type Wall
     name: "ByGym",
     fields: ["gymId"],
     queryField: "wallByGym"
-  )
-  @key (
-    name: "ByName",
-    fields: ["name"],
-    queryField: "wallByName"
   ) {
   id: ID!
   key: String
-  gymId: ID
+  gymId: ID!
   routes: [Route] @connection(keyName: "ByWall", fields: ["id"])
   name: String
-  owner: String
   editors: [String]
 }
 
 type Gym
   @model
   @searchable
-  # @auth(rules: [
-  #   { allow: groups, groups: ["Admin"], operations: [create, update, delete] },
-  #   { allow: owner, ownerField: "owner", operations: [update] }
-  #   { allow: public, operations: [read] }
-  # ])
+  @auth(rules: [
+    { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
+    { allow: owner, ownerField: "owner", mutations: [update] }
+  ])
   @key(
     name: "ByKey",
     fields: ["key"],
     queryField: "gymByKey"
-  )
-  @key (
-    name: "ByName",
-    fields: ["name"],
-    queryField: "gymByName"
   ) {
   id: ID!
   key: String
@@ -121,8 +119,11 @@ type Gym
   zip: String
   phone: String
   website: String
-  email: String
   logo: String
+  email: String
   walls: [Wall] @connection(keyName: "ByGym", fields: ["id"])
   editors: [String]
+  disabled: Boolean @auth(rules: [
+    { allow: groups, groups: ["Admin"], operations: [update, read] }
+  ])
 }

@@ -30,27 +30,5 @@ export const lightTheme = responsiveFontSizes(
         paper: '#fff',
       },
     },
-    overrides: {
-      body: {
-        backgroundColor: '#f7f7f7',
-      },
-      '@global': {
-        WebkitFontSmoothing: 'antialiased',
-        MozOsxFontSmoothing: 'grayscale',
-        boxSizing: 'border-box',
-        WebkitBoxSizing: 'border-box',
-        MozBoxSizing: 'border-box',
-      },
-      '.centered': {
-        textAlign: 'center',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-      },
-      code: {
-        fontFamily:
-          'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
-      },
-    },
   }),
 )

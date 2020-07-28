@@ -1,3 +1,5 @@
+import './index.css'
+
 import ReactDOM from 'react-dom'
 
 import Amplify from 'aws-amplify'
@@ -8,10 +10,6 @@ import awsExports from './aws-exports'
 import { register as registerServiceWorker } from './serviceWorker'
 
 Amplify.configure(awsExports)
-
-// const logger = new Amplify.Logger()
-
-// console = logger
 
 const rootElement = document.getElementById('root')
 if (rootElement.hasChildNodes) {

@@ -1,45 +1,19 @@
 {
-    "api": {
-        "routerating": {
-            "service": "AppSync",
+    "function": {
+        "RouteRatingAuthPostConfirmation": {
+            "build": true,
             "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "additionalAuthenticationProviders": [],
-                    "defaultAuthentication": {
-                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-                        "userPoolConfig": {
-                            "userPoolId": "authrouterating713aca7a"
-                        }
-                    }
-                }
-            }
+            "service": "Lambda"
         }
     },
     "auth": {
-        "routerating713aca7a": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [
-                {
-                    "category": "function",
-                    "resourceName": "routerating713aca7aPostConfirmation",
-                    "triggerProvider": "Cognito",
-                    "attributes": [
-                        "Arn",
-                        "Name"
-                    ]
-                }
-            ],
-            "customAuth": false
-        },
         "userPoolGroups": {
             "service": "Cognito-UserPool-Groups",
             "providerPlugin": "awscloudformation",
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "routerating713aca7a",
+                    "resourceName": "RouteRatingAuth",
                     "attributes": [
                         "UserPoolId",
                         "AppClientIDWeb",
@@ -48,6 +22,38 @@
                     ]
                 }
             ]
+        },
+        "RouteRatingAuth": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "RouteRatingAuthPostConfirmation",
+                    "triggerProvider": "Cognito",
+                    "attributes": [
+                        "Arn",
+                        "Name"
+                    ]
+                }
+            ]
+        }
+    },
+    "api": {
+        "RouteRatingAPI": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "authConfig": {
+                    "defaultAuthentication": {
+                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                        "userPoolConfig": {
+                            "userPoolId": "authRouteRatingAuth"
+                        }
+                    },
+                    "additionalAuthenticationProviders": []
+                }
+            }
         }
     },
     "hosting": {
@@ -55,13 +61,6 @@
             "service": "amplifyhosting",
             "providerPlugin": "awscloudformation",
             "type": "manual"
-        }
-    },
-    "function": {
-        "routerating713aca7aPostConfirmation": {
-            "build": true,
-            "providerPlugin": "awscloudformation",
-            "service": "Lambda"
         }
     }
 }

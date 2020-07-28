@@ -13,7 +13,7 @@ import {
   Avatar,
   IconButton,
   CardActions,
-  Container,
+  Box,
 } from '@material-ui/core'
 import {
   MoreVert as MoreVertIcon,
@@ -74,6 +74,7 @@ const GymCard = ({ gym }) => {
         className={classes.media}
         image={picture}
         title={`${name} picture`}
+        component={picture ? undefined : 'div'}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -105,7 +106,12 @@ GymCard.propTypes = {
 }
 
 const gymsStyles = theme => ({
-  root: {},
+  root: {
+    textAlign: 'center',
+    width: '100%',
+    // display: 'flex',
+    justifyContent: 'center',
+  },
 })
 
 class GymsPage extends Component {
@@ -125,7 +131,7 @@ class GymsPage extends Component {
       const result = await runGQL(listGyms)
       gyms = result.data.listGyms.items
     } catch (e) {
-      console.log(e)
+      console.error('GymsPage -> componentDidMount -> e', e)
       this.props.openSnack('Error getting gyms.', 'error')
     }
 
@@ -137,11 +143,9 @@ class GymsPage extends Component {
 
     return (
       !isLoading && (
-        <Container maxWidth component="div" className={this.classes.root}>
-          {gyms.map(gym => (
-            <GymCard key={gym.key} gym={gym} />
-          ))}
-        </Container>
+        <Box className={this.classes.root}>
+          {gyms && gyms.map(gym => <GymCard key={gym.key} gym={gym} />)}
+        </Box>
       )
     )
   }

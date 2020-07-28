@@ -1,29 +1,29 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-routerating-dev-163936-authRole",
-            "UnauthRoleArn": "arn:aws:iam::816188110262:role/amplify-routerating-dev-163936-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::816188110262:role/amplify-routerating-dev-163936-authRole",
+            "AuthRoleName": "amplify-routerating-dev-141417-authRole",
+            "UnauthRoleArn": "arn:aws:iam::816188110262:role/amplify-routerating-dev-141417-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::816188110262:role/amplify-routerating-dev-141417-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-routerating-dev-163936-deployment",
-            "UnauthRoleName": "amplify-routerating-dev-163936-unauthRole",
-            "StackName": "amplify-routerating-dev-163936",
-            "StackId": "arn:aws:cloudformation:us-east-1:816188110262:stack/amplify-routerating-dev-163936/d8000510-cc63-11ea-b2c4-0e6b672d4ae7",
-            "AmplifyAppId": "d2p3pg1igmsqk9"
+            "DeploymentBucketName": "amplify-routerating-dev-141417-deployment",
+            "UnauthRoleName": "amplify-routerating-dev-141417-unauthRole",
+            "StackName": "amplify-routerating-dev-141417",
+            "StackId": "arn:aws:cloudformation:us-east-1:816188110262:stack/amplify-routerating-dev-141417/8a7b3240-d106-11ea-8a79-0ee5b554e1bc",
+            "AmplifyAppId": "d3tiqzlhbn2x0w"
         },
         "categories": {
+            "function": {
+                "RouteRatingAuthPostConfirmation": {
+                    "GROUP": "Basic"
+                }
+            },
             "auth": {
-                "routerating713aca7a": {}
+                "RouteRatingAuth": {}
             },
             "hosting": {
                 "amplifyhosting": {
-                    "appId": "d2p3pg1igmsqk9",
+                    "appId": "d3tiqzlhbn2x0w",
                     "type": "manual"
-                }
-            },
-            "function": {
-                "routerating713aca7aPostConfirmation": {
-                    "GROUP": "Basic"
                 }
             }
         }

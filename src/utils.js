@@ -2,6 +2,7 @@ import { withRouter } from 'react-router-dom'
 import { withStyles } from '@material-ui/core'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createGym } from './graphql/mutations'
+import { Chance } from 'chance'
 
 export const exportClassComponent = (component, styles) => {
   if (styles) {
@@ -54,5 +55,24 @@ export const uuidv4 = () => {
     const r = (Math.random() * 16) | 0
     const v = c == 'x' ? r : (r & 0x3) | 0x8
     return v.toString(16)
+  })
+}
+
+export const populateGyms = async () => {
+  const chance = new Chance()
+
+  const name = chance.name()
+
+  runGQL(createGym, {
+    name,
+    key: `${name.replace(/ /g, '-')}-${Date.now().toString()}`,
+    address1: chance.address(),
+    city: chance.city(),
+    state: chance.state(),
+    zip: chance.zip(),
+    phone: chance.phone(),
+    website: chance.url(),
+    email: chance.email(),
+    disabled: false,
   })
 }

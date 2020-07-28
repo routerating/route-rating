@@ -1,6 +1,6 @@
 projects:
-  routerating:
-    schemaPath: amplify/backend/api/routerating/build/schema.graphql
+  RouteRatingAPI:
+    schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
     excludes:

@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateRoute = /* GraphQL */ `
-  subscription OnCreateRoute {
-    onCreateRoute {
+  subscription OnCreateRoute($owner: String, $editors: String) {
+    onCreateRoute(owner: $owner, editors: $editors) {
       id
       key
       rating
@@ -13,7 +13,6 @@ export const onCreateRoute = /* GraphQL */ `
       types
       wallId
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -21,8 +20,8 @@ export const onCreateRoute = /* GraphQL */ `
   }
 `;
 export const onUpdateRoute = /* GraphQL */ `
-  subscription OnUpdateRoute {
-    onUpdateRoute {
+  subscription OnUpdateRoute($owner: String, $editors: String) {
+    onUpdateRoute(owner: $owner, editors: $editors) {
       id
       key
       rating
@@ -32,7 +31,6 @@ export const onUpdateRoute = /* GraphQL */ `
       types
       wallId
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -40,8 +38,8 @@ export const onUpdateRoute = /* GraphQL */ `
   }
 `;
 export const onDeleteRoute = /* GraphQL */ `
-  subscription OnDeleteRoute {
-    onDeleteRoute {
+  subscription OnDeleteRoute($owner: String, $editors: String) {
+    onDeleteRoute(owner: $owner, editors: $editors) {
       id
       key
       rating
@@ -51,7 +49,6 @@ export const onDeleteRoute = /* GraphQL */ `
       types
       wallId
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -59,8 +56,8 @@ export const onDeleteRoute = /* GraphQL */ `
   }
 `;
 export const onCreateWall = /* GraphQL */ `
-  subscription OnCreateWall {
-    onCreateWall {
+  subscription OnCreateWall($owner: String, $editors: String) {
+    onCreateWall(owner: $owner, editors: $editors) {
       id
       key
       gymId
@@ -75,7 +72,6 @@ export const onCreateWall = /* GraphQL */ `
           types
           wallId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -83,7 +79,6 @@ export const onCreateWall = /* GraphQL */ `
         nextToken
       }
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -91,8 +86,8 @@ export const onCreateWall = /* GraphQL */ `
   }
 `;
 export const onUpdateWall = /* GraphQL */ `
-  subscription OnUpdateWall {
-    onUpdateWall {
+  subscription OnUpdateWall($owner: String, $editors: String) {
+    onUpdateWall(owner: $owner, editors: $editors) {
       id
       key
       gymId
@@ -107,7 +102,6 @@ export const onUpdateWall = /* GraphQL */ `
           types
           wallId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -115,7 +109,6 @@ export const onUpdateWall = /* GraphQL */ `
         nextToken
       }
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -123,8 +116,8 @@ export const onUpdateWall = /* GraphQL */ `
   }
 `;
 export const onDeleteWall = /* GraphQL */ `
-  subscription OnDeleteWall {
-    onDeleteWall {
+  subscription OnDeleteWall($owner: String, $editors: String) {
+    onDeleteWall(owner: $owner, editors: $editors) {
       id
       key
       gymId
@@ -139,7 +132,6 @@ export const onDeleteWall = /* GraphQL */ `
           types
           wallId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -147,7 +139,6 @@ export const onDeleteWall = /* GraphQL */ `
         nextToken
       }
       name
-      owner
       editors
       createdAt
       updatedAt
@@ -155,8 +146,8 @@ export const onDeleteWall = /* GraphQL */ `
   }
 `;
 export const onCreateGym = /* GraphQL */ `
-  subscription OnCreateGym {
-    onCreateGym {
+  subscription OnCreateGym($owner: String) {
+    onCreateGym(owner: $owner) {
       id
       key
       name
@@ -167,15 +158,14 @@ export const onCreateGym = /* GraphQL */ `
       zip
       phone
       website
-      email
       logo
+      email
       walls {
         items {
           id
           key
           gymId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -183,14 +173,15 @@ export const onCreateGym = /* GraphQL */ `
         nextToken
       }
       editors
+      disabled
       createdAt
       updatedAt
     }
   }
 `;
 export const onUpdateGym = /* GraphQL */ `
-  subscription OnUpdateGym {
-    onUpdateGym {
+  subscription OnUpdateGym($owner: String) {
+    onUpdateGym(owner: $owner) {
       id
       key
       name
@@ -201,15 +192,14 @@ export const onUpdateGym = /* GraphQL */ `
       zip
       phone
       website
-      email
       logo
+      email
       walls {
         items {
           id
           key
           gymId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -217,14 +207,15 @@ export const onUpdateGym = /* GraphQL */ `
         nextToken
       }
       editors
+      disabled
       createdAt
       updatedAt
     }
   }
 `;
 export const onDeleteGym = /* GraphQL */ `
-  subscription OnDeleteGym {
-    onDeleteGym {
+  subscription OnDeleteGym($owner: String) {
+    onDeleteGym(owner: $owner) {
       id
       key
       name
@@ -235,15 +226,14 @@ export const onDeleteGym = /* GraphQL */ `
       zip
       phone
       website
-      email
       logo
+      email
       walls {
         items {
           id
           key
           gymId
           name
-          owner
           editors
           createdAt
           updatedAt
@@ -251,6 +241,7 @@ export const onDeleteGym = /* GraphQL */ `
         nextToken
       }
       editors
+      disabled
       createdAt
       updatedAt
     }
