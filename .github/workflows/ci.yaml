@@ -71,7 +71,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
         run: npm ci
-      - name: Configure amplify
+      - name: Publish to amplify
         uses: ambientlight/amplify-cli-action@0.2.1
         with:
           amplify_command: publish
