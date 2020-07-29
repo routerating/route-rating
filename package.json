@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap",
+    "postbuild": "./scripts/react-snap.js",
     "test": "react-scripts test",
     "lint": "eslint src --ext .js,.jsx",
     "format": "yarn lint --fix"
