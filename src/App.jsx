@@ -97,6 +97,7 @@ class App extends Component {
       openSnack: false,
       snackSeverity: 'info',
       snackMessage: '',
+      groups: [],
     }
 
     this.classes = this.props.classes
@@ -114,15 +115,17 @@ class App extends Component {
 
   updateAuth = async () => {
     let authenticated = false
+    let groups = []
 
     try {
       const user = await Auth.currentAuthenticatedUser()
       authenticated =
         user && user.attributes.email !== constants.auth.publicUser.EMAIL
+      groups = user.signInUserSession.accessToken.payload['cognito:groups']
     } catch (e) {
       await this.publicSignIn()
     }
-    this.setState({ authenticated })
+    this.setState({ authenticated, groups })
   }
 
   componentDidMount = async () => {
@@ -165,6 +168,7 @@ class App extends Component {
             childProps={{
               authenticated: this.state.authenticated,
               openSnack: this.openSnack,
+              groups: this.state.groups,
             }}
           />
         )}
