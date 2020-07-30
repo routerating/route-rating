@@ -3,6 +3,8 @@ import { withStyles } from '@material-ui/core'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createGym } from './graphql/mutations'
 import { Chance } from 'chance'
+import ReactRouterPropTypes from 'react-router-prop-types'
+import PropTypes from 'prop-types'
 
 export const exportClassComponent = (component, styles) => {
   if (styles) {
@@ -46,8 +48,12 @@ export const createKey = ({ name }) => {
     return `${name.replace(' ', '-').toLowerCase()}-${Date.now().toString()}`
 }
 
-export const runGQL = (query, input) => {
-  return API.graphql(graphqlOperation(query, input ? { input } : undefined))
+export const runGQLMutation = (query, input) => {
+  return API.graphql(graphqlOperation(query, { input }))
+}
+
+export const runGQLQuery = (query, input) => {
+  return API.graphql(graphqlOperation(query, { ...input }))
 }
 
 export const uuidv4 = () => {
@@ -63,7 +69,7 @@ export const populateGyms = async () => {
 
   const name = chance.name()
 
-  runGQL(createGym, {
+  runGQLMutation(createGym, {
     name,
     key: `${name.replace(/ /g, '-')}-${Date.now().toString()}`,
     address1: chance.address(),
@@ -75,4 +81,13 @@ export const populateGyms = async () => {
     email: chance.email(),
     disabled: false,
   })
+}
+
+export const baseClassComponentPropTypes = {
+  classes: PropTypes.object,
+  updateAuth: PropTypes.func,
+  history: ReactRouterPropTypes.history,
+  location: ReactRouterPropTypes.location,
+  match: ReactRouterPropTypes.match,
+  route: ReactRouterPropTypes.route,
 }

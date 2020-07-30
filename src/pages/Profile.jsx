@@ -4,11 +4,11 @@ import React, { Component } from 'react'
 import { Auth } from 'aws-amplify'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
-import PropTypes from 'prop-types'
 import {
   exportClassComponent,
   deconstructAddress,
   constructAddress,
+  baseClassComponentPropTypes,
 } from '../utils'
 import constants from '../constants'
 
@@ -85,8 +85,11 @@ class Profile extends Component {
 
     try {
       await Auth.updateUserAttributes(this.state.user, {
+        // eslint-disable-next-line camelcase
         family_name: familyName,
+        // eslint-disable-next-line camelcase
         given_name: givenName,
+        // eslint-disable-next-line camelcase
         phone_number: `+1${phone}`,
         address: await constructAddress(address1, address2, city, state, zip),
       })
@@ -277,8 +280,7 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-  classes: PropTypes.object,
-  openSnack: PropTypes.func,
+  ...baseClassComponentPropTypes,
 }
 
 export default exportClassComponent(Profile, profileStyles)

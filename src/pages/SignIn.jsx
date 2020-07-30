@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom'
 import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import { RouteLinks } from '../Routes'
-import { exportClassComponent } from '../utils'
-import PropTypes from 'prop-types'
+import { exportClassComponent, baseClassComponentPropTypes } from '../utils'
 import constants from '../constants'
 
 const signInStyles = theme => ({
@@ -123,8 +122,7 @@ export class SignIn extends Component {
 }
 
 SignIn.propTypes = {
-  classes: PropTypes.object,
-  openSnack: PropTypes.func,
+  ...baseClassComponentPropTypes,
 }
 
 export default exportClassComponent(SignIn, signInStyles)

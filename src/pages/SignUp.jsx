@@ -6,9 +6,8 @@ import Form from '../components/Form'
 import FormTextField from '../components/FormTextField'
 import { Link } from 'react-router-dom'
 import { RouteLinks } from '../Routes'
-import { exportClassComponent } from '../utils'
+import { exportClassComponent, baseClassComponentPropTypes } from '../utils'
 
-import PropTypes from 'prop-types'
 import constants from '../constants'
 
 const signUpStyles = theme => ({
@@ -70,8 +69,11 @@ class SignUp extends Component {
         password,
         attributes: {
           email,
+          // eslint-disable-next-line camelcase
           given_name: givenName,
+          // eslint-disable-next-line camelcase
           family_name: familyName,
+          // eslint-disable-next-line camelcase
           phone_number: `+1${phone.replace(/[-+ ]/g, '')}`,
         },
       })
@@ -245,8 +247,7 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  classes: PropTypes.object,
-  openSnack: PropTypes.func,
+  ...baseClassComponentPropTypes,
 }
 
 export default exportClassComponent(SignUp, signUpStyles)

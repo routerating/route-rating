@@ -6,6 +6,7 @@ const SignUp = lazy(() => import('./pages/SignUp'))
 const SignIn = lazy(() => import('./pages/SignIn'))
 const Profile = lazy(() => import('./pages/Profile'))
 const Gyms = lazy(() => import('./pages/Gyms'))
+const Gym = lazy(() => import('./pages/Gym'))
 const Home = lazy(() => import('./pages/Home'))
 
 export const RouteLinks = {
@@ -70,10 +71,14 @@ const Routes = ({ childProps }) => (
       />
       <UnauthRoute
         path={RouteLinks.GYMS}
-        redirect={RouteLinks.HOME}
         childProps={childProps}
         exact
         component={Gyms}
+      />
+      <UnauthRoute
+        path={RouteLinks.GYMS}
+        childProps={childProps}
+        component={Gym}
       />
       <AuthRoute
         path={RouteLinks.PROFILE}

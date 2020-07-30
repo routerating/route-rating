@@ -46,8 +46,9 @@ type Route
   @model
   @auth(rules: [
     { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
-    { allow: owner, ownerField: "owner", mutations: [update] },
-    { allow: owner, ownerField: "editors", mutations: [update] }
+    { allow: owner, ownerField: "owner", mutations: [create, update, delete] },
+    { allow: owner, ownerField: "editors", mutations: [create, update, delete] },
+    { allow: groups, groups: ["Admin", "Basic", "Public"], operations: [read]}
   ])
   @key(
     name: "ByKey",
@@ -76,8 +77,9 @@ type Wall
   @model
   @auth(rules: [
     { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
-    { allow: owner, ownerField: "owner", mutations: [update] },
-    { allow: owner, ownerField: "editors", mutations: [update] }
+    { allow: owner, ownerField: "owner", mutations: [create, update, delete] },
+    { allow: owner, ownerField: "editors", mutations: [create, update, delete] },
+    { allow: groups, groups: ["Admin", "Basic", "Public"], operations: [read]}
   ])
   @key(
     name: "ByKey",
@@ -102,7 +104,8 @@ type Gym
   @searchable
   @auth(rules: [
     { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
-    { allow: owner, ownerField: "owner", mutations: [update] }
+    { allow: owner, ownerField: "owner", mutations: [update] },
+    { allow: groups, groups: ["Admin", "Basic", "Public"], operations: [read]}
   ])
   @key(
     name: "ByKey",
@@ -123,7 +126,5 @@ type Gym
   email: String
   walls: [Wall] @connection(keyName: "ByGym", fields: ["id"])
   editors: [String]
-  disabled: Boolean @auth(rules: [
-    { allow: groups, groups: ["Admin"], operations: [update, read] }
-  ])
+  disabled: Boolean
 }

@@ -17,7 +17,7 @@ import { Style, lightTheme } from './theme'
 import Routes, { RouteLinks } from './Routes'
 import constants from './constants'
 
-import { exportClassComponent, populateGyms } from './utils'
+import { exportClassComponent } from './utils'
 import PropTypes from 'prop-types'
 
 const navbarStyles = makeStyles(theme => ({

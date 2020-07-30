@@ -1,6 +1,11 @@
+/* eslint-ignore no-undefined */
 import React, { Component } from 'react'
 
-import { exportClassComponent, runGQL } from '../utils'
+import {
+  exportClassComponent,
+  runGQLMutation,
+  baseClassComponentPropTypes,
+} from '../utils'
 import { listGyms } from '../graphql/queries'
 import PropTypes from 'prop-types'
 import {
@@ -13,7 +18,7 @@ import {
   Avatar,
   IconButton,
   CardActions,
-  Box,
+  Grid,
 } from '@material-ui/core'
 import {
   MoreVert as MoreVertIcon,
@@ -21,12 +26,13 @@ import {
   Share as ShareIcon,
 } from '@material-ui/icons'
 import { red } from '@material-ui/core/colors'
+import { useHistory } from 'react-router-dom'
+import { RouteLinks } from '../Routes'
 
 const gymCardStyles = makeStyles(theme => ({
   root: {
     width: 375,
     height: 420,
-    margin: theme.spacing(3),
     float: 'left',
     textAlign: 'left',
   },
@@ -51,53 +57,71 @@ const gymCardStyles = makeStyles(theme => ({
 
 const GymCard = ({ gym }) => {
   const classes = gymCardStyles()
+  const history = useHistory()
 
-  const { name, website, address1, address2, city, state, zip, picture } = gym
+  const {
+    id,
+    name,
+    website,
+    address1,
+    address2,
+    city,
+    state,
+    zip,
+    picture,
+  } = gym
+
+  const handleClick = async event => {
+    event.preventDefault()
+    history.push(`${RouteLinks.GYMS}/${id}`)
+  }
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        title={name}
-        subheader={website}
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {name ? name.replace(/[^A-Z]/g, '') : ''}
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-      />
-      <CardMedia
-        className={classes.media}
-        image={picture}
-        title={`${name} picture`}
-        component={picture ? undefined : 'div'}
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {address1}
-        </Typography>
-        {address2 && (
+    <Grid item>
+      <Card className={classes.root} onClick={handleClick}>
+        <CardHeader
+          title={name}
+          subheader={website}
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              {name ? name.replace(/[^A-Z]/g, '') : ''}
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+        />
+        <CardMedia
+          className={classes.media}
+          image={picture}
+          title={`${name} picture`}
+          component={picture ? undefined : 'div'}
+        />
+        <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            {address2}
+            {address1}
           </Typography>
-        )}
-        <Typography variant="body2" color="textSecondary" component="p">
-          {city}, {state} {zip}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
+          {address2 && (
+            <Typography variant="body2" color="textSecondary" component="p">
+              {address2}
+            </Typography>
+          )}
+          <Typography variant="body2" color="textSecondary" component="p">
+            {city}, {state} {zip}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </Grid>
   )
 }
 
@@ -105,13 +129,8 @@ GymCard.propTypes = {
   gym: PropTypes.object,
 }
 
-const gymsStyles = theme => ({
-  root: {
-    textAlign: 'center',
-    width: '100%',
-    // display: 'flex',
-    justifyContent: 'center',
-  },
+const gymsStyles = () => ({
+  root: {},
 })
 
 class GymsPage extends Component {
@@ -128,7 +147,7 @@ class GymsPage extends Component {
   componentDidMount = async () => {
     let gyms
     try {
-      const result = await runGQL(listGyms)
+      const result = await runGQLMutation(listGyms)
       gyms = result.data.listGyms.items
     } catch (e) {
       console.error('GymsPage -> componentDidMount -> e', e)
@@ -143,17 +162,20 @@ class GymsPage extends Component {
 
     return (
       !isLoading && (
-        <Box className={this.classes.root}>
+        <Grid
+          className={this.classes.root}
+          container
+          justify="center"
+          spacing={3}>
           {gyms && gyms.map(gym => <GymCard key={gym.key} gym={gym} />)}
-        </Box>
+        </Grid>
       )
     )
   }
 }
 
 GymsPage.propTypes = {
-  classes: PropTypes.object,
-  openSnack: PropTypes.func,
+  ...baseClassComponentPropTypes,
 }
 
 export default exportClassComponent(GymsPage, gymsStyles)
