@@ -33,7 +33,10 @@ jobs:
       - name: Install
         run: yarn
       - name: Configure amplify
-        run: npm i -g @aws-amplify/cli && amplify env checkout dev
+        run: |
+              npm i -g @aws-amplify/cli
+              amplify init
+              amplify env checkout dev
       - name: Build
         run: CI=true yarn build
       - name: Cache Repo
@@ -82,7 +85,10 @@ jobs:
       - name: Install
         run: yarn
       - name: Configure amplify
-        run: npm i -g @aws-amplify/cli && amplify env checkout dev
+        run: |
+              npm i -g @aws-amplify/cli
+              amplify init
+              amplify env checkout dev
       - name: Publish to Amplify
         uses: mujo-code/puppeteer-headful@master
         with:
