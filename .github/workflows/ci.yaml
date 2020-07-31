@@ -35,8 +35,8 @@ jobs:
       - name: Configure amplify
         run: |
               npm i -g @aws-amplify/cli
-              amplify init
-              amplify env checkout dev
+              echo '{"projectPath": "$(pwd)","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
+              amplify env pull --yes
       - name: Build
         run: CI=true yarn build
       - name: Cache Repo
@@ -87,8 +87,8 @@ jobs:
       - name: Configure amplify
         run: |
               npm i -g @aws-amplify/cli
-              amplify init
-              amplify env checkout dev
+              echo '{"projectPath": "$(pwd)","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
+              amplify env pull --yes
       - name: Publish to Amplify
         uses: mujo-code/puppeteer-headful@master
         with:
