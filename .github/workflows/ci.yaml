@@ -34,7 +34,7 @@ jobs:
         run: yarn
       - name: Configure amplify
         run: |
-              yarn install --global @aws-amplify/cli
+              yarn global add @aws-amplify/cli
               echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
               amplify env pull --yes
       - name: Build
@@ -50,6 +50,9 @@ jobs:
     needs: [build]
     env:
       CI: 'true'
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: us-east-1
     if: github.ref == 'refs/heads/master'
     name: Publish
     steps:
@@ -86,7 +89,7 @@ jobs:
         run: yarn
       - name: Configure amplify
         run: |
-              yarn install --global @aws-amplify/cli
+              yarn global add @aws-amplify/cli
               echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
               amplify env pull --yes
       - name: Publish to Amplify
