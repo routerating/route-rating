@@ -1,5 +1,5 @@
 import { Button, Container, Grid, Typography } from '@material-ui/core'
-import React, { Component } from 'react'
+import React from 'react'
 
 import { Auth } from 'aws-amplify'
 import { Link } from 'react-router-dom'
@@ -8,6 +8,7 @@ import FormTextField from '../components/FormTextField'
 import { RouteLinks } from '../Routes'
 import { exportClassComponent, baseClassComponentPropTypes } from '../utils'
 import constants from '../constants'
+import Page from '../Page'
 
 const signInStyles = theme => ({
   avatar: {
@@ -39,7 +40,7 @@ const signInStyles = theme => ({
   },
 })
 
-export class SignIn extends Component {
+export class SignIn extends Page {
   constructor(props) {
     super(props)
 
@@ -67,6 +68,10 @@ export class SignIn extends Component {
         error: { string: e.toString(), spread: { ...e } },
       })
     }
+  }
+
+  componentDidMount = async () => {
+    this.doneLoading()
   }
 
   render = () => {

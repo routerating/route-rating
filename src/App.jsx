@@ -8,6 +8,7 @@ import {
   Typography,
   makeStyles,
   Box,
+  LinearProgress,
 } from '@material-ui/core'
 import React, { Component } from 'react'
 
@@ -24,6 +25,7 @@ const navbarStyles = makeStyles(theme => ({
   appBar: {
     background: Style.LIGHT_NAVBAR_COLOR,
     color: Style.LIGHT_NAVBAR_TEXT,
+    position: 'absolute',
   },
   toolbar: {
     color: 'inherit',
@@ -45,7 +47,7 @@ const navbarStyles = makeStyles(theme => ({
   },
 }))
 
-const NavigationBar = ({ authenticated }) => {
+const NavigationBar = ({ authenticated, loading }) => {
   const profileLink = authenticated ? RouteLinks.PROFILE : RouteLinks.SIGN_UP
   const classes = navbarStyles()
 
@@ -73,12 +75,14 @@ const NavigationBar = ({ authenticated }) => {
           Profile
         </Button>
       </Toolbar>
+      <LinearProgress hidden={!loading} />
     </AppBar>
   )
 }
 
 NavigationBar.propTypes = {
   authenticated: PropTypes.bool,
+  loading: PropTypes.bool,
 }
 
 const appStyles = theme => ({
@@ -98,6 +102,7 @@ class App extends Component {
       snackSeverity: 'info',
       snackMessage: '',
       groups: [],
+      loading: false,
     }
 
     this.classes = this.props.classes
@@ -147,6 +152,10 @@ class App extends Component {
     })
   }
 
+  setLoading = async loading => {
+    this.setState({ loading })
+  }
+
   render = () => {
     return (
       <ThemeProvider theme={lightTheme}>
@@ -161,7 +170,10 @@ class App extends Component {
             {this.state.snackMessage}
           </Alert>
         </Snackbar>
-        <NavigationBar authenticated={this.state.authenticated} />
+        <NavigationBar
+          authenticated={this.state.authenticated}
+          loading={this.state.loading}
+        />
         <Box className={this.classes.box} />
         {!this.state.isLoading && (
           <Routes
@@ -169,6 +181,7 @@ class App extends Component {
               authenticated: this.state.authenticated,
               openSnack: this.openSnack,
               groups: this.state.groups,
+              setLoading: this.setLoading,
             }}
           />
         )}

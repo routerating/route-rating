@@ -1,5 +1,5 @@
 import { Button, Container, Grid } from '@material-ui/core'
-import React, { Component } from 'react'
+import React from 'react'
 
 import { Auth } from 'aws-amplify'
 import Form from '../components/Form'
@@ -11,6 +11,7 @@ import {
   baseClassComponentPropTypes,
 } from '../utils'
 import constants from '../constants'
+import Page from '../Page'
 
 const profileStyles = theme => ({
   button: {
@@ -18,7 +19,7 @@ const profileStyles = theme => ({
   },
 })
 
-class Profile extends Component {
+class Profile extends Page {
   constructor(props) {
     super(props)
 
@@ -61,6 +62,7 @@ class Profile extends Component {
         isLoading: false,
         ...deconstructedAddress,
       })
+      this.doneLoading()
     } catch (e) {
       console.error({
         name: constants.analytics.FAILED_GET_USER,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   exportClassComponent,
@@ -7,8 +7,9 @@ import {
 } from '../utils'
 import { getGym } from '../graphql/queries'
 import { RouteLinks } from '../Routes'
+import Page from '../Page'
 
-class Gym extends Component {
+class Gym extends Page {
   constructor(props) {
     super(props)
 
@@ -24,10 +25,8 @@ class Gym extends Component {
 
     try {
       const result = await runGQLQuery(getGym, { id: path[path.length - 1] })
-      const gym = result.data.getGym
-      console.log(gym)
-
-      this.setState({ isLoading: false, gym })
+      this.setState({ isLoading: false, gym: result.data.getGym })
+      this.doneLoading()
     } catch (e) {
       console.error(e)
       this.props.history.push(RouteLinks.GYMS)

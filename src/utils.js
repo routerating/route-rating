@@ -86,6 +86,7 @@ export const populateGyms = async () => {
 export const baseClassComponentPropTypes = {
   classes: PropTypes.object,
   updateAuth: PropTypes.func,
+  setLoading: PropTypes.func,
   history: ReactRouterPropTypes.history,
   location: ReactRouterPropTypes.location,
   match: ReactRouterPropTypes.match,

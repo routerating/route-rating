@@ -3,17 +3,22 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CI: 'true'
     name: Build
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Cache node modules
-        uses: actions/cache@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
       - name: Setup AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -33,24 +38,29 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
-        run: npm ci
+        run: yarn
       - name: Build
-        run: CI=true npm run build
+        run: CI=true yarn build
   publish:
     runs-on: ubuntu-latest
     needs: [build]
+    env:
+      CI: 'true'
     if: github.ref == 'refs/heads/master'
     name: Publish
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Cache node modules
-        uses: actions/cache@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
       - name: Setup AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -70,10 +80,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
-        run: npm ci
-      - name: Publish to amplify
-        uses: ambientlight/amplify-cli-action@0.2.1
+        run: yarn
+      - name: Publish to Amplify
+        uses: mujo-code/puppeteer-headful@master
         with:
-          amplify_command: publish
-          amplify_env: dev
+          args: yarn publish
 

@@ -1,5 +1,5 @@
 /* eslint-ignore no-undefined */
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   exportClassComponent,
@@ -28,6 +28,7 @@ import {
 import { red } from '@material-ui/core/colors'
 import { useHistory } from 'react-router-dom'
 import { RouteLinks } from '../Routes'
+import Page from '../Page'
 
 const gymCardStyles = makeStyles(theme => ({
   root: {
@@ -133,7 +134,7 @@ const gymsStyles = () => ({
   root: {},
 })
 
-class GymsPage extends Component {
+class GymsPage extends Page {
   constructor(props) {
     super(props)
 
@@ -155,6 +156,7 @@ class GymsPage extends Component {
     }
 
     this.setState({ isLoading: false, gyms })
+    this.doneLoading()
   }
 
   render = () => {
