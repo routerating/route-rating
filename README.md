@@ -1,3 +1,10 @@
+# Route Rating
+
+![CI](https://github.com/routerating/route-rating/workflows/CI/badge.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/routerating/route-rating/badge)](https://www.codefactor.io/repository/github/routerating/route-rating)
+
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/routerating/route-rating)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
