@@ -87,7 +87,7 @@ jobs:
       - name: Configure amplify
         run: |
               yarn install --global @aws-amplify/cli
-              echo '{"projectPath": "$(pwd)","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
+              echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
               amplify env pull --yes
       - name: Publish to Amplify
         uses: mujo-code/puppeteer-headful@master
