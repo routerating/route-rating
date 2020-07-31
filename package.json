@@ -39,7 +39,8 @@
     "test": "react-scripts test",
     "lint": "eslint src --ext .js,.jsx",
     "format": "yarn lint --fix",
-    "publish": "amplify publish --yes"
+    "publish": "amplify publish --yes",
+    "pull:dev": "amplify env get --name dev && amplify env pull --yes"
   },
   "eslintConfig": {
     "extends": "react-app"

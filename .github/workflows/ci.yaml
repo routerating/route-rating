@@ -29,16 +29,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.18
-      - name: Configure amplify
-        uses: ambientlight/amplify-cli-action@0.2.1
-        with:
-          amplify_command: configure
-          amplify_env: dev
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
         run: yarn
+      - name: Configure amplify
+        run: yarn pull:dev
       - name: Build
         run: CI=true yarn build
   publish:
@@ -71,16 +65,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.18
-      - name: Configure amplify
-        uses: ambientlight/amplify-cli-action@0.2.1
-        with:
-          amplify_command: configure
-          amplify_env: dev
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Install
         run: yarn
+      - name: Configure amplify
+        run: yarn pull:dev
       - name: Publish to Amplify
         uses: mujo-code/puppeteer-headful@master
         with:
