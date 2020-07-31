@@ -34,7 +34,7 @@ jobs:
         run: yarn
       - name: Configure amplify
         run: |
-              npm i -g @aws-amplify/cli
+              yarn install --global @aws-amplify/cli
               echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
               amplify env pull --yes
       - name: Build
@@ -86,7 +86,7 @@ jobs:
         run: yarn
       - name: Configure amplify
         run: |
-              npm i -g @aws-amplify/cli
+              yarn install --global @aws-amplify/cli
               echo '{"projectPath": "$(pwd)","defaultEditor":"code","envName":"dev"}' > ./amplify/.config/local-env-info.json
               amplify env pull --yes
       - name: Publish to Amplify
