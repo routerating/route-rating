@@ -18,7 +18,8 @@
                 }
             },
             "auth": {
-                "RouteRatingAuth": {}
+                "RouteRatingAuth": {},
+                "userPoolGroups": {}
             },
             "hosting": {
                 "amplifyhosting": {
