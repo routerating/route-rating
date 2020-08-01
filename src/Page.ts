@@ -1,8 +1,11 @@
 import { Component } from 'react'
-import { baseClassComponentPropTypes } from './utils'
 
-class Page extends Component {
-  constructor(props) {
+export type PageProps = {
+  setLoading: (loading: boolean) => Promise<void>
+}
+
+class Page<Props, State> extends Component<Props & PageProps, State> {
+  constructor(props: Props & PageProps) {
     super(props)
 
     this.props.setLoading(true)
@@ -15,10 +18,6 @@ class Page extends Component {
   doneLoading = async () => {
     this.props.setLoading(false)
   }
-}
-
-Page.propTypes = {
-  ...baseClassComponentPropTypes,
 }
 
 export default Page

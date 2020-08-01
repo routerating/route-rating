@@ -1,25 +1,27 @@
 module.exports = {
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   env: {
     browser: true,
-    es6: true,
+    jasmine: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parser: 'babel-eslint',
-  plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'no-loop-func': 'error',
-    'no-param-reassign': 'error',
-    strict: 'error',
-    yoda: 'error',
-    'no-label-var': 'warn',
-    'no-undef': 0,
-    camelcase: 'error',
-    'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
+    'react/prop-types': 0,
+    '@typescript-eslint/no-unused-vars': 'error'
   },
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
+  },
+  parser: '@typescript-eslint/parser',
 }

@@ -8,9 +8,25 @@ import {
 import { getGym } from '../graphql/queries'
 import { RouteLinks } from '../Routes'
 import Page from '../Page'
+import { UpdateAuth, SetLoading } from '../types'
+import { match } from 'react-router-dom'
 
-class Gym extends Page {
-  constructor(props) {
+type GymProps = {
+  updateAuth: UpdateAuth
+  setLoading: SetLoading
+  history: any
+  location: any
+  match: any
+}
+
+type GymState = {
+  isLoading: boolean
+  gym: any
+  canEdit: boolean
+}
+
+class Gym extends Page<GymProps, GymState> {
+  constructor(props: GymProps) {
     super(props)
 
     this.state = {
@@ -25,7 +41,7 @@ class Gym extends Page {
 
     try {
       const result = await runGQLQuery(getGym, { id: path[path.length - 1] })
-      this.setState({ isLoading: false, gym: result.data.getGym })
+      this.setState({ isLoading: false, gym: result.data?.getGym })
       this.doneLoading()
     } catch (e) {
       console.error(e)
@@ -72,10 +88,6 @@ class Gym extends Page {
       )
     )
   }
-}
-
-Gym.propTypes = {
-  ...baseClassComponentPropTypes,
 }
 
 export default exportClassComponent(Gym)

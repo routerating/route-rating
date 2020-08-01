@@ -2,11 +2,15 @@ import { withRouter } from 'react-router-dom'
 import { withStyles } from '@material-ui/core'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createGym } from './graphql/mutations'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import { Chance } from 'chance'
-import ReactRouterPropTypes from 'react-router-prop-types'
-import PropTypes from 'prop-types'
+import { Address } from './types'
 
-export const exportClassComponent = (component, styles) => {
+export const exportClassComponent = (
+  component: any,
+  styles: any,
+): typeof component => {
   if (styles) {
     return withStyles(styles, { withTheme: true })(withRouter(component))
   }
@@ -15,16 +19,18 @@ export const exportClassComponent = (component, styles) => {
 }
 
 export const constructAddress = async (
-  address1,
-  address2,
-  city,
-  state,
-  zip,
-) => {
+  address1: string,
+  address2: string | null | undefined,
+  city: string,
+  state: string,
+  zip: string,
+): Promise<string> => {
   return `${address1}|${address2}|${city}|${state}|${zip}`
 }
 
-export const deconstructAddress = async address => {
+export const deconstructAddress = async (
+  address: string,
+): Promise<Address | null> => {
   if (!address) return null
 
   const addressArray = address
@@ -43,20 +49,20 @@ export const deconstructAddress = async address => {
   )
 }
 
-export const createKey = ({ name }) => {
+export const createKey = ({ name }: { name?: string }): string | undefined => {
   if (name)
     return `${name.replace(' ', '-').toLowerCase()}-${Date.now().toString()}`
 }
 
-export const runGQLMutation = (query, input) => {
-  return API.graphql(graphqlOperation(query, { input }))
+export const runGQLMutation = (query: any, input: any): Promise<any> => {
+  return GraphQLAPI.graphql(graphqlOperation(query, { input }))
 }
 
-export const runGQLQuery = (query, input) => {
+export const runGQLQuery = (query: any, input: any): Promise<any> => {
   return API.graphql(graphqlOperation(query, { ...input }))
 }
 
-export const uuidv4 = () => {
+export const uuidv4 = (): string => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
     const r = (Math.random() * 16) | 0
     const v = c == 'x' ? r : (r & 0x3) | 0x8
@@ -64,7 +70,7 @@ export const uuidv4 = () => {
   })
 }
 
-export const populateGyms = async () => {
+export const populateGyms = async (): Promise<void> => {
   const chance = new Chance()
 
   const name = chance.name()
@@ -81,14 +87,4 @@ export const populateGyms = async () => {
     email: chance.email(),
     disabled: false,
   })
-}
-
-export const baseClassComponentPropTypes = {
-  classes: PropTypes.object,
-  updateAuth: PropTypes.func,
-  setLoading: PropTypes.func,
-  history: ReactRouterPropTypes.history,
-  location: ReactRouterPropTypes.location,
-  match: ReactRouterPropTypes.match,
-  route: ReactRouterPropTypes.route,
 }

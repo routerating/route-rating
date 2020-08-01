@@ -7,7 +7,7 @@ projects:
       - ./amplify/**
     extensions:
       amplify:
-        codeGenTarget: javascript
+        codeGenTarget: typescript
         generatedFileName: ''
         docsFilePath: src/graphql
 extensions:

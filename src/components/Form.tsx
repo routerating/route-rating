@@ -1,10 +1,9 @@
-import { Container, Paper, Typography } from '@material-ui/core'
-import React, { Component } from 'react'
+import { Container, Paper, Typography, Theme } from '@material-ui/core'
+import React, { Component, SyntheticEvent } from 'react'
 
-import PropTypes from 'prop-types'
 import { exportClassComponent } from '../utils'
 
-const formStyles = theme => ({
+const formStyles = (theme: Theme) => ({
   paper: {
     display: 'flex',
     flexDirection: 'column',
@@ -17,8 +16,22 @@ const formStyles = theme => ({
   },
 })
 
-class Form extends Component {
-  constructor(props) {
+type FormStyles = {
+  paper: string
+  form: string
+}
+
+type FormProps = {
+  classes: FormStyles
+  children: any
+  title: string
+  onSubmit: (event: SyntheticEvent) => void | Promise<void>
+}
+
+class Form extends Component<FormProps> {
+  private classes: FormStyles
+
+  constructor(props: FormProps) {
     super(props)
     this.classes = this.props.classes
   }
@@ -38,16 +51,6 @@ class Form extends Component {
       </Paper>
     )
   }
-}
-
-Form.propTypes = {
-  title: PropTypes.string,
-  onSubmit: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
-  ]),
-  classes: PropTypes.object,
 }
 
 export default exportClassComponent(Form, formStyles)

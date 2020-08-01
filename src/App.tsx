@@ -9,6 +9,7 @@ import {
   makeStyles,
   Box,
   LinearProgress,
+  Theme,
 } from '@material-ui/core'
 import React, { Component } from 'react'
 
@@ -19,7 +20,14 @@ import Routes, { RouteLinks } from './Routes'
 import constants from './constants'
 
 import { exportClassComponent } from './utils'
-import PropTypes from 'prop-types'
+
+
+export type ChildProps = {
+  authenticated: boolean
+  openSnack: (message: string, severity: SnackSeverity) => Promise<void>
+  groups: string[]
+  setLoading: (loading: boolean) => Promise<void>
+}
 
 const navbarStyles = makeStyles(theme => ({
   appBar: {
@@ -47,7 +55,12 @@ const navbarStyles = makeStyles(theme => ({
   },
 }))
 
-const NavigationBar = ({ authenticated, loading }) => {
+type NavigationBarProps = {
+  authenticated: boolean
+  loading: boolean
+}
+
+const NavigationBar = ({ authenticated, loading }: NavigationBarProps) => {
   const profileLink = authenticated ? RouteLinks.PROFILE : RouteLinks.SIGN_UP
   const classes = navbarStyles()
 
@@ -80,20 +93,35 @@ const NavigationBar = ({ authenticated, loading }) => {
   )
 }
 
-NavigationBar.propTypes = {
-  authenticated: PropTypes.bool,
-  loading: PropTypes.bool,
+type AppStyles = {
+  box: string
 }
 
-const appStyles = theme => ({
+const appStyles = (theme: Theme) => ({
   box: {
     paddingBottom: theme.spacing(10),
     width: '100%',
   },
 })
 
-class App extends Component {
-  constructor(props) {
+type AppProps = {
+  classes: AppStyles
+}
+
+type AppState = {
+  isLoading: boolean
+  authenticated: boolean
+  openSnack: boolean
+  snackSeverity: SnackSeverity
+  snackMessage: string
+  groups: string[]
+  loading: boolean
+}
+
+class App extends Component<AppProps, AppState> {
+  private classes: AppStyles
+
+  constructor(props: AppProps) {
     super(props)
     this.state = {
       isLoading: true,
@@ -138,7 +166,7 @@ class App extends Component {
     this.setState({ isLoading: false })
   }
 
-  openSnack = async (message, severity) => {
+  openSnack = async (message: string, severity: SnackSeverity) => {
     this.setState({
       openSnack: true,
       snackMessage: message,
@@ -152,7 +180,7 @@ class App extends Component {
     })
   }
 
-  setLoading = async loading => {
+  setLoading = async (loading: boolean) => {
     this.setState({ loading })
   }
 
@@ -188,10 +216,6 @@ class App extends Component {
       </ThemeProvider>
     )
   }
-}
-
-App.propTypes = {
-  classes: PropTypes.object,
 }
 
 export default exportClassComponent(App, appStyles)

@@ -12,7 +12,7 @@ import { register as registerServiceWorker } from './serviceWorker'
 Amplify.configure(awsExports)
 
 const rootElement = document.getElementById('root')
-if (rootElement.hasChildNodes && process.env.NODE_ENV !== 'development') {
+if (rootElement?.hasChildNodes && process.env.NODE_ENV !== 'development') {
   ReactDOM.hydrate(
     <BrowserRouter>
       <App />
