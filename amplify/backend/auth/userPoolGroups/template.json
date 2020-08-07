@@ -95,65 +95,11 @@
         },
      
     
-        "AdminGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "Admin",
-              "Precedence" : 2,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "AdminGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authRouteRatingAuthUserPoolId"
-              } 
-            }
-        },
-        
-        "AdminGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authRouteRatingAuthUserPoolId"
-                          },
-                          "-AdminGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authRouteRatingAuthIdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
         "BasicGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
               "GroupName" : "Basic",
-              "Precedence" : 3,
+              "Precedence" : 2,
               
               "RoleArn" : {
                 "Fn::GetAtt": [
@@ -179,6 +125,114 @@
                             "Ref": "authRouteRatingAuthUserPoolId"
                           },
                           "-BasicGroupRole"
+                        ]
+                    ]
+                },
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Federated": "cognito-identity.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRoleWithWebIdentity",
+                            "Condition": {
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authRouteRatingAuthIdentityPoolId"}},
+                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+     
+    
+        "EditorGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "Editor",
+              "Precedence" : 3,
+              
+              "RoleArn" : {
+                "Fn::GetAtt": [
+                    "EditorGroupRole",
+                    "Arn"
+                ]
+              },
+              
+              "UserPoolId" : {
+                "Ref": "authRouteRatingAuthUserPoolId"
+              } 
+            }
+        },
+        
+        "EditorGroupRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName":{
+                    "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "authRouteRatingAuthUserPoolId"
+                          },
+                          "-EditorGroupRole"
+                        ]
+                    ]
+                },
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Federated": "cognito-identity.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRoleWithWebIdentity",
+                            "Condition": {
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authRouteRatingAuthIdentityPoolId"}},
+                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+     
+    
+        "AdminGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "Admin",
+              "Precedence" : 4,
+              
+              "RoleArn" : {
+                "Fn::GetAtt": [
+                    "AdminGroupRole",
+                    "Arn"
+                ]
+              },
+              
+              "UserPoolId" : {
+                "Ref": "authRouteRatingAuthUserPoolId"
+              } 
+            }
+        },
+        
+        "AdminGroupRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName":{
+                    "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "authRouteRatingAuthUserPoolId"
+                          },
+                          "-AdminGroupRole"
                         ]
                     ]
                 },
@@ -414,10 +468,10 @@
         },
         
       
-        "AdminGroupRole": {
+        "BasicGroupRole": {
             "Value": {
                 "Fn::GetAtt": [
-                    "AdminGroupRole",
+                    "BasicGroupRole",
                     "Arn"
                 ]
             }
@@ -425,10 +479,21 @@
         },
         
       
-        "BasicGroupRole": {
+        "EditorGroupRole": {
             "Value": {
                 "Fn::GetAtt": [
-                    "BasicGroupRole",
+                    "EditorGroupRole",
+                    "Arn"
+                ]
+            }
+         
+        },
+        
+      
+        "AdminGroupRole": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "AdminGroupRole",
                     "Arn"
                 ]
             }

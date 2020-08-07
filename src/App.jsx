@@ -136,6 +136,7 @@ class App extends Component {
   componentDidMount = async () => {
     await this.updateAuth()
     this.setState({ isLoading: false })
+    // await populateGyms()
   }
 
   openSnack = async (message, severity) => {

@@ -1,0 +1,460 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "Lambda Function resource stack creation using Amplify CLI",
+	"Parameters": {
+		"CloudWatchRule": {
+			"Type": "String",
+			"Default": "NONE",
+			"Description": " Schedule Expression"
+		},
+		"env": {
+			"Type": "String"
+		},
+		"apiRouteRatingAPIGraphQLAPIIdOutput": {
+			"Type": "String",
+			"Default": "apiRouteRatingAPIGraphQLAPIIdOutput"
+		},
+		"apiRouteRatingAPIGraphQLAPIEndpointOutput": {
+			"Type": "String",
+			"Default": "apiRouteRatingAPIGraphQLAPIEndpointOutput"
+		}
+	},
+	"Conditions": {
+		"ShouldNotCreateEnvResources": {
+			"Fn::Equals": [
+				{
+					"Ref": "env"
+				},
+				"NONE"
+			]
+		}
+	},
+	"Resources": {
+		"LambdaFunction": {
+			"Type": "AWS::Lambda::Function",
+			"Metadata": {
+				"aws:asset:path": "./src",
+				"aws:asset:property": "Code"
+			},
+			"Properties": {
+				"Handler": "index.handler",
+				"FunctionName": {
+					"Fn::If": [
+						"ShouldNotCreateEnvResources",
+						"RouteRatingGymCleanup",
+						{
+							"Fn::Join": [
+								"",
+								[
+									"RouteRatingGymCleanup",
+									"-",
+									{
+										"Ref": "env"
+									}
+								]
+							]
+						}
+					]
+				},
+				"Environment": {
+					"Variables": {
+						"ENV": {
+							"Ref": "env"
+						},
+						"REGION": {
+							"Ref": "AWS::Region"
+						},
+						"API_ROUTERATINGAPI_GRAPHQLAPIIDOUTPUT": {
+							"Ref": "apiRouteRatingAPIGraphQLAPIIdOutput"
+						},
+						"API_ROUTERATINGAPI_GRAPHQLAPIENDPOINTOUTPUT": {
+							"Ref": "apiRouteRatingAPIGraphQLAPIEndpointOutput"
+						}
+					}
+				},
+				"Role": {
+					"Fn::GetAtt": [
+						"LambdaExecutionRole",
+						"Arn"
+					]
+				},
+				"Runtime": "nodejs12.x",
+				"Layers": [],
+				"Timeout": "25",
+				"Code": {
+					"S3Bucket": "amplify-routerating-dev-141417-deployment",
+					"S3Key": "amplify-builds/RouteRatingGymCleanup-6d634e4c383275445453-build.zip"
+				}
+			}
+		},
+		"LambdaExecutionRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": {
+					"Fn::If": [
+						"ShouldNotCreateEnvResources",
+						"routeratingLambdaRoleb67cf712",
+						{
+							"Fn::Join": [
+								"",
+								[
+									"routeratingLambdaRoleb67cf712",
+									"-",
+									{
+										"Ref": "env"
+									}
+								]
+							]
+						}
+					]
+				},
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"lambda.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				}
+			}
+		},
+		"lambdaexecutionpolicy": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "lambda-execution-policy",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"logs:CreateLogGroup",
+								"logs:CreateLogStream",
+								"logs:PutLogEvents"
+							],
+							"Resource": {
+								"Fn::Sub": [
+									"arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+									{
+										"region": {
+											"Ref": "AWS::Region"
+										},
+										"account": {
+											"Ref": "AWS::AccountId"
+										},
+										"lambda": {
+											"Ref": "LambdaFunction"
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		},
+		"AmplifyResourcesPolicy": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "amplify-lambda-execution-policy",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"appsync:Get*",
+								"appsync:List*",
+								"appsync:Update*",
+								"appsync:Delete*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:appsync:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":apis/",
+											{
+												"Ref": "apiRouteRatingAPIGraphQLAPIIdOutput"
+											},
+											"/*"
+										]
+									]
+								}
+							]
+						}
+					]
+				}
+			}
+		},
+		"LambdaTriggerPolicyRoute": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "amplify-lambda-execution-policy-Route",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:DescribeStream",
+								"dynamodb:GetRecords",
+								"dynamodb:GetShardIterator",
+								"dynamodb:ListStreams"
+							],
+							"Resource": {
+								"Fn::ImportValue": {
+									"Fn::Sub": "${apiRouteRatingAPIGraphQLAPIIdOutput}:GetAtt:RouteTable:StreamArn"
+								}
+							}
+						}
+					]
+				}
+			}
+		},
+		"LambdaEventSourceMappingRoute": {
+			"Type": "AWS::Lambda::EventSourceMapping",
+			"DependsOn": [
+				"LambdaTriggerPolicyRoute",
+				"LambdaExecutionRole"
+			],
+			"Properties": {
+				"BatchSize": 100,
+				"Enabled": true,
+				"EventSourceArn": {
+					"Fn::ImportValue": {
+						"Fn::Sub": "${apiRouteRatingAPIGraphQLAPIIdOutput}:GetAtt:RouteTable:StreamArn"
+					}
+				},
+				"FunctionName": {
+					"Fn::GetAtt": [
+						"LambdaFunction",
+						"Arn"
+					]
+				},
+				"StartingPosition": "LATEST"
+			}
+		},
+		"LambdaTriggerPolicyWall": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "amplify-lambda-execution-policy-Wall",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:DescribeStream",
+								"dynamodb:GetRecords",
+								"dynamodb:GetShardIterator",
+								"dynamodb:ListStreams"
+							],
+							"Resource": {
+								"Fn::ImportValue": {
+									"Fn::Sub": "${apiRouteRatingAPIGraphQLAPIIdOutput}:GetAtt:WallTable:StreamArn"
+								}
+							}
+						}
+					]
+				}
+			}
+		},
+		"LambdaEventSourceMappingWall": {
+			"Type": "AWS::Lambda::EventSourceMapping",
+			"DependsOn": [
+				"LambdaTriggerPolicyWall",
+				"LambdaExecutionRole"
+			],
+			"Properties": {
+				"BatchSize": 100,
+				"Enabled": true,
+				"EventSourceArn": {
+					"Fn::ImportValue": {
+						"Fn::Sub": "${apiRouteRatingAPIGraphQLAPIIdOutput}:GetAtt:WallTable:StreamArn"
+					}
+				},
+				"FunctionName": {
+					"Fn::GetAtt": [
+						"LambdaFunction",
+						"Arn"
+					]
+				},
+				"StartingPosition": "LATEST"
+			}
+		},
+		"LambdaTriggerPolicyGym": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "amplify-lambda-execution-policy-Gym",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:DescribeStream",
+								"dynamodb:GetRecords",
+								"dynamodb:GetShardIterator",
+								"dynamodb:ListStreams"
+							],
+							"Resource": {
+								"Fn::ImportValue": {
+									"Fn::Sub": "${apiRouteRatingAPIGraphQLAPIIdOutput}:GetAtt:GymTable:StreamArn"
+								}
+							}
+						}
+					]
+				}
+			}
+		},
+		"LambdaEventSourceMappingGym": {
+			"Type": "AWS::Lambda::EventSourceMapping",
+			"DependsOn": [
+				"LambdaTriggerPolicyGym",
+				"LambdaExecutionRole"
+			],
+			"Properties": {
+				"BatchSize": 100,
+				"Enabled": true,
+				"EventSourceArn": {
+					"Fn::ImportValue": {
+						"Fn::Sub": "${apiRouteRatingAPIGraphQLAPIIdOutput}:GetAtt:GymTable:StreamArn"
+					}
+				},
+				"FunctionName": {
+					"Fn::GetAtt": [
+						"LambdaFunction",
+						"Arn"
+					]
+				},
+				"StartingPosition": "LATEST"
+			}
+		},
+		"CloudWatchEvent": {
+			"Type": "AWS::Events::Rule",
+			"Properties": {
+				"Description": "Schedule rule for Lambda",
+				"ScheduleExpression": {
+					"Ref": "CloudWatchRule"
+				},
+				"State": "ENABLED",
+				"Targets": [
+					{
+						"Arn": {
+							"Fn::GetAtt": [
+								"LambdaFunction",
+								"Arn"
+							]
+						},
+						"Id": {
+							"Ref": "LambdaFunction"
+						}
+					}
+				]
+			}
+		},
+		"PermissionForEventsToInvokeLambda": {
+			"Type": "AWS::Lambda::Permission",
+			"Properties": {
+				"FunctionName": {
+					"Ref": "LambdaFunction"
+				},
+				"Action": "lambda:InvokeFunction",
+				"Principal": "events.amazonaws.com",
+				"SourceArn": {
+					"Fn::GetAtt": [
+						"CloudWatchEvent",
+						"Arn"
+					]
+				}
+			}
+		}
+	},
+	"Outputs": {
+		"Name": {
+			"Value": {
+				"Ref": "LambdaFunction"
+			}
+		},
+		"Arn": {
+			"Value": {
+				"Fn::GetAtt": [
+					"LambdaFunction",
+					"Arn"
+				]
+			}
+		},
+		"Region": {
+			"Value": {
+				"Ref": "AWS::Region"
+			}
+		},
+		"LambdaExecutionRole": {
+			"Value": {
+				"Ref": "LambdaExecutionRole"
+			}
+		},
+		"CloudWatchEventRule": {
+			"Value": {
+				"Ref": "CloudWatchEvent"
+			}
+		}
+	}
+}

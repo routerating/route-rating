@@ -148,7 +148,8 @@ class GymsPage extends Page {
   componentDidMount = async () => {
     let gyms
     try {
-      const result = await runGQLMutation(listGyms)
+      const result = await runGQLMutation(listGyms, { limit: 36 })
+      console.error('GymsPage -> componentDidMount -> result', result)
       gyms = result.data.listGyms.items
     } catch (e) {
       console.error('GymsPage -> componentDidMount -> e', e)

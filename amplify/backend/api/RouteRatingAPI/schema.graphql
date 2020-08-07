@@ -46,9 +46,10 @@ type Route
   @model
   @auth(rules: [
     { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
-    { allow: owner, ownerField: "owner", mutations: [create, update, delete] },
-    { allow: owner, ownerField: "editors", mutations: [create, update, delete] },
-    { allow: groups, groups: ["Admin", "Basic", "Public"], operations: [read]}
+    { allow: groups, groups: ["Editor"], mutations: [create] },
+    { allow: owner, ownerField: "owner", mutations: [update, delete] },
+    { allow: owner, ownerField: "editors", mutations: [update, delete] },
+    { allow: groups, groups: ["Admin", "Editor", "Basic", "Public"], operations: [read]}
   ])
   @key(
     name: "ByKey",
@@ -77,9 +78,10 @@ type Wall
   @model
   @auth(rules: [
     { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
-    { allow: owner, ownerField: "owner", mutations: [create, update, delete] },
-    { allow: owner, ownerField: "editors", mutations: [create, update, delete] },
-    { allow: groups, groups: ["Admin", "Basic", "Public"], operations: [read]}
+    { allow: groups, groups: ["Editor"], mutations: [create] },
+    { allow: owner, ownerField: "owner", mutations: [update, delete] },
+    { allow: owner, ownerField: "editors", mutations: [update, delete] },
+    { allow: groups, groups: ["Admin", "Editor", "Basic", "Public"], operations: [read]}
   ])
   @key(
     name: "ByKey",
@@ -105,7 +107,7 @@ type Gym
   @auth(rules: [
     { allow: groups, groups: ["Admin"], mutations: [create, update, delete] },
     { allow: owner, ownerField: "owner", mutations: [update] },
-    { allow: groups, groups: ["Admin", "Basic", "Public"], operations: [read]}
+    { allow: groups, groups: ["Admin", "Editor", "Basic", "Public"], operations: [read]}
   ])
   @key(
     name: "ByKey",

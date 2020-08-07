@@ -4,11 +4,15 @@
         "precedence": 1
     },
     {
-        "groupName": "Admin",
+        "groupName": "Basic",
         "precedence": 2
     },
     {
-        "groupName": "Basic",
+        "groupName": "Editor",
         "precedence": 3
+    },
+    {
+        "groupName": "Admin",
+        "precedence": 4
     }
 ]
