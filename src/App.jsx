@@ -18,7 +18,7 @@ import { Style, lightTheme } from './theme'
 import Routes, { RouteLinks } from './Routes'
 import constants from './constants'
 
-import { exportClassComponent } from './utils'
+import { exportClassComponent, populateGyms } from './utils'
 import PropTypes from 'prop-types'
 
 const navbarStyles = makeStyles(theme => ({
@@ -136,7 +136,7 @@ class App extends Component {
   componentDidMount = async () => {
     await this.updateAuth()
     this.setState({ isLoading: false })
-    // await populateGyms()
+    await populateGyms()
   }
 
   openSnack = async (message, severity) => {

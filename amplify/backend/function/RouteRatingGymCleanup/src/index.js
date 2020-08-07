@@ -1,34 +1,49 @@
-const AWS = require('aws-sdk')
-AWS.config.update({ region: process.env.REGION })
-const ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' })
+'use strict';
 
-exports.handler = event => {
-  console.log(JSON.stringify(event, null, 2))
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var awsSdk = require('aws-sdk');
+
+const getId = record => record.dynamodb.Keys.id.S;
+const getType = record => record.dynamodb.NewImage['__typename'].S;
+const getArn = record => record.eventSourceARN;
+const getTableName = record => getArn(record).split('/')[1];
+
+const docClient = new awsSdk.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
+
+const deleteById = (table, id, callback) => {
+  docClient.delete({ TableName: table, Key: { id } }, callback);
+};
+
+/* Amplify Params - DO NOT EDIT
+	API_ROUTERATINGAPI_GRAPHQLAPIENDPOINTOUTPUT
+	API_ROUTERATINGAPI_GRAPHQLAPIIDOUTPUT
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT */
+
+async function handler(event) {
+  console.log(JSON.stringify(event, null, 2));
   event.Records.forEach(record => {
-    console.log('Event source:', record.eventSourceARN)
-    console.log('ID:', record.Keys.id.S)
-    console.log('Type:', record.NewImage['__typename'].S)
-
-    const splitArn = record.eventSourceARN.split('/')
+    console.log('Event source:', getArn(record));
+    console.log('ID:', getId(record));
+    console.log('Type:', getType(record));
 
     const params = {
-      RequestItems: {},
-    }
+      TableName: getTableName(record),
+      Key: { id: getId(record) },
+      ReturnValues: 'ALL_OLD',
+    };
 
-    params.RequestItems[splitArn[1]] = {
-      Keys: [{ id: { N: record.Keys.id.S } }],
-      ProjectionExpression: 'KEY_NAME, ATTRIBUTE',
-    }
+    console.log('Params:', params);
 
-    ddb.batchGetItem(params, function (err, data) {
-      if (err) {
-        console.log('Error', err)
-      } else {
-        data.Responses[splitArn[1]].forEach(function (element, index, array) {
-          console.log(element)
-        })
-      }
-    })
-  })
-  return Promise.resolve('Successfully processed DynamoDB record')
+    deleteById(getTableName(record), getId(record), (data, error) => {
+      console.log(data);
+      console.error(error);
+    });
+  });
+
+  return 'Successfully processed DynamoDB record'
 }
+
+exports.handler = handler;
