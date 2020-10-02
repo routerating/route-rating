@@ -29,7 +29,7 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
-    "react-scripts": "3.4.1",
+    "react-scripts": "3.4.3",
     "react-snap": "^1.23.0"
   },
   "scripts": {
