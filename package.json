@@ -7,7 +7,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "aws-amplify": "^3.3.3",
-    "chance": "^1.1.6",
+    "chance": "^1.1.7",
     "global": "^4.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
