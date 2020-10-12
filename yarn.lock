@@ -87,10 +87,10 @@
   dependencies:
     "@aws-amplify/core" "^3.6.0"
 
-"@aws-amplify/cli@^4.29.5":
-  version "4.29.5"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.29.5.tgz#9f7ccdb4ebabac2b132a313e136cab643b333a41"
-  integrity sha512-KAzT5R/td9WjIZSalRxpiO9Fr84GuzaDIjiR1vqs1pj0aj4ZzxniaDAN2X5V2EnQACiCidoObaLfwEJli/M8ng==
+"@aws-amplify/cli@^4.29.6":
+  version "4.29.6"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.29.6.tgz#33903655ec5e8ab036b68b1583ccfa958bb5c8ca"
+  integrity sha512-UYWYhmFULHUAcQ3HPhxl7ywONrogehIK/aE2UYLX4WTzWun/U0ge5leSxiHTaWxVSUalcEPpIPlhyO3FhDel5w==
   dependencies:
     "@types/fs-extra" "^8.0.1"
     "@types/global-prefix" "^3.0.0"
@@ -113,13 +113,13 @@
     amplify-frontend-android "2.13.5"
     amplify-frontend-ios "2.13.8"
     amplify-frontend-javascript "2.16.5"
-    amplify-go-function-runtime-provider "1.2.4"
+    amplify-go-function-runtime-provider "1.2.5"
     amplify-go-function-template-provider "1.2.1"
     amplify-java-function-runtime-provider "1.2.1"
     amplify-java-function-template-provider "1.4.1"
     amplify-nodejs-function-runtime-provider "1.1.5"
     amplify-nodejs-function-template-provider "1.4.2"
-    amplify-provider-awscloudformation "4.26.5"
+    amplify-provider-awscloudformation "4.26.6"
     amplify-python-function-runtime-provider "1.2.3"
     amplify-python-function-template-provider "1.2.1"
     amplify-util-mock "3.24.13"
@@ -4163,10 +4163,10 @@ amplify-function-plugin-interface@1.4.1:
   resolved "https://registry.yarnpkg.com/amplify-function-plugin-interface/-/amplify-function-plugin-interface-1.4.1.tgz#a76b6e7894605553a20d908a80f88e5d8ec40db0"
   integrity sha512-0ddIR9B1ERKIdQB0lF84l9m/ZjGoMFKRH9F5v7rOgopXoRmmbgs/U+L/ygji98kdv/A0adBFJhOF3FHnQNg3CQ==
 
-amplify-go-function-runtime-provider@1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/amplify-go-function-runtime-provider/-/amplify-go-function-runtime-provider-1.2.4.tgz#582970defa0f2ac2a6aaf5265f5c39d8dd4f85b6"
-  integrity sha512-Gtl6kpE4B0WIeaZE1CnDzSLZITrR6H9I+fjcVWC+Zgff2/unPxaMrq/dXilTi+4JcMVIS5ELRumiWtfB1EvSEA==
+amplify-go-function-runtime-provider@1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/amplify-go-function-runtime-provider/-/amplify-go-function-runtime-provider-1.2.5.tgz#5d6828fd2367437ada4ec62b02f27efb3b9cc47f"
+  integrity sha512-zPIUwwYrAGJF13H6f27DpKwLBAfULYNXmzas5VPwHMgI2YX5Scd34yaDPEI4GHrdzIaT1HHMwvOt9eV2gI7iPA==
   dependencies:
     amplify-function-plugin-interface "1.4.1"
     archiver "^3.1.1"
@@ -4264,10 +4264,10 @@ amplify-nodejs-function-template-provider@1.4.2:
     graphql-transformer-core "6.13.1"
     lodash "^4.17.19"
 
-amplify-provider-awscloudformation@4.26.5:
-  version "4.26.5"
-  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.26.5.tgz#b7a5863e4bf2f840df09f66afcf777a6721a2961"
-  integrity sha512-Nzkp/XDdXdegrqf/zKIcP9cdfDI76drjRoCPvJyHBkciiYFrm3kcE/bCrjELqNkXrNL1vbssOeK1LXZ4+X4UMw==
+amplify-provider-awscloudformation@4.26.6:
+  version "4.26.6"
+  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.26.6.tgz#564d7d4c38620efad87634bdf5a5625ca722baeb"
+  integrity sha512-Q/BflnjG77TjDiQN9c5M2ZS0SjQ44Y0BevtNHqZiaPqz9EUkiDOmiCcxfQxceSg20kJ9RyFWZLH9I9b8367xTQ==
   dependencies:
     amplify-category-auth "2.20.2"
     amplify-category-function "2.25.3"
