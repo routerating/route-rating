@@ -87,10 +87,10 @@
   dependencies:
     "@aws-amplify/core" "^3.6.0"
 
-"@aws-amplify/cli@^4.29.6":
-  version "4.29.6"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.29.6.tgz#33903655ec5e8ab036b68b1583ccfa958bb5c8ca"
-  integrity sha512-UYWYhmFULHUAcQ3HPhxl7ywONrogehIK/aE2UYLX4WTzWun/U0ge5leSxiHTaWxVSUalcEPpIPlhyO3FhDel5w==
+"@aws-amplify/cli@^4.29.7":
+  version "4.29.7"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.29.7.tgz#69ea71b618d74355d62d45736b470f29fb7f3863"
+  integrity sha512-16mKwlI7+TI7V8FtRfVYBCgR/4X+VibUv+vdNK2itCwpldmHEvP4xi4VTwDX62EaHPHXMXsFJ/SSavuRO7qqSQ==
   dependencies:
     "@types/fs-extra" "^8.0.1"
     "@types/global-prefix" "^3.0.0"
@@ -119,10 +119,10 @@
     amplify-java-function-template-provider "1.4.1"
     amplify-nodejs-function-runtime-provider "1.1.5"
     amplify-nodejs-function-template-provider "1.4.2"
-    amplify-provider-awscloudformation "4.26.6"
+    amplify-provider-awscloudformation "4.26.7"
     amplify-python-function-runtime-provider "1.2.3"
     amplify-python-function-template-provider "1.2.1"
-    amplify-util-mock "3.24.13"
+    amplify-util-mock "3.24.14"
     chalk "^3.0.0"
     cli-table3 "^0.6.0"
     colors "^1.4.0"
@@ -3842,12 +3842,12 @@ amazon-cognito-identity-js@^4.4.0:
     isomorphic-unfetch "^3.0.0"
     js-cookie "^2.2.1"
 
-amplify-appsync-simulator@1.23.4:
-  version "1.23.4"
-  resolved "https://registry.yarnpkg.com/amplify-appsync-simulator/-/amplify-appsync-simulator-1.23.4.tgz#9526ab822811a76c6585e68a85ea78105e762fe0"
-  integrity sha512-T+nExqqIb4/vb6WjsX9n/9964fHHVzh7IMh38CUBeFt32Ft83gV7P6XABLnkT9+FfD/czuXnQioekXa8OQRmLw==
+amplify-appsync-simulator@1.23.5:
+  version "1.23.5"
+  resolved "https://registry.yarnpkg.com/amplify-appsync-simulator/-/amplify-appsync-simulator-1.23.5.tgz#a69bbe05b7acd934a086f16f69aca06678ee63a5"
+  integrity sha512-tL0U/2qkVJmOUpv4GTz9dQjukODvsqzUaFqLu34k1XIMeXrKdA92UDXV1TD7jt3S4Pw6Taw3HpCObHE0NfmkOA==
   dependencies:
-    amplify-velocity-template "1.3.2"
+    amplify-velocity-template "1.3.3"
     aws-sdk "^2.765.0"
     chalk "^3.0.0"
     cors "^2.8.5"
@@ -4264,10 +4264,10 @@ amplify-nodejs-function-template-provider@1.4.2:
     graphql-transformer-core "6.13.1"
     lodash "^4.17.19"
 
-amplify-provider-awscloudformation@4.26.6:
-  version "4.26.6"
-  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.26.6.tgz#564d7d4c38620efad87634bdf5a5625ca722baeb"
-  integrity sha512-Q/BflnjG77TjDiQN9c5M2ZS0SjQ44Y0BevtNHqZiaPqz9EUkiDOmiCcxfQxceSg20kJ9RyFWZLH9I9b8367xTQ==
+amplify-provider-awscloudformation@4.26.7:
+  version "4.26.7"
+  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.26.7.tgz#1b97c6882ed8265204d07c30b32eb02e1884a97a"
+  integrity sha512-+BR94c899a5NCjJhugz7Gow4aftbEEmEkzdPMQZfEIaRvwXxfdaPWJI93l2idAwwslo117zxT4yKfB+TyUzqzw==
   dependencies:
     amplify-category-auth "2.20.2"
     amplify-category-function "2.25.3"
@@ -4351,13 +4351,13 @@ amplify-util-headless-input@1.3.0:
     ajv "^6.12.2"
     amplify-headless-interface "1.4.0"
 
-amplify-util-mock@3.24.13:
-  version "3.24.13"
-  resolved "https://registry.yarnpkg.com/amplify-util-mock/-/amplify-util-mock-3.24.13.tgz#05b02a73e525d2fd8276655df7cc8f98dd9d80e5"
-  integrity sha512-dSOzELOG9KEyUOdlSbA6CE7u/AA9IdVeE69MuonhkRsWhlaLEJZAsn5z8XL8H0MyHim1/07VCZ4B1CRHm7uKKA==
+amplify-util-mock@3.24.14:
+  version "3.24.14"
+  resolved "https://registry.yarnpkg.com/amplify-util-mock/-/amplify-util-mock-3.24.14.tgz#2d0f60890440f02e3699f4a1a091c70e612c3506"
+  integrity sha512-8uxn5tbmbybqiXv/ROeVeryNKbSbVi6hWnEGMYB5KBvo50X9AB/5yi0+Pu/jddx5hH2v7Azn1x0HyOS5ASrb4w==
   dependencies:
     "@hapi/topo" "^5.0.0"
-    amplify-appsync-simulator "1.23.4"
+    amplify-appsync-simulator "1.23.5"
     amplify-category-function "2.25.3"
     amplify-codegen "2.15.21"
     amplify-dynamodb-simulator "1.14.3"
@@ -4369,10 +4369,10 @@ amplify-util-mock@3.24.13:
     semver "^7.1.3"
     which "^2.0.2"
 
-amplify-velocity-template@1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/amplify-velocity-template/-/amplify-velocity-template-1.3.2.tgz#e55f0e6997bad008471d910d8f9192781453e95b"
-  integrity sha512-rbYcihshMMN3QzxZ0qRtqTgkHNcyzdE2u4yTJ9HNaRbTJNmoBesi0HO/N/oJBSgPvt4keSYWlNwyjjCaxm/Y1Q==
+amplify-velocity-template@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/amplify-velocity-template/-/amplify-velocity-template-1.3.3.tgz#1fb93db7cbb681ecd03eca4088aa9320ceb69cf1"
+  integrity sha512-DQIGS+K27mRsAUlnF0COyHvcdFGRWWmRN1p6kx7gHjdc86LgHi6rAevOFxNZFSmy1mHbG7hdGojTMagY3cQeGw==
   dependencies:
     lodash "^4.17.19"
 
