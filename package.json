@@ -10,7 +10,7 @@
     "chance": "^1.1.7",
     "global": "^4.4.0",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-router-prop-types": "^1.0.5"
