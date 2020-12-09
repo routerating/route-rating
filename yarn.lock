@@ -87,12 +87,12 @@
   dependencies:
     "@aws-amplify/core" "3.8.6"
 
-"@aws-amplify/cli@^4.38.0":
-  version "4.38.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.38.0.tgz#8f2dece62cdd01801d48c10456e528b302f44bfb"
-  integrity sha512-ZL58ee9qqQDTW08qZOJnIry2ffAOFlYy9uYH/L2fUwvG2A3Wmw4VbxaKfOzCYYLwi/6kL5/YJGMXxamxsHvoDA==
+"@aws-amplify/cli@^4.38.2":
+  version "4.38.2"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.38.2.tgz#bf9f7fa1000597de4d28715f1440de77d173833d"
+  integrity sha512-4JXb8Dx1kH9dh5ue/bTZ4loiYxm+fCu61WRIjOnU4nPJ8UgRdhcbV96Cmx+qF0Fcfi7533GawZw4mNl85vpRyQ==
   dependencies:
-    amplify-app "2.20.1"
+    amplify-app "2.20.2"
     amplify-category-analytics "2.19.2"
     amplify-category-api "2.27.1"
     amplify-category-auth "2.25.1"
@@ -111,7 +111,7 @@
     amplify-dotnet-function-template-provider "1.4.4"
     amplify-frontend-android "2.14.2"
     amplify-frontend-flutter "0.2.0"
-    amplify-frontend-ios "2.17.0"
+    amplify-frontend-ios "2.17.1"
     amplify-frontend-javascript "2.19.1"
     amplify-go-function-runtime-provider "1.5.1"
     amplify-go-function-template-provider "1.3.1"
@@ -119,7 +119,7 @@
     amplify-java-function-template-provider "1.5.1"
     amplify-nodejs-function-runtime-provider "1.3.0"
     amplify-nodejs-function-template-provider "1.5.2"
-    amplify-provider-awscloudformation "4.34.0"
+    amplify-provider-awscloudformation "4.34.1"
     amplify-python-function-runtime-provider "1.5.1"
     amplify-python-function-template-provider "1.3.1"
     amplify-util-import "1.3.3"
@@ -4762,13 +4762,13 @@ amazon-cognito-identity-js@4.5.5:
     isomorphic-unfetch "^3.0.0"
     js-cookie "^2.2.1"
 
-amplify-app@2.20.1:
-  version "2.20.1"
-  resolved "https://registry.yarnpkg.com/amplify-app/-/amplify-app-2.20.1.tgz#0af7e3c2e6e932288c73bd554b0e6cc40baeb0eb"
-  integrity sha512-twkQH37jsiYWmpW3Ziz2TsiJKdEDhhT0e4VvvH4C9W3daOZ9NLWR/v9wzVuEuziCTdn7Q5yoRzFsUyPYmHZ2bw==
+amplify-app@2.20.2:
+  version "2.20.2"
+  resolved "https://registry.yarnpkg.com/amplify-app/-/amplify-app-2.20.2.tgz#0dfac076b373c8f91c2fe8b1715f635b9421f66a"
+  integrity sha512-Nut/4EMbu4au4jJXaPCFTeGBUIEii3VAH0dbSXazHyerlNyZcsKLA3ZEnArD2T8IN73aEhp0N0YUjDo1NdlhsQ==
   dependencies:
     amplify-frontend-android "2.14.2"
-    amplify-frontend-ios "2.17.0"
+    amplify-frontend-ios "2.17.1"
     amplify-frontend-javascript "2.19.1"
     chalk "^3.0.0"
     execa "^4.1.0"
@@ -5095,12 +5095,12 @@ amplify-frontend-flutter@0.2.0:
     inquirer "^7.3.3"
     promise-sequential "^1.1.1"
 
-amplify-frontend-ios@2.17.0:
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/amplify-frontend-ios/-/amplify-frontend-ios-2.17.0.tgz#d78aaa67ef2a7bc2e6bc10bfb2a1ac0c5027886c"
-  integrity sha512-ZqBTxNqyal3R18xAZ6ZjjzPp+HylipbxabanZtDuZAu8QaICNHswqC5dV/vApGddXXnc1PJw685IvmFiKUhQsA==
+amplify-frontend-ios@2.17.1:
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/amplify-frontend-ios/-/amplify-frontend-ios-2.17.1.tgz#825d917204baf87cb4989bfc10e6c9bfcc6178b9"
+  integrity sha512-qbpve4BlEHHlmAbobmPnsGJz4ZXSGdgvHf3B5ZWGNaw4xRkDOaKyDkk0a+5YPEJNzTEX5py3r71Cpf7TamEt0A==
   dependencies:
-    amplify-app "2.20.1"
+    amplify-app "2.20.2"
     fs-extra "^8.1.0"
     graphql-config "^2.2.1"
 
@@ -5228,10 +5228,10 @@ amplify-nodejs-function-template-provider@1.5.2:
     graphql-transformer-core "6.13.1"
     lodash "^4.17.19"
 
-amplify-provider-awscloudformation@4.34.0:
-  version "4.34.0"
-  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.34.0.tgz#063da411b74ab5048980b5bd45cca486588a4d80"
-  integrity sha512-GyQi8B3M8lzRwXOFD63yuRG2nF4+AfZmT3bjW5Pr5nQwROZN5uvnDyzzB8VSuxu+iK+RaH5rrv6i3OgrVApeRw==
+amplify-provider-awscloudformation@4.34.1:
+  version "4.34.1"
+  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.34.1.tgz#fd123a8dea4e220d68af901c47e6ff103bd3f0e3"
+  integrity sha512-SAXMr3Nq6A//+FQ0pkdR3hRRfGUm4nrPZvMjNJLD+ujpvJHAO6iiPEGRA+8y8GKJEK/LYM97GTKbd8zCxFhOkQ==
   dependencies:
     "@aws-amplify/graphql-model-transformer" "0.2.1"
     "@aws-amplify/graphql-transformer-core" "0.2.1"
