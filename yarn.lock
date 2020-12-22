@@ -105,44 +105,44 @@
   dependencies:
     "@aws-amplify/core" "3.8.8"
 
-"@aws-amplify/cli@^4.40.0":
-  version "4.40.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.40.0.tgz#6c72a3da25c1582338045b5f2f538fc88df772d7"
-  integrity sha512-gqplip0RnZX6Q/mKuXDZG3TT/u+h6KAkU+izf7Z4N4SysdGD0S+XQpWa59oA4XWNCYbP05kKF7KcZTgPMO/tBw==
+"@aws-amplify/cli@^4.40.1":
+  version "4.40.1"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-4.40.1.tgz#7beba3067955a092742496fea4ff2ee8b3b1c27f"
+  integrity sha512-WB7BXt/W/bCt3IicJZzQTb25J3/its1DCofmNvvvA6mH4/yk8p56ZU8g72Iyb0g4Jmuek+9GP3XYVSkfWcNYaA==
   dependencies:
-    amplify-app "2.20.4"
+    amplify-app "2.20.5"
     amplify-category-analytics "2.19.3"
     amplify-category-api "2.28.1"
-    amplify-category-auth "2.26.1"
-    amplify-category-function "2.28.1"
+    amplify-category-auth "2.26.2"
+    amplify-category-function "2.28.2"
     amplify-category-hosting "2.5.1"
     amplify-category-interactions "2.6.1"
     amplify-category-notifications "2.17.1"
     amplify-category-predictions "2.6.1"
-    amplify-category-storage "2.10.6"
+    amplify-category-storage "2.10.7"
     amplify-category-xr "2.6.1"
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-cli-logger "1.1.0"
-    amplify-codegen "2.20.2"
-    amplify-console-hosting "1.6.3"
+    amplify-codegen "2.20.3"
+    amplify-console-hosting "1.6.4"
     amplify-container-hosting "1.1.1"
     amplify-dotnet-function-runtime-provider "1.4.1"
-    amplify-dotnet-function-template-provider "1.4.6"
+    amplify-dotnet-function-template-provider "1.4.7"
     amplify-frontend-android "2.14.2"
     amplify-frontend-flutter "0.2.0"
-    amplify-frontend-ios "2.18.0"
-    amplify-frontend-javascript "2.20.1"
-    amplify-go-function-runtime-provider "1.5.3"
+    amplify-frontend-ios "2.18.1"
+    amplify-frontend-javascript "2.20.2"
+    amplify-go-function-runtime-provider "1.5.4"
     amplify-go-function-template-provider "1.3.2"
-    amplify-java-function-runtime-provider "1.5.3"
+    amplify-java-function-runtime-provider "1.5.4"
     amplify-java-function-template-provider "1.5.2"
     amplify-nodejs-function-runtime-provider "1.4.1"
-    amplify-nodejs-function-template-provider "1.5.4"
-    amplify-provider-awscloudformation "4.35.1"
-    amplify-python-function-runtime-provider "1.5.3"
+    amplify-nodejs-function-template-provider "1.5.5"
+    amplify-provider-awscloudformation "4.35.2"
+    amplify-python-function-runtime-provider "1.5.4"
     amplify-python-function-template-provider "1.3.2"
-    amplify-util-import "1.3.5"
-    amplify-util-mock "3.27.4"
+    amplify-util-import "1.3.6"
+    amplify-util-mock "3.27.5"
     aws-sdk "^2.765.0"
     chalk "^3.0.0"
     ci-info "^2.0.0"
@@ -5252,14 +5252,14 @@ amazon-cognito-identity-js@4.5.6:
     isomorphic-unfetch "^3.0.0"
     js-cookie "^2.2.1"
 
-amplify-app@2.20.4:
-  version "2.20.4"
-  resolved "https://registry.yarnpkg.com/amplify-app/-/amplify-app-2.20.4.tgz#05c788875424538e5826bdf0c9e15440b000f889"
-  integrity sha512-YwiJm4XRmeiA0j+ByYJf94Pz5Il5J/YdlTPHryM+JQqJyptlG1phNrSs43PwtRyHge+Hy360WewLpyJvT7PjyQ==
+amplify-app@2.20.5:
+  version "2.20.5"
+  resolved "https://registry.yarnpkg.com/amplify-app/-/amplify-app-2.20.5.tgz#21cb825dac0c89afb19f4dcd60f49009fea1c2f6"
+  integrity sha512-rMYzwtvbWdTcPjBVx2o5pu0Tyzwsx8xdtwoJmdTaq3WCGGsflejvha6x/EuPiTmjsTeqdWnfVVsMeBDsxtTGFA==
   dependencies:
     amplify-frontend-android "2.14.2"
-    amplify-frontend-ios "2.18.0"
-    amplify-frontend-javascript "2.20.1"
+    amplify-frontend-ios "2.18.1"
+    amplify-frontend-javascript "2.20.2"
     chalk "^3.0.0"
     execa "^4.1.0"
     fs-extra "^8.1.0"
@@ -5384,15 +5384,15 @@ amplify-category-api@2.28.1:
     ora "^4.0.3"
     uuid "^3.4.0"
 
-amplify-category-auth@2.26.1:
-  version "2.26.1"
-  resolved "https://registry.yarnpkg.com/amplify-category-auth/-/amplify-category-auth-2.26.1.tgz#b715437d6d5197c74367694131e424610ca53d76"
-  integrity sha512-CGpI1MUNG1HMUevBDBr4xhrq6fHrsOHkOhFI4a6KM8q3A5HoaEE5aUvLEoxjRyTmaGE2aqZQno/Ze5lt1rItBQ==
+amplify-category-auth@2.26.2:
+  version "2.26.2"
+  resolved "https://registry.yarnpkg.com/amplify-category-auth/-/amplify-category-auth-2.26.2.tgz#b336b9d28138ce9bcf5701becc70f8e634e4de9e"
+  integrity sha512-Eli49/3TWtW7sp/9meAPCBGpYoOdWJhvl1jIPJtMKFYDBBTjL44Gj0d+8vV/LMWzbrV1bFc7q06ibTWo0Xz5kA==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-headless-interface "1.5.2"
     amplify-util-headless-input "1.4.2"
-    amplify-util-import "1.3.5"
+    amplify-util-import "1.3.6"
     aws-sdk "^2.765.0"
     chalk "^3.0.0"
     chalk-pipe "^3.0.0"
@@ -5407,12 +5407,12 @@ amplify-category-auth@2.26.1:
     promise-sequential "^1.1.1"
     uuid "^3.4.0"
 
-amplify-category-function@2.28.1:
-  version "2.28.1"
-  resolved "https://registry.yarnpkg.com/amplify-category-function/-/amplify-category-function-2.28.1.tgz#9ac04e191af5e71721ab0acc2ffb62100fff83c8"
-  integrity sha512-eaq9YISvoY7GK9QijQ8xUzmW9Zcq7KCdTj1qLu254Ncntsfa/yR1CbATK+ldnjn7K/jXVWmy1uhKCktbnCpIqg==
+amplify-category-function@2.28.2:
+  version "2.28.2"
+  resolved "https://registry.yarnpkg.com/amplify-category-function/-/amplify-category-function-2.28.2.tgz#9a26d12929f648bfad0b9efb668786d955f9005e"
+  integrity sha512-x/R0nPgROoCgddEpsgNN1cLGhBrPUQ9TmdJatCqS6US36jN0Ad88+OmDi8EeNkEdRmaZ2MlWQvhjB6UmDj6OsQ==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-function-plugin-interface "1.6.0"
     cloudform-types "^4.2.0"
     enquirer "^2.3.6"
@@ -5477,13 +5477,13 @@ amplify-category-predictions@2.6.1:
     open "^7.0.0"
     uuid "^3.4.0"
 
-amplify-category-storage@2.10.6:
-  version "2.10.6"
-  resolved "https://registry.yarnpkg.com/amplify-category-storage/-/amplify-category-storage-2.10.6.tgz#e34c7f90328fb7fa5bc840df554656135de25b78"
-  integrity sha512-bupvW9mWHByyhGFup4ccYLqvM0aZ93Vp0iPi6mGR86a709kgzyBjPG6ECYvuO6KlGRgYy3PH+E0EZyE4U0jsWQ==
+amplify-category-storage@2.10.7:
+  version "2.10.7"
+  resolved "https://registry.yarnpkg.com/amplify-category-storage/-/amplify-category-storage-2.10.7.tgz#f6b5066d7d7405618b67992ef3498ea6acfc5b60"
+  integrity sha512-g9moGQWe/sWdi3bwtWvuHsKZp9Vtjp+bacUKkzntzxfzGVesA1Y0sozKWf1382CkV6Wj02GiL2ozWMZFceb5eQ==
   dependencies:
-    amplify-cli-core "1.13.0"
-    amplify-util-import "1.3.5"
+    amplify-cli-core "1.13.1"
+    amplify-util-import "1.3.6"
     enquirer "^2.3.6"
     fs-extra "^8.1.0"
     inquirer "^7.3.3"
@@ -5513,10 +5513,10 @@ amplify-cli-core@1.11.0:
     hjson "^3.2.1"
     lodash "^4.17.19"
 
-amplify-cli-core@1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/amplify-cli-core/-/amplify-cli-core-1.13.0.tgz#2c57ad86e191cb29a2aba13472c567d31780f65f"
-  integrity sha512-QulcmvtJol6MwyWb30KDDsVnd+2pOkONv6iIQpI8UYxPKoUSeu+C65CxOPCsrDlej2jy1Db8OM5hZfttQHl8+Q==
+amplify-cli-core@1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/amplify-cli-core/-/amplify-cli-core-1.13.1.tgz#102bd640d04b816c606fdb25293bc3901f41a024"
+  integrity sha512-9hkt+c924pshlceHLT5FAs9hdz9sVq3aCH1XDKUInGuF2dFM2NjCaoblPmkQS5eg+M3W3DFcRysl+Krr9wkiVg==
   dependencies:
     ajv "^6.12.3"
     amplify-cli-logger "1.1.0"
@@ -5549,14 +5549,14 @@ amplify-codegen-appsync-model-plugin@1.22.2:
     strip-indent "^3.0.0"
     ts-dedent "^1.1.0"
 
-amplify-codegen@2.20.2:
-  version "2.20.2"
-  resolved "https://registry.yarnpkg.com/amplify-codegen/-/amplify-codegen-2.20.2.tgz#7d8a927f92730faaef4bb7ce4be53b1855b70940"
-  integrity sha512-/zGuGSzMOWTtJCFiDtCcMrc7H0T2PFNClFTibpDA/NG+9O7pduemmVDxXmB/bjfGmPu3zGM02SFz6SRAwxk+6A==
+amplify-codegen@2.20.3:
+  version "2.20.3"
+  resolved "https://registry.yarnpkg.com/amplify-codegen/-/amplify-codegen-2.20.3.tgz#460572aba99f8d488b126344714654bbcb703c8f"
+  integrity sha512-WWTWp8UdjoWbSXexyfGlzEMlI3pA/z6LkKvpUD7XQ7Qb584/kBqKUlnuOnlr939CvW0KGV0D6LA7YdwacxAOdA==
   dependencies:
     "@aws-amplify/appsync-modelgen-plugin" "^1.22.3"
     "@graphql-codegen/core" "1.8.3"
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-codegen-appsync-model-plugin "1.22.2"
     amplify-graphql-docs-generator "2.2.1"
     amplify-graphql-types-generator "2.6.1"
@@ -5570,12 +5570,12 @@ amplify-codegen@2.20.2:
     ora "^4.0.3"
     slash "^3.0.0"
 
-amplify-console-hosting@1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/amplify-console-hosting/-/amplify-console-hosting-1.6.3.tgz#133c3c497d474f6fa4e0b2c9a3dc2a7c188445a7"
-  integrity sha512-AeV8tCnIVGXA+vbHk+zrRxGOQGeKA9D0410dhi46tiJ+TZd5VbxgnxbLR1AJ+tmjtGAYZJjxSmRgWf2E7SxfsA==
+amplify-console-hosting@1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/amplify-console-hosting/-/amplify-console-hosting-1.6.4.tgz#bc6ec6f4950e523a9f69d2e480d664c2b1f7a030"
+  integrity sha512-E1j4WZnVItuTrlELbo3Q0/gJKnbj25d0VL+VD8Pjiml0cydNsh8ufGvuDyBPuIzo+mX1TG1+hAuDc/dMAfD6LA==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     archiver "^3.1.1"
     aws-sdk "^2.765.0"
     chalk "^3.0.0"
@@ -5617,21 +5617,21 @@ amplify-dotnet-function-runtime-provider@1.4.1:
     glob "^7.1.6"
     which "^2.0.2"
 
-amplify-dotnet-function-template-provider@1.4.6:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/amplify-dotnet-function-template-provider/-/amplify-dotnet-function-template-provider-1.4.6.tgz#545b88e6c5b10a42b52a8fc4a3695410098a6ae2"
-  integrity sha512-/EpXzKlG7+Rm8LKFbpWUF2SRXE4tN7pe4VXNsqeVsM8FBl7b4IuPmXWip3+EYWKGWWvSnL9RdENFgh6mynDSEg==
+amplify-dotnet-function-template-provider@1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/amplify-dotnet-function-template-provider/-/amplify-dotnet-function-template-provider-1.4.7.tgz#adb873aad8cb0cf87242d1f7e4d5384833fbcc72"
+  integrity sha512-1Q2jyVAsfVSeAdzspvgDWIYhQZoEq7mSGLz92c5dsEQ1faYSaQa0IdwxmYZJKJ9N5mhVPwvetTtuh1eIw1b8qQ==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-function-plugin-interface "1.6.0"
     graphql-transformer-core "6.13.1"
 
-amplify-dynamodb-simulator@1.17.3:
-  version "1.17.3"
-  resolved "https://registry.yarnpkg.com/amplify-dynamodb-simulator/-/amplify-dynamodb-simulator-1.17.3.tgz#8ae8f95f6ee3ad15df11982987766f793d5562bb"
-  integrity sha512-wdkiMGTaU5aqte2dfntVEqF87enKOZPXvIy0uzuL4LTi1tL1NWFnbID5BelrwLy3wpd8oVB4YTCsEWYyTc/57w==
+amplify-dynamodb-simulator@1.17.4:
+  version "1.17.4"
+  resolved "https://registry.yarnpkg.com/amplify-dynamodb-simulator/-/amplify-dynamodb-simulator-1.17.4.tgz#15f7808b9bacd9b5b9a2147312a6d1e2f6707911"
+  integrity sha512-yNw9letzEIdWhBnVReDIZJx8WKejcbkA+LWgbnxjwdXlf0TTkRkDV0UbIQ4CfxFOx7G9X0e/j+fbsdl4LkM65w==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     aws-sdk "^2.765.0"
     detect-port "^1.3.0"
     event-to-promise "^0.8.0"
@@ -5661,21 +5661,21 @@ amplify-frontend-flutter@0.2.0:
     inquirer "^7.3.3"
     promise-sequential "^1.1.1"
 
-amplify-frontend-ios@2.18.0:
-  version "2.18.0"
-  resolved "https://registry.yarnpkg.com/amplify-frontend-ios/-/amplify-frontend-ios-2.18.0.tgz#5f6b213d8c92d708a6d473f3669d1962ea40c616"
-  integrity sha512-OZ9ja+nOeEIvWHYs7vbrQrj/j0qc3TjUH5N2JOeOI4shQk/nhqK0daN4LOO3EfyF72hgRR6bzFZVxFULCBLURQ==
+amplify-frontend-ios@2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/amplify-frontend-ios/-/amplify-frontend-ios-2.18.1.tgz#3d867bf58d414294841ecee9c7dadfcc06ca3c77"
+  integrity sha512-bgeL8MH+wzWLuukTLicgb4dChLYItXw0w5r1AWLyYTGa8m1kjQ2c8WOCFZ5L03jha6zotVxbpqmHlqTU0P9hng==
   dependencies:
-    amplify-app "2.20.4"
+    amplify-app "2.20.5"
     fs-extra "^8.1.0"
     graphql-config "^2.2.1"
 
-amplify-frontend-javascript@2.20.1:
-  version "2.20.1"
-  resolved "https://registry.yarnpkg.com/amplify-frontend-javascript/-/amplify-frontend-javascript-2.20.1.tgz#1f63304a2d335595ac8ae2ed71c0cb8226beeab0"
-  integrity sha512-Uz1wWQ+vU16JGGn4z4mrhTk2bt1kwlupUNnAuOr/7E7aQvGhMzeNHNUIc4z+nrHdEgeEkSm76SCULNmMEPOw5A==
+amplify-frontend-javascript@2.20.2:
+  version "2.20.2"
+  resolved "https://registry.yarnpkg.com/amplify-frontend-javascript/-/amplify-frontend-javascript-2.20.2.tgz#52b8691a240eeb842fef6a71f9ea285210709109"
+  integrity sha512-H4CRN0gLaWQngW5zkhxouXhqikAihRoa9XxIfKA8KumPRIMOgGXfNiyIaffb4Jx2JYAMmLQ/AMqBr+mYp1lV8w==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     chalk "^3.0.0"
     execa "^4.1.0"
     fs-extra "^8.1.0"
@@ -5689,12 +5689,12 @@ amplify-function-plugin-interface@1.6.0:
   resolved "https://registry.yarnpkg.com/amplify-function-plugin-interface/-/amplify-function-plugin-interface-1.6.0.tgz#5cd10e24669d5dc8999757faf19525c41da1c445"
   integrity sha512-Fqdqg7ldjtuGNUBEixsD7X5gY8oS8ToTVzlTrLM2YM0Muvea86IzVlLnZPSx/Jtud3qx00qKAnZcgH3/QisXpw==
 
-amplify-go-function-runtime-provider@1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/amplify-go-function-runtime-provider/-/amplify-go-function-runtime-provider-1.5.3.tgz#36be68366adff67c86db38d83a88f52848608e24"
-  integrity sha512-j+/XVCOXzUO6pBImpPIy2Er4hYV6mJq3/ABlH+m/dDi1Btz8Zq9qnANAAMF9673Jtzz1MQrvMvUPsiuqpVgNLw==
+amplify-go-function-runtime-provider@1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/amplify-go-function-runtime-provider/-/amplify-go-function-runtime-provider-1.5.4.tgz#e0763e6b57cb1b42cab26c392b58966f8c57f4f6"
+  integrity sha512-Bb/F7+46OMK/doF4L6MBLb+Zl+9tV31tCaiWMF/1rehMlnWMiP+JEaq5ote6vFlH2yAejDJdZwqwJ828WinzNQ==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-function-plugin-interface "1.6.0"
     archiver "^3.1.1"
     execa "^4.1.0"
@@ -5751,12 +5751,12 @@ amplify-headless-interface@1.5.2:
   resolved "https://registry.yarnpkg.com/amplify-headless-interface/-/amplify-headless-interface-1.5.2.tgz#41b7cd372194fb807cf33e84cb022a14ac758ddb"
   integrity sha512-6XzrL56f1JF89CHci/Bxqq/G4KGORJfNgqOOyKn4tNLNbtU2bAvn8U9VUGizFixEur3DxEEiqqJ+BeT9rx+aTg==
 
-amplify-java-function-runtime-provider@1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/amplify-java-function-runtime-provider/-/amplify-java-function-runtime-provider-1.5.3.tgz#59b6b01a13002cea65cab3c6e644c690a2f97b33"
-  integrity sha512-FV4B2N/DGrKCg1pTuaXH50TmenJqfJc/Ef15GNMpPoMnliQFor+w1s0sewEq4YSNUFSi5BGUGdx2T66EPTPlYQ==
+amplify-java-function-runtime-provider@1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/amplify-java-function-runtime-provider/-/amplify-java-function-runtime-provider-1.5.4.tgz#df994f7f5869c6fe63d71f36ddc8b2a682aa273a"
+  integrity sha512-oEkaG4VpcqAU/Adfmps7pJrFR/KuMDcuWWAq+nrmaprtSiOZAMhh1zj4zlByk/oICZDEn53ThAAOAkHaCQW96Q==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-function-plugin-interface "1.6.0"
     execa "^4.1.0"
     fs-extra "^8.1.0"
@@ -5784,20 +5784,20 @@ amplify-nodejs-function-runtime-provider@1.4.1:
     fs-extra "^8.1.0"
     glob "^7.1.6"
 
-amplify-nodejs-function-template-provider@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/amplify-nodejs-function-template-provider/-/amplify-nodejs-function-template-provider-1.5.4.tgz#b22ed5618ee94009040a54bceaff82007ab83e48"
-  integrity sha512-WqGm7wH3o7pl1rpn2wpMDnFRBhYeeUNV8Ca0cwJWZv9MWo03nvtGHQWYb7qGEe8flVAimV5MkPpKjt8LNo2ZMQ==
+amplify-nodejs-function-template-provider@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/amplify-nodejs-function-template-provider/-/amplify-nodejs-function-template-provider-1.5.5.tgz#90ff37b523e370a5c6eab739da1a35ebe519243b"
+  integrity sha512-i5lflLvLLV1EWX51QRBAO1DWcadvCgs1jSl7IkZH1EaUNwTOPWcNm/YqlQJs0bQPNppMEurMM1RfY+CTW/8I8Q==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-function-plugin-interface "1.6.0"
     graphql-transformer-core "6.13.1"
     lodash "^4.17.19"
 
-amplify-provider-awscloudformation@4.35.1:
-  version "4.35.1"
-  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.35.1.tgz#7425cc6314c76234dac04f3d69173424e8af8da7"
-  integrity sha512-gCeRIiG3RLit+jRfT7hpCBTdxQeqEegNN+mM1WRtqPM+t8J7yTvrOgEieY0aJcwk1bCKqkYjG2E/GpIQ/Jl+ng==
+amplify-provider-awscloudformation@4.35.2:
+  version "4.35.2"
+  resolved "https://registry.yarnpkg.com/amplify-provider-awscloudformation/-/amplify-provider-awscloudformation-4.35.2.tgz#883abfcdff83fad885107f537cbda1f444426fd5"
+  integrity sha512-fEU4gPsB2EBDqLchzLy+2/6LhBlZdf5TZMBfWaIMc1uSoh9R68cH5KXLBJUA86KrBJyqfnMjOA2caWaisStMVQ==
   dependencies:
     "@aws-amplify/graphql-model-transformer" "0.3.0"
     "@aws-amplify/graphql-transformer-core" "0.3.0"
@@ -5840,10 +5840,10 @@ amplify-provider-awscloudformation@4.35.1:
     "@aws-cdk/custom-resources" "~1.72.0"
     "@aws-cdk/region-info" "~1.72.0"
     "@octokit/rest" "^18.0.9"
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-cli-logger "1.1.0"
-    amplify-codegen "2.20.2"
-    amplify-util-import "1.3.5"
+    amplify-codegen "2.20.3"
+    amplify-util-import "1.3.6"
     archiver "^3.1.1"
     aws-sdk "^2.765.0"
     bottleneck "2.19.5"
@@ -5888,12 +5888,12 @@ amplify-provider-awscloudformation@4.35.1:
     rimraf "^3.0.0"
     xstate "^4.14.0"
 
-amplify-python-function-runtime-provider@1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/amplify-python-function-runtime-provider/-/amplify-python-function-runtime-provider-1.5.3.tgz#a43d51582b766c6e47169fe5a362c406b7980680"
-  integrity sha512-R6YMCxuedOG0lyhu6yXn9fEKzm2zSoMsW1e5XD+lINCGT6ewqw2f1GD9tgvs7Z2+WD33br0TdfcR+0BSbtH4+w==
+amplify-python-function-runtime-provider@1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/amplify-python-function-runtime-provider/-/amplify-python-function-runtime-provider-1.5.4.tgz#e844c316e1d119d0a90275ad289803e735191cfe"
+  integrity sha512-P0YMxzT1SuaRWmckCU8m6oxM5iGHY1pZJKODWh2KDRW2lbz6HEJhhCDDMfirzZJrRa4NWSZyhiCgfmnhj8h6WA==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     amplify-function-plugin-interface "1.6.0"
     archiver "^3.1.1"
     execa "^4.1.0"
@@ -5934,24 +5934,24 @@ amplify-util-headless-input@1.4.2:
     ajv "^6.12.2"
     amplify-headless-interface "1.5.2"
 
-amplify-util-import@1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/amplify-util-import/-/amplify-util-import-1.3.5.tgz#f8aa6b4f214a6b6965edf5df4e93f9f72bbd0799"
-  integrity sha512-viZOk3xXpAG12PuOwoeRkZypcL/mgcCYUAlvj5eUJqIGflzAAPndVOkcXH2klm7C72AHUnm4i0xT8Lia8ZW03A==
+amplify-util-import@1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/amplify-util-import/-/amplify-util-import-1.3.6.tgz#20564a0e5ae37151a191859acb279ff59effe15b"
+  integrity sha512-9vFOkyBqGeyeo+/8Y27bqE+Ghsy+PuWupyZLdCIoOmlTv9Zw5QZHfSy68KxmnuvlA+569/Bwj6Zgdd+Ca0eIZg==
   dependencies:
-    amplify-cli-core "1.13.0"
+    amplify-cli-core "1.13.1"
     aws-sdk "^2.765.0"
 
-amplify-util-mock@3.27.4:
-  version "3.27.4"
-  resolved "https://registry.yarnpkg.com/amplify-util-mock/-/amplify-util-mock-3.27.4.tgz#d45a7c24222c93caa8237bf74ae0884e7439b489"
-  integrity sha512-1P4CPENQxiXWWg13b0TMdP/RIFA2sKbsBj6a0RsdlwYmFlYCD0rC0nhizK4Z5ukGuR97O8RyMdTfC2fbLXRiDA==
+amplify-util-mock@3.27.5:
+  version "3.27.5"
+  resolved "https://registry.yarnpkg.com/amplify-util-mock/-/amplify-util-mock-3.27.5.tgz#a48885b69fbc286446d30adf1b9c232edc7d9b1c"
+  integrity sha512-MV4G9ZtVYUv3eqMff1q2GAvR5DeeNglY/VWKYUiTLSu8VQGrdFDIj8I1e8/hqGAPhNBQE/9VmGDZ9s8uzkP4YQ==
   dependencies:
     "@hapi/topo" "^5.0.0"
     amplify-appsync-simulator "1.24.3"
-    amplify-category-function "2.28.1"
-    amplify-codegen "2.20.2"
-    amplify-dynamodb-simulator "1.17.3"
+    amplify-category-function "2.28.2"
+    amplify-codegen "2.20.3"
+    amplify-dynamodb-simulator "1.17.4"
     amplify-storage-simulator "1.5.1"
     chokidar "^3.3.1"
     execa "^4.1.0"
