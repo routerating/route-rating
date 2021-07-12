@@ -16,7 +16,7 @@
     "react-router-prop-types": "^1.0.5"
   },
   "devDependencies": {
-    "@aws-amplify/cli": "^4.45.0",
+    "@aws-amplify/cli": "^5.1.1",
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
     "babel-eslint": "^10.1.0",
