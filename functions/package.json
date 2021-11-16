@@ -10,6 +10,6 @@
     "build": "rollup --lambda RouteRatingGymCleanup --config"
   },
   "dependencies": {
-    "aws-sdk": "^2.728.0"
+    "aws-sdk": "^2.814.0"
   }
 }
